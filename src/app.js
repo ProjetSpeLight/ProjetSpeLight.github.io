@@ -1,7 +1,7 @@
 /// <reference path="~/node_modules/phaser/build/Phaser.js" />
 window.onload = function () {
 
-    var game = new Phaser.Game(960, 600, Phaser.AUTO, '');
+    var game = new Phaser.Game(800, 600, Phaser.AUTO, '');
     
     //if(game.device.iOS){
         //game.scale.startFullScreen();
