@@ -25,7 +25,11 @@ define(['phaser', 'app/photon', 'app/phasergame'], function (Phaser, photon, Pha
         // The object "player" (Phaser.Sprite) is defined and initialized in the main program (game.js).
         sprite: null,
         pushed: false,
-        refPhotons : photon,
+        refPhotons: photon,
+        moveRight: false,
+        moveLeft: false,
+        fireActive: false,
+        changeColor: false,
 
         // Declaration of the enumeration representing the color of the player
         ColorEnum: {
@@ -81,17 +85,13 @@ define(['phaser', 'app/photon', 'app/phasergame'], function (Phaser, photon, Pha
                 this.sprite.body.velocity.x = 0;
             }
 
-            if (cursors.left.isDown) {
+            if (cursors.left.isDown || this.moveLeft) {
                 //  Move to the left
-                this.sprite.body.velocity.x = -300;
-                this.sprite.animations.play('left' + this.sprite.color.name);
-                this.sprite.lookRight = false;
+                this.handlerLeft();
             }
-            else if (cursors.right.isDown) {
-                //  Move to the right
-                this.sprite.body.velocity.x = 300;
-                this.sprite.animations.play('right' + this.sprite.color.name);
-                this.sprite.lookRight = true;
+            else if (cursors.right.isDown || this.moveRight) {
+                //  Move to the right                
+                this.handlerRight();
             }
             else {
                 //  Stand still
@@ -112,7 +112,7 @@ define(['phaser', 'app/photon', 'app/phasergame'], function (Phaser, photon, Pha
 
 
             //  Firing?
-            if (photon.fireButton.isDown) {
+            if (photon.fireButton.isDown || this.fireActive) {
                 photon.firePhoton(PhaserGame.game, this);
             }
 
@@ -134,7 +134,7 @@ define(['phaser', 'app/photon', 'app/phasergame'], function (Phaser, photon, Pha
             }*/
 
             //  Firing?
-            if (photon.fireButton.isDown) {
+            if (photon.fireButton.isDown || this.fireActive) {
                 photon.firePhoton(game, player);
             }
         },
@@ -187,6 +187,18 @@ define(['phaser', 'app/photon', 'app/phasergame'], function (Phaser, photon, Pha
                 this.sprite.body.velocity.y = -600;
                this.pushed = true;
             }
+        },
+
+        handlerLeft : function() {
+            this.sprite.body.velocity.x = -300;
+            this.sprite.animations.play('left' + this.sprite.color.name);
+            this.sprite.lookRight = false;
+        },
+
+        handlerRight: function () {
+            this.sprite.body.velocity.x = 300;
+            this.sprite.animations.play('right' + this.sprite.color.name);
+            this.sprite.lookRight = true;
         }
 
     }

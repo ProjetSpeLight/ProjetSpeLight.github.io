@@ -1,22 +1,25 @@
-define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/phasergame'], function (Phaser, createLevel, player, pause, PhaserGame) {
+define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/phasergame', 'app/touch'], function (Phaser, createLevel, player, pause, PhaserGame, Touch) {
 
     function GameState(game) {
         score = 0;
         paused = false;
     }
 
-
+    var stopped = false;
 
     GameState.prototype = {
         create: function () {
             PhaserGame.game.physics.startSystem(Phaser.Physics.ARCADE);
+            if (!createLevel('level' + this.currentLevel)) {
+                alert('niveau indisponible');
+                stopped = true;
+                return;
+            }
 
-            createLevel(this.currentLevel);
 
-
-            /*if (this.game.device.iOS) {
-                addJoypad(game);
-            }*/
+            if (!this.game.device.desktop) {
+                Touch.initJoypad();
+            }
 
             scoreText = PhaserGame.game.add.text(16, 16, 'Score: 0', { fontSize: '32px', fill: '#000' });
             scoreText.fixedToCamera = true;
@@ -138,6 +141,11 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/phasergame'
 
         update: function () {
 
+            if (stopped) {
+                PhaserGame.game.state.start('MainMenu');
+                return;
+            }
+
 
             if (!pause.is_paused) {
 
@@ -167,20 +175,24 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/phasergame'
                 // We restart the game when "R" is pushed
                 if (PhaserGame.game.input.keyboard.isDown(Phaser.Keyboard.R)) {
                     score = 0;
+                    this.create();
                     PhaserGame.game.state.start('Game');
                 }
 
                 // We restart the game when the character falls of the map
                 if (player.sprite.body.y > PhaserGame.game.world.height - 64) {
                     score = 0;
+                    this.create();
                     PhaserGame.game.state.start('Game');
                 }
 
                 // Mort du personnage quand coincé entre deux plateformes
-                if (player.sprite.body.touching.down && player.sprite.body.touching.up) {
+                if ((player.sprite.body.touching.down && player.sprite.body.touching.up) || (player.sprite.body.touching.right && player.sprite.body.touching.left)) {
                     score = 0;
+                    this.create();
                     PhaserGame.game.state.start('Game');
                 }
+
 
                 // we stop the game when "ESC" is pushed 
                 if (PhaserGame.game.input.keyboard.isDown(Phaser.Keyboard.ESC)) {
@@ -225,7 +237,7 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/phasergame'
 
                         // Oblige le joueur à appuyer 
                         //sur la touche du bas pour changer de couleur
-                        if (this.input.keyboard.isDown(Phaser.Keyboard.DOWN)) {
+                        if (this.input.keyboard.isDown(Phaser.Keyboard.DOWN) || player.changeColor) {
                             player.changePlayerColor(colorplatform.color);
                         }
 
