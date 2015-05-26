@@ -43,8 +43,7 @@ GameStates.Preloader.prototype = {
         this.load.image('photonjaune', 'assets/photon_jaune.png');
         this.load.image('photonblanc', 'assets/photon_blanc.png');
 
-        //this.load.json('level', 'http://localhost:4200/assets/levels/level.json');
-        levelJson = JSON.parse('assets/levels/level.json');
+        this.load.json('level', 'http://ProjetSpeLight.github.io/assets/levels/level.json');
 
 
     },

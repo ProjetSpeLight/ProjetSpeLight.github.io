@@ -22,7 +22,6 @@ window.onload = function () {
     var pushed;
     var movingPlatforms;
     var levelData;
-    var levelJson;
 
     //  Now start the Boot state.
     game.state.start('Boot');
