@@ -9,6 +9,7 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/phasergame'
 
     GameState.prototype = {
         create: function () {
+            stopped = false;
             PhaserGame.game.physics.startSystem(Phaser.Physics.ARCADE);
             if (!createLevel('level' + this.currentLevel)) {
                 alert('niveau indisponible');

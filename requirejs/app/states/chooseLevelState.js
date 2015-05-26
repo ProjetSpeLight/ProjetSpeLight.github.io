@@ -24,12 +24,12 @@ define([
         },
 
         playLevel: function () {
-            this.game.state.states['Game'].currentLevel = 'level';
+            this.game.state.states['Game'].currentLevel = 1;
             this.state.start('Game',true,false);
         },
         
          playLevel2: function () {
-            this.game.state.states['Game'].currentLevel = 'level2';
+            this.game.state.states['Game'].currentLevel = 2;
             this.state.start('Game',true,false);
         }
 

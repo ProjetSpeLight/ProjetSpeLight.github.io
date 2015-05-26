@@ -16,6 +16,7 @@ define(['phaser', 'app/player', 'app/phasergame'], function (Phaser, player, Pha
         //  Creation of the background
         var background = PhaserGame.game.add.sprite(levelData.background.position.x, levelData.background.position.y, levelData.background.skin);
         background.fixedToCamera = true;
+        
 
         // Creation of the "frame" of the level
         var worldBounds = levelData.worldBounds;
@@ -86,6 +87,9 @@ define(['phaser', 'app/player', 'app/phasergame'], function (Phaser, player, Pha
 
         // We parse the JSON file
         var levelData = PhaserGame.game.cache.getJSON(str);
+        if (levelData == null) {
+            return false;
+        }
 
 
         createWorld(levelData);
@@ -111,6 +115,8 @@ define(['phaser', 'app/player', 'app/phasergame'], function (Phaser, player, Pha
 
         // Creation of the player
         createStart(levelData.playerStart, PhaserGame.game);
+
+        return true;
     }
 
 

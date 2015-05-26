@@ -11,6 +11,8 @@ define([
     
     MainMenuState.prototype = {
         create: function () {
+
+            this.game.state.states['Game'].currentLevel = 1;
             // create main menu text and images -
             // create a "Start Game" mechanism - variety of ways to do this...
 

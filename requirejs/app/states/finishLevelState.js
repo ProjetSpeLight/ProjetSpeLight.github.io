@@ -16,6 +16,11 @@ define(['phaser'], function (Phaser) {
             button_restart.anchor.setTo(0.5, 0.5);
             button_restart.fixedToCamera = true;
 
+            var button_next = this.add.button(400, 400, 'buttonNextLevel', this.next, this);
+            button_next.name = 'next';
+            button_next.anchor.setTo(0.5, 0.5);
+            button_next.fixedToCamera = true;
+
         },
 
         menuclick: function () {
@@ -24,6 +29,11 @@ define(['phaser'], function (Phaser) {
 
         restartclick: function () {
             this.state.start('Game');
+        },
+
+        next: function () {
+            this.game.state.states['Game'].currentLevel += 1;
+            this.state.start('Game', true, false);
         }
 
     };

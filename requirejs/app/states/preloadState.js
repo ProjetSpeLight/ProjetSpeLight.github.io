@@ -32,8 +32,11 @@ define(['phaser', 'app/pause', 'app/phasergame'], function (Phaser, pause, Phase
 
             this.load.image('button_jump', 'assets/button_jump.png', 64, 64);
 
-            if (this.game.device.iOS) {
-                //pause.preload_touch(this);
+            if (!this.game.device.desktop) {
+                this.load.spritesheet('buttonvertical', 'assets/buttons/button-vertical.png', 64, 64);
+                this.load.spritesheet('buttonhorizontal', 'assets/buttons/button-horizontal.png', 96, 64);
+                this.load.spritesheet('buttonfire', 'assets/buttons/button-round-a.png', 96, 96);
+                this.load.spritesheet('buttonjump', 'assets/buttons/button-round-b.png', 96, 96);
             }
 
             this.load.image('play', 'assets/button_play.png');
@@ -41,6 +44,7 @@ define(['phaser', 'app/pause', 'app/phasergame'], function (Phaser, pause, Phase
             this.load.image('play2', 'assets/button_play_level2.png');
             this.load.image('help', 'assets/button_help.png');
             this.load.image('tutorial', 'assets/button_tutorial.png');
+            this.load.image('buttonNextLevel', 'assets/button_nextlevel.png');
 
 
             this.load.spritesheet('dude', 'assets/colordude.png', 32, 48);
@@ -51,10 +55,8 @@ define(['phaser', 'app/pause', 'app/phasergame'], function (Phaser, pause, Phase
             this.load.image('photonjaune', 'assets/photon_jaune.png');
             this.load.image('photonblanc', 'assets/photon_blanc.png');
 
-            //this.load.json('level', 'http://localhost:4200/assets/levels/level.json');
-            //this.load.json('level2', 'http://localhost:4200/assets/levels/level2.json');
-            this.load.json('level', 'http://ProjetSpeLight.github.io/assets/levels/level.json');
-            this.load.json('level2', 'http://ProjetSpeLight.github.io/assets/levels/level2.json');
+            this.load.json('level1', 'http://projetspelight.github.io/assets/levels/level.json');
+            this.load.json('level2', 'http://projetspelight.github.io/assets/levels/level2.json');
 
 
         },
