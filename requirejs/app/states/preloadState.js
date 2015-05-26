@@ -51,8 +51,10 @@ define(['phaser', 'app/pause', 'app/phasergame'], function (Phaser, pause, Phase
             this.load.image('photonjaune', 'assets/photon_jaune.png');
             this.load.image('photonblanc', 'assets/photon_blanc.png');
 
-            this.load.json('level', 'http://localhost:4200/assets/levels/level.json');
-            this.load.json('level2', 'http://localhost:4200/assets/levels/level2.json');
+            //this.load.json('level', 'http://localhost:4200/assets/levels/level.json');
+            //this.load.json('level2', 'http://localhost:4200/assets/levels/level2.json');
+            this.load.json('level', 'http://ProjetSpeLight.github.io/assets/levels/level.json');
+            this.load.json('level2', 'http://ProjetSpeLight.github.io/assets/levels/level2.json');
 
 
         },
