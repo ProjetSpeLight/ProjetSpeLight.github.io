@@ -6,7 +6,7 @@ function createLevel(game) {
     game.physics.startSystem(Phaser.Physics.ARCADE);
 
     // We parse the JSON file
-    var levelData = game.cache.getJSON('level');
+    var levelData = levelJson;//game.cache.getJSON('level');
 
     createWorld(levelData, game);
 
