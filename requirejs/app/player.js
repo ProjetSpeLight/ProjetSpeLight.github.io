@@ -30,6 +30,7 @@ define(['phaser', 'app/photon', 'app/phasergame'], function (Phaser, photon, Pha
         moveLeft: false,
         fireActive: false,
         changeColor: false,
+        activeJump: false,
 
         // Declaration of the enumeration representing the color of the player
         ColorEnum: {
@@ -102,7 +103,7 @@ define(['phaser', 'app/photon', 'app/phasergame'], function (Phaser, photon, Pha
             }
 
             //  Allow the player to jump if they are touching the ground.
-            if (cursors.up.isDown) {
+            if (cursors.up.isDown || this.activeJump) {
                 this.jump();
             }
 

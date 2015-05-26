@@ -21,8 +21,8 @@ define([
                this.game.scale.pageAlignVertically = true;
         }
             else {
-                this.game.scale.scaleMode = Phaser.ScaleManager.USER_SCALE;
-                this.game.scale.fullScreenScaleMode = Phaser.ScaleManager.SHOW_ALL; // Important
+                this.game.scale.scaleMode = Phaser.ScaleManager.EXACT_FIT;
+                this.game.scale.fullScreenScaleMode = Phaser.ScaleManager.EXACT_FIT; // Important
                 this.game.scale.pageAlignHorizontally = true;
                 this.game.scale.pageAlignVertically = true;
                 this.game.scale.forceOrientation(true, false);
