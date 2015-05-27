@@ -1,7 +1,7 @@
-﻿{
+{
     "worldBounds": {
         "leftBound": 0,
-        "rightBound": 3200,
+        "rightBound": 1600,
         "upperBound": 0,
         "lowerBound": 600
     },
@@ -84,7 +84,7 @@
             },
             "skin": "ground",
             "color": "",
-            "immovable": false
+            "immovable": true
         },
         {
             "position": {
@@ -134,18 +134,18 @@
         },
         {
             "position": {
-                "x": 1100,
-                "y": 0
+                "x": 100,
+                "y": 150
             },
             "bounds": {
-                "left": 1100,
-                "right": 1700,
+                "left": 100,
+                "right": 700,
                 "lower": 900,
                 "upper": 0
             },
             "speed": {
-                "x": 100,
-                "y": 0
+                "x": 150,
+                "y": 200
             },
             "size": {
                 "x": 1,
@@ -171,6 +171,23 @@
             "x": 0,
             "y": 152,
             "skin": "coin"
+        }
+    ],
+    "ennemis": [
+        {
+            "x": 100,
+            "y": 0,
+            "bounds": {
+                "left": 100,
+                "right": 200,
+                "lower": 900,
+                "upper": 0
+            },
+            "speed": {
+                "x": 150,
+                "y": 200
+            },
+            "skin": "ennemis"
         }
     ],
     "ends": [
