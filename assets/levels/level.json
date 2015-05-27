@@ -1,7 +1,7 @@
 ﻿{
     "worldBounds": {
         "leftBound": 0,
-        "rightBound": 1600,
+        "rightBound": 3200,
         "upperBound": 0,
         "lowerBound": 600
     },
@@ -84,7 +84,7 @@
             },
             "skin": "ground",
             "color": "",
-            "immovable": true
+            "immovable": false
         },
         {
             "position": {
@@ -134,18 +134,18 @@
         },
         {
             "position": {
-                "x": 100,
-                "y": 150
+                "x": 1100,
+                "y": 0
             },
             "bounds": {
-                "left": 100,
-                "right": 700,
+                "left": 1100,
+                "right": 1700,
                 "lower": 900,
                 "upper": 0
             },
             "speed": {
-                "x": 150,
-                "y": 200
+                "x": 100,
+                "y": 0
             },
             "size": {
                 "x": 1,
