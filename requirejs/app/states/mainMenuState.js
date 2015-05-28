@@ -16,7 +16,7 @@ define([
             // create main menu text and images -
             // create a "Start Game" mechanism - variety of ways to do this...
 
-            button_play = this.add.button(400, 200, 'play', this.playGame, this);
+            button_play = this.add.button(400, 180, 'play', this.playGame, this);
             button_play.name = 'play';
             button_play.anchor.setTo(0.5, 0.5);
 
@@ -24,7 +24,7 @@ define([
             button_tutorial.name = 'tutorial';
             button_tutorial.anchor.setTo(0.5, 0.5);
 
-            button_help = this.add.button(400, 400, 'help', this.help, this);
+            button_help = this.add.button(400, 420, 'help', this.help, this);
             button_help.name = 'tutorial';
             button_help.anchor.setTo(0.5, 0.5);
         },
@@ -38,7 +38,7 @@ define([
         },
 
         help: function () {
-            this.state.start('Game');
+            this.state.start('FinishLevel');
         }
 
     };

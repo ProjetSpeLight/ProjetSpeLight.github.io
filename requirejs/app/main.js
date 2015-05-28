@@ -8,7 +8,7 @@
         },
         shim: {
             'phaser': {
-                exports: 'Phaser'
+                exports: 'Phaser',
             }
         }
     });
@@ -21,7 +21,9 @@
     'app/states/gameState',
     'app/states/mainMenuState',
     'app/states/finishLevelState',
-    'app/states/chooseLevelState'
+    'app/states/chooseLevelState',
+    'app/states/restartGameState',
+    'app/touch'
     ],
     function (
         Phaser,
@@ -31,8 +33,11 @@
     GameState,
     MainMenuState,
     FinishLevelState,
-    ChooseLevelState
+    ChooseLevelState,
+    RestartGameState,
+    Touch
     ) {
+        document.addEventListener("deviceready", Touch.onDeviceReady, false);
         PhaserGame.start();
         PhaserGame.game.state.add('Boot', BootState);
         PhaserGame.game.state.add('Preload', PreloadState);
@@ -40,6 +45,7 @@
         PhaserGame.game.state.add('Game', GameState);
         PhaserGame.game.state.add('FinishLevel', FinishLevelState);
         PhaserGame.game.state.add('ChooseLevel', ChooseLevelState);
+        PhaserGame.game.state.add('RestartGame', RestartGameState);
         PhaserGame.game.state.start('Boot');
     });
 }());

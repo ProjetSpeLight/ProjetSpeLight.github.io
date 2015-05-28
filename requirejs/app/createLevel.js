@@ -7,6 +7,9 @@ define(['phaser', 'app/player', 'app/phasergame'], function (Phaser, player, Pha
 
         // Creation of the coins
         createCoin(levelData);
+        
+        // Creation of the ennemies
+        createEnnemis(levelData);
 
         // Creation of the ends
         createEnds(levelData);
@@ -74,6 +77,28 @@ define(['phaser', 'app/player', 'app/phasergame'], function (Phaser, player, Pha
             coin.body.gravity.y = 0;
         }
     }
+    
+    function createEnnemis(levelData) {
+        var dataEnnemis = levelData.ennemis;
+       
+        for (var i = 0 ; i < dataEnnemis.length ; i++) {
+            var ennemiData = dataEnnemis[i];
+            var ennemi = ennemis.create(ennemiData.x, ennemiData.y, 'baddie');
+            ennemi.frame = 1;
+            if (ennemiData.speed.x != 0) {
+                ennemi.body.sprite.leftBounds = ennemiData.bounds.left;
+                ennemi.body.sprite.rightBounds = ennemiData.bounds.right;
+                ennemi.body.velocity.x = ennemiData.speed.x;
+            }
+            //pas sur non plus de ces 3 la
+            //platform.body.immovable = platformData.immovable;
+            //ennemi.body.immovable = ennemiData.immovable;
+            ennemi.body.bounce.y = 0;
+            ennemi.body.gravity.y = 1000;
+        }
+    
+    }
+    
 
     function createStart(element) {
         player.initializePlayer(PhaserGame.game, element.x, element.y);
@@ -100,13 +125,16 @@ define(['phaser', 'app/player', 'app/phasergame'], function (Phaser, player, Pha
         colourPlatforms = PhaserGame.game.add.physicsGroup();
         ends = PhaserGame.game.add.group();
         coins = PhaserGame.game.add.group();
-
+        ennemis = PhaserGame.game.add.physicsGroup();
+        //test = true;
+        
 
         //  We will enable physics for any object that is created in those group
         platforms.enableBody = true;
         coins.enableBody = true;
         ends.enableBody = true;
         colourPlatforms.enableBody = true;
+        ennemis.enableBody = true;
 
 
         // Creation of the level's objects

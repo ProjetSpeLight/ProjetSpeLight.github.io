@@ -156,6 +156,23 @@
             "immovable": true
         }
     ],
+    "ennemis": [
+        {
+            "x": 800,
+            "y": 0,
+            "bounds": {
+                "left": 800,
+                "right": 1000,
+                "lower": 900,
+                "upper": 0
+            },
+            "speed": {
+                "x": 150,
+                "y": 200
+            },
+            "skin": "ennemis"
+        }
+    ],
     "coins": [
         {
             "x": 400,
