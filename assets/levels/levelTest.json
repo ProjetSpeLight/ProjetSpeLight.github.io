@@ -1,4 +1,4 @@
-﻿{
+{
     "worldBounds": {
         "leftBound": 0,
         "rightBound": 2000,
@@ -202,7 +202,7 @@
             "immovable": true
         }
     ],
-    "ennemis": [ 
+    "ennemis": [
 
     ],
     "coins": [
@@ -217,10 +217,48 @@
             "skin": "coin"
         }
     ],
+    "ennemis": [
+        {
+            "x": 300,
+            "y": 0,
+            "bounds": {
+                "left": 300,
+                "right": 400,
+                "lower": 900,
+                "upper": 0
+            },
+            "speed": {
+                "x": 150,
+                "y": 200
+            },
+            "skin": "baddie"
+        }
+    ],
+    "filters": [
+        {
+            "x": 50,
+            "y": 600,
+            "color": "Magenta"
+        }
+    ],
+    "piques": [
+        {
+            "x": 600,
+            "y": 250,
+            "skin": "pique"
+        }
+    ],
     "ends": [
         {
-            "x": 1800,
+            "x": 500,
             "y": 30
+        }
+    ],
+    "mirrors": [
+        {
+            "x": 200,
+            "y": 500,
+            "angle": 45
         }
     ]
 }
