@@ -1,0 +1,168 @@
+{
+    "worldBounds": {
+        "leftBound": 0,
+        "rightBound": 1600,
+        "upperBound": 0,
+        "lowerBound": 600
+    },
+    "background": {
+        "skin": "sky",
+        "position": {
+            "x": 0,
+            "y": 0
+        }
+    },
+    "playerStart": {
+        "x": 32,
+        "y": 15
+    },
+    "platforms": [
+        {
+            "position": {
+                "x": 0,
+                "y": 568
+            },
+            "bounds": {
+                "left": 0,
+                "right": 0,
+                "lower": 0,
+                "upper": 0
+            },
+            "speed": {
+                "x": 0,
+                "y": 0
+            },
+            "size": {
+                "x": 4,
+                "y": 1
+            },
+            "skin": "ground",
+            "color": "",
+            "immovable": true
+        },
+        {
+            "position": {
+                "x": 200,
+                "y": 400
+            },
+            "bounds": {
+                "left": 0,
+                "right": 0,
+                "lower": 0,
+                "upper": 0
+            },
+            "speed": {
+                "x": 0,
+                "y": 0
+            },
+            "size": {
+                "x": 0.25,
+                "y": 1
+            },
+            "skin": "ground",
+            "color": "",
+            "immovable": true
+        },
+        {
+            "position": {
+                "x": 350,
+                "y": 350
+            },
+            "bounds": {
+                "left": 0,
+                "right": 0,
+                "lower": 0,
+                "upper": 0
+            },
+            "speed": {
+                "x": 0,
+                "y": 0
+            },
+            "size": {
+                "x": 0.25,
+                "y": 1
+            },
+            "skin": "ground",
+            "color": "Red",
+            "immovable": true
+        },
+        {
+            "position": {
+                "x": 450,
+                "y": 350
+            },
+            "bounds": {
+                "left": 0,
+                "right": 0,
+                "lower": 0,
+                "upper": 0
+            },
+            "speed": {
+                "x": 0,
+                "y": 0
+            },
+            "size": {
+                "x": 0.25,
+                "y": 1
+            },
+            "skin": "ground",
+            "color": "Blue",
+            "immovable": true
+        }
+
+    ],
+    "coins": [
+        {
+            "x": 50,
+            "y": 250,
+            "skin": "coin"
+        },
+        {
+            "x": 0,
+            "y": 152,
+            "skin": "coin"
+        }
+    ],
+    "ennemis": [
+        {
+            "x": 800,
+            "y": 0,
+            "bounds": {
+                "left": 100,
+                "right": 200,
+                "lower": 900,
+                "upper": 0
+            },
+            "speed": {
+                "x": 150,
+                "y": 200
+            },
+            "skin": "baddie"
+        }
+    ],
+
+    "mirrors": [
+        {
+            "x": 1000,
+            "y": 520,
+            "angle": 135
+        }
+    ],
+
+    "filters": [
+        {
+            "x": 100,
+            "y": 540,
+            "color": "Blue"
+        }
+    ],
+
+    "buttons": [
+        {
+            "x": 50,
+            "y": 540
+
+        }
+    ]
+
+}
