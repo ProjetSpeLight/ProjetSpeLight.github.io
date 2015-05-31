@@ -1,0 +1,96 @@
+﻿{
+    "worldBounds": {
+        "leftBound": 0,
+        "rightBound": 9200,
+        "upperBound": 0,
+        "lowerBound": 800
+    },
+    "background": {
+        "skin": "sky",
+        "position": {
+            "x": 0,
+            "y": 0
+        }
+    },
+    "playerStart": {
+        "x": 100,
+        "y": 350
+    },
+    "platforms": [
+        {
+            "position": {
+                "x": 0,
+                "y": 400
+            },
+            "size": {
+                "x": 1,
+                "y": 1
+            },
+            "color": "",
+            "skin": "ground",
+            "immovable": true
+        }
+    ],
+    "loopingPlatforms": [
+        
+
+    ],
+    "backAndForthPlatforms": [
+        {
+            "positions": [
+                {
+                    "x": 150,
+                    "y": 300,
+                    "speed": {
+                        "x": 300,
+                        "y": 100
+                    }
+                },
+                {
+                    "x": 450,
+                    "y": 400,
+                    "speed": {
+                        "x": -100,
+                        "y": 100
+                    }
+                },
+                {
+                    "x": 350,
+                    "y": 500,
+                    "speed": {
+                        "x": 0,
+                        "y": -200
+                    }
+                }
+            ],
+            "size": {
+                "x": 1,
+                "y": 1
+            },
+            "skin": "ground",
+            "color": "",
+            "immovable": true
+        }
+    ],
+    "coins": [
+        {
+            "x": 50,
+            "y": 250,
+            "skin": "coin"
+        },
+        {
+            "x": 0,
+            "y": 152,
+            "skin": "coin"
+        }
+    ],
+    "ennemis": [
+        
+    ],
+    "ends": [
+        {
+            "x": 300,
+            "y": 30
+        }
+    ]
+}

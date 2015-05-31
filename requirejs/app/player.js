@@ -1,9 +1,4 @@
-﻿/**
- * This module implements the fonctionnalities of the player
- */
-
-
-define(['phaser', 'app/photon', 'app/phasergame'], function (Phaser, photon, PhaserGame) {
+define(['phaser', 'app/photon', 'app/phasergame', 'app/color'], function (Phaser, photon, PhaserGame, Color) {
 
 
     /// @function initializePlayerAnimations
@@ -18,44 +13,7 @@ define(['phaser', 'app/photon', 'app/phasergame'], function (Phaser, photon, Pha
 
         // Initialization of an attribute to indicate where the player look at
         sprite.lookRight = true;
-    }
-
-
-    function subAdditiveColorMagenta(color1, color2) {
-        return color1.name == 'Red' && color2.name == 'Blue';
-    }
-
-    function subAdditiveColorCyan(color1, color2) {
-        return color1.name == 'Red' && color2.name == 'Green';
-    }
-
-    function subAdditiveColorYellow(color1, color2) {
-        return color1.name == 'Blue' && color2.name == 'Green';
-    }
-
-
-    function additiveColor(oldColor, newColor, ColorEnum) {
-        if (subAdditiveColorMagenta(oldColor, newColor) || subAdditiveColorMagenta(newColor, oldColor)) {
-            return ColorEnum.MAGENTA;
-        }
-
-        if (subAdditiveColorCyan(oldColor, newColor) || subAdditiveColorCyan(newColor, oldColor)) {
-            return ColorEnum.YELLOW;
-        }
-
-        if (subAdditiveColorYellow(oldColor, newColor) || subAdditiveColorYellow(newColor, oldColor)) {
-            return ColorEnum.CYAN;
-        }
-
-        if ((oldColor.name == 'Magenta' && newColor.name == 'Green') || (oldColor.name == 'Yellow' && newColor.name == 'Blue') || (oldColor.name == 'Cyan' && newColor.name == 'Red')) {
-            return ColorEnum.WHITE;
-        }
-
-        if (oldColor.name == 'Magenta' || oldColor.name == 'Cyan' || oldColor.name == 'Yellow' || oldColor.name == 'White') {
-            return oldColor;
-        }
-
-        return newColor;
+        sprite.invincible = false;
     }
 
     return {
@@ -66,21 +24,17 @@ define(['phaser', 'app/photon', 'app/phasergame'], function (Phaser, photon, Pha
         refPhotons: photon,
         moveRight: false,
         moveLeft: false,
+        accelerometerOn: false,
+        velocity: 0,
         fireActive: false,
         changeColor: false,
         activeJump: false,
+        timeInvincible: 0,
+        firstAddColor: Color.ColorEnum.BLACK,
+        secondAddColor: Color.ColorEnum.BLACK,
+        numberColor: 0,
 
-        // Declaration of the enumeration representing the color of the player
-        ColorEnum: {
-            BLACK: { value: 0, name: 'Black', code: 'B' },
-            RED: { value: 1, name: 'Red', code: 'R' },
-            BLUE: { value: 3, name: 'Blue', code: 'Bl' },
-            GREEN: { value: 2, name: 'Green', code: 'G' },
-            YELLOW: { value: 4, name: 'Yellow', code: 'Y' },
-            CYAN: { value: 5, name: 'Cyan', code: 'C' },
-            MAGENTA: { value: 6, name: 'Magenta', code: 'M' },
-            WHITE: { value: 7, name: 'White', code: 'W' }
-        },
+
 
         initializePlayer: function (game, x, y) {
             // The player and its settings            
@@ -96,14 +50,16 @@ define(['phaser', 'app/photon', 'app/phasergame'], function (Phaser, photon, Pha
 
 
             // Initialization of the player animations
-            initializePlayerAnimations(this.sprite, this.ColorEnum);
+            initializePlayerAnimations(this.sprite, Color.ColorEnum);
 
             // Initialization of an attribute to indicate where the player look at
             this.sprite.lookRight = true;
-            this.sprite.color = this.ColorEnum.BLACK;
+            this.sprite.color = Color.ColorEnum.BLACK;
 
             // Initialization of the photons
             photon.initPhotons(PhaserGame.game, this);
+            this.firstAddColor = Color.ColorEnum.BLACK;
+            this.secondAddColor = Color.ColorEnum.BLACK;
         },
 
 
@@ -114,6 +70,16 @@ define(['phaser', 'app/photon', 'app/phasergame'], function (Phaser, photon, Pha
         /// @param {Phaser.Sprite} the object player itself
         /// @param {Object} object containing a Phaser.Key object for each directional arrows keys
         updatePositionPlayer: function (cursors) {
+
+            /*if (this.pushed) {
+                this.sprite.body.checkCollision.up = false;
+                this.sprite.body.checkCollision.left = false;
+                this.sprite.body.checkCollision.right = false;
+            } else if (this.sprite.body.touching.down) {
+                this.sprite.body.checkCollision.up = true;
+                this.sprite.body.checkCollision.left = true;
+                this.sprite.body.checkCollision.right = true;
+            }*/
 
             //  Reset the players velocity (movement)
             if (this.sprite.body.velocity.x > 10 && !this.sprite.body.touching.down) {
@@ -131,6 +97,10 @@ define(['phaser', 'app/photon', 'app/phasergame'], function (Phaser, photon, Pha
             else if (cursors.right.isDown || this.moveRight) {
                 //  Move to the right                
                 this.handlerRight();
+            }
+            else if (this.accelerometerOn) {
+                //  Move to the left
+                this.handlerAccelerometer();
             }
             else {
                 //  Stand still
@@ -159,35 +129,30 @@ define(['phaser', 'app/photon', 'app/phasergame'], function (Phaser, photon, Pha
 
         },
 
-
-
-
-        /// @function getColor
-        /// Return the object of the enumeration corresponding to the string in argument, null if the string does not represent a color name
-        /// @param {String} the color name
-        getColor: function (colorName) {
-            for (var id in this.ColorEnum) {
-                if (this.ColorEnum[id].name == colorName) {
-                    return this.ColorEnum[id];
-                }
-            }
-            return null;
+        /// @function removePlayerColor
+        /// remove the last color he obtained 
+        removePlayerColor: function () {           
+            this.sprite.color = this.firstAddColor;
+            this.firstAddColor = this.secondAddColor;
+            this.secondAddColor = Color.ColorEnum.BLACK;
         },
+
+
+
 
         /// @function changePlayerColor
         /// Change the current color of the player (and thus of the photons he throws) to the new one given in argument
         changePlayerColor: function (newColor) {
-            var color = this.getColor(newColor);
+            var color = Color.getColor(newColor);
             if (color == null) {
                 return;
             }
-            color = additiveColor(this.sprite.color, color, this.ColorEnum);
+            color = Color.additiveColor(this.sprite.color, color);
             if (this.sprite.color != color) {
+                this.secondAddColor = this.firstAddColor;
+                this.firstAddColor = this.sprite.color;
                 this.sprite.color = color;
                 this.sprite.frame = this.sprite.color.value * 9 + 4;
-                if (this.sprite.color.value >= 1) {
-                    photon.photons.setAll('frame', this.sprite.color.value - 1);
-                }
             }
         },
 
@@ -208,6 +173,42 @@ define(['phaser', 'app/photon', 'app/phasergame'], function (Phaser, photon, Pha
             this.sprite.body.velocity.x = 300;
             this.sprite.animations.play('right' + this.sprite.color.name);
             this.sprite.lookRight = true;
+        },
+
+        handlerAccelerometer: function () {
+            /*this.sprite.body.velocity.x = this.velocity;
+            if (this.velocity < 0) {
+                this.sprite.animations.play('left' + this.sprite.color.name);
+                this.sprite.lookRight = false;
+            } else if (this.velocity > 0){
+                this.sprite.animations.play('right' + this.sprite.color.name);
+                this.sprite.lookRight = true;
+            } else {
+                this.sprite.animations.stop();
+                this.sprite.frame = this.sprite.color.value * 9 + 4;
+            }*/
+            this.sprite.body.velocity.x = this.velocity;
+            if (this.velocity < 0) {
+                this.sprite.animations.play('left' + this.sprite.color.name);
+                this.sprite.lookRight = false;
+            } else if (this.velocity > 0){
+                this.sprite.animations.play('right' + this.sprite.color.name);
+                this.sprite.lookRight = true;
+            } else {
+                this.sprite.animations.stop();
+                this.sprite.frame = this.sprite.color.value * 9 + 4;
+            }
+        },
+
+        filterColor: function (color) {
+            this.sprite.color = Color.subFilterColor(this.sprite.color, Color.getColor(color));
+            this.firstAddColor = Color.subFilterColor(this.firstAddColor, Color.getColor(color));
+            if (this.firstAddColor == this.sprite.color) {
+                this.firstAddColor = Color.ColorEnum.BLACK;
+            }
+            this.secondAddColor = Color.ColorEnum.BLACK;
+
+
         }
 
     }

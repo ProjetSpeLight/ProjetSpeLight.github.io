@@ -4,12 +4,12 @@
     requirejs.config({
         baseUrl: "requirejs/",
         paths: {
-            phaser: 'lib/phaser/phaser'
+            phaser: 'lib/phaser/phaser',
         },
         shim: {
             'phaser': {
                 exports: 'Phaser',
-            }
+            },
         }
     });
 
@@ -23,7 +23,8 @@
     'app/states/finishLevelState',
     'app/states/chooseLevelState',
     'app/states/restartGameState',
-    'app/touch'
+    'app/touch',
+    'app/states/deadState'
     ],
     function (
         Phaser,
@@ -35,7 +36,8 @@
     FinishLevelState,
     ChooseLevelState,
     RestartGameState,
-    Touch
+    Touch,
+    DeadState
     ) {
         document.addEventListener("deviceready", Touch.onDeviceReady, false);
         PhaserGame.start();
@@ -46,6 +48,7 @@
         PhaserGame.game.state.add('FinishLevel', FinishLevelState);
         PhaserGame.game.state.add('ChooseLevel', ChooseLevelState);
         PhaserGame.game.state.add('RestartGame', RestartGameState);
+        PhaserGame.game.state.add('Dead', DeadState);
         PhaserGame.game.state.start('Boot');
     });
 }());

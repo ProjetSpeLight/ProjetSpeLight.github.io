@@ -8,6 +8,8 @@ define(['phaser', 'app/phasergame', 'app/player'], function (Phaser, PhaserGame,
     var options = { frequency: 100 };
     var watchID = null;
     var inGame = false;
+    var orientationDroite = true;
+    var zoneMorte = 3;
 
     function initJoypad() {
         buttonjump = PhaserGame.game.add.button(600, 500, 'buttonjump', null, this, 0, 1, 0, 1);
@@ -47,29 +49,35 @@ define(['phaser', 'app/phasergame', 'app/player'], function (Phaser, PhaserGame,
     }
     
     function startWatching() {
-        inGame = true;    
+        inGame = true;
+        Player.accelerometerOn = true;
     }
 
     function onDeviceReady() {
-        alert("device ready");
         this.watchID = navigator.accelerometer.watchAcceleration(onSuccess, onError, options);
     }
 
     function stopWatching() {
         inGame = false;
+        Player.accelerometerOn = false;
     }
 
     function onSuccess(acceleration) {
         if (inGame) {
-            if (acceleration.y > 3) {
-                Player.moveLeft = true;
-                Player.moveRight = false;
-            } else if (acceleration.y < -3) {
-                Player.moveRight = true;
-                Player.moveLeft = false;
+            var signe;
+            if(acceleration.x < 0){
+                signe = -1;
             } else {
-                Player.moveLeft = false;
-                Player.moveRight = false;
+                signe = 1;
+            }
+            if (Math.abs(acceleration.y) > zoneMorte) {
+                if(acceleration.y > 0){
+                    Player.velocity = signe * (acceleration.y - zoneMorte) / (9.80 - zoneMorte) * 300;
+                } else {
+                    Player.velocity = signe * (acceleration.y + zoneMorte) / (9.80 - zoneMorte) * 300;
+                }
+            } else {
+                Player.velocity = 0;
             }
         }
     } 

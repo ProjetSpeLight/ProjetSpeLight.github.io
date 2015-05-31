@@ -156,12 +156,13 @@
             "immovable": true
         }
     ],
+    "loopingPlatforms": [
+
+
+    ],
+    "backAndForthPlatforms": [
+    ],
     "coins": [
-        {
-            "x": 400,
-            "y": 400,
-            "skin": "coin"
-        },
         {
             "x": 50,
             "y": 250,

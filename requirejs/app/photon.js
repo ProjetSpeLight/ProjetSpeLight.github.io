@@ -11,6 +11,7 @@ define(['phaser', 'app/phasergame'], function (Phaser, game) {
         photonTime: 0,
         // Button associated to the handler firePhoton()
         fireButton: null,
+        
 
         /// @function initPhotons
         /// Initialize the group of photons (the factory) in order to create photons and the button to use to throw photons
@@ -50,6 +51,10 @@ define(['phaser', 'app/phasergame'], function (Phaser, game) {
                     }
                     // Delay the next fire of photon
                     this.photonTime = game.time.now + 200;
+
+                    // Color of the photon
+                    photon.color = player.sprite.color;
+                    photon.frame = player.sprite.color.value - 1;
                 }
             }
         }
