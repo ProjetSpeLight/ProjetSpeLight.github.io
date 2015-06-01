@@ -5,32 +5,48 @@
     "upperBound": 0,
     "lowerBound": 800
   },
-  "background": {
-    "skin": "sky",
-    "position": {
-      "x": 0,
-      "y": 0
-    }
-  },
+  // Skin used for the backGround
+  "background": "sky",
+  // Player position at the begining of the game
   "playerStart": {
     "x": 50,
     "y": 150
   },
+  // List of all the platforms except for the ones that move
   "platforms": [
-    
-    { 
+    // Minimal description for a platform
+    {
       "position": {
         "x": 0,
         "y": 200
       }
     }
-  ],
-  "loopingPlatforms": [
-
-
-  ],
-  "backAndForthPlatforms": [
+    // Equivalent to the following full definition
     {
+      "position": {
+        "x": 0,
+        "y": 200
+      },
+      // Size of the platform with (1,1) being the size of the skin used
+      "size": {
+        "x": 1,
+        "y": 1
+      },
+      // Color of the platform, if empty or null then the color has no platform
+      "color": "",
+      // Skin used for the platform (altered by the color)
+      "skin": "ground",
+      // If true the platform can be crossed from anywhere except above
+      "crossable": false,
+      // If false the platform will collapse as soon as the player or something is put on it
+      "immovable": true
+    }
+  ],
+  // List containing all the platform with a looping movement
+  "loopingPlatforms": [
+    {
+      // List of all the point the platform go through during its movement
+      // The first point of the list is the one where the platform is initialized
       "positions": [
         {
           "x": 150,
@@ -56,47 +72,73 @@
             "y": -200
           }
         }
-      ],
-      "size": {
-        "x": 1,
-        "y": 1
-      },
-      "skin": "ground",
-      "color": "",
-      "immovable": false
+      ]
+      // All parameters used for a basic platform can also be specified here
     }
   ],
-  "coins": [
-    {
-      "x": 50,
-      "y": 250,
-      "skin": "coin"
-    },
-    {
-      "x": 0,
-      "y": 152,
-      "skin": "coin"
-    }
+  // Same as LoopingPlatforms except the movement is a back and forth instead of a loop
+  "backAndForthPlatforms": [
   ],
+
   "ennemis": [
     {
+      // Initial position
       "x": 100,
       "y": 0,
+      // Bounds of the ennemi's movement
       "bounds": {
         "left": 100,
         "right": 200,
         "lower": 900,
         "upper": 0
       },
+      // Initial speed
       "speed": {
         "x": 150,
         "y": 200
       },
+      // Skin used for the ennemi
       "skin": "baddie"
     }
   ],
+  "filters": [
+    {
+      // Position
+      "x": 0,
+      "y": 0,
+      // Color of the filter
+      "color": "red"
+    }
+  ],
+  "mirrors": [
+    {
+      "x": 0,
+      "y": 0,
+      "angle": 45,
+      "skin": ""
+    }
+  ],
+  "coins": [
+    {
+      "x": 0,
+      "y": 0,
+      "skin": "star"
+    }
+  ],
+  "piques": [
+    {
+      "x": 0,
+      "y": 0,
+      "skin": "piques"
+    }
+  ],
+  "switchs": [ 
+    //TODO
+  ],
+  // List of the different level ending areas
   "ends": [
     {
+      // Position
       "x": 300,
       "y": 30
     }

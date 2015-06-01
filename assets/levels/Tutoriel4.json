@@ -1,0 +1,311 @@
+{
+  "worldBounds": {
+    "leftBound": 0,
+    "rightBound": 3200,
+    "upperBound": 0,
+    "lowerBound": 600
+  },
+  "background": "sky",
+  "playerStart": {
+    "x": 2050,
+    "y": 500
+  },
+  "platforms": [
+    {
+      "position": {
+        "x": 0,
+        "y": 560
+      },
+      "size": {
+        "x": 153,
+        "y": 2
+      }
+    },
+    {
+      "position": {
+        "x": 2300,
+        "y": 460
+      },
+      "size": {
+        "x": 1,
+        "y": 5
+      },
+      "crossable": false
+    },
+    {
+      "position": {
+        "x": 1660,
+        "y": 400
+      },
+      "size": {
+        "x": 6,
+        "y": 1
+      },
+      "crossable": false
+    },  
+    {
+      "position": {
+        "x": 2160,
+        "y": 440
+      },
+      "size": {
+        "x": 8,
+        "y": 1
+      }
+    }   
+  ],
+  "backAndForthPlatforms": [
+    {
+      "positions": [
+        {
+          "x": 600,
+          "y": 460,
+          "speed": {
+            "x": 100,
+            "y": 0
+          }
+        },
+        {
+          "x": 950,
+          "y": 460,
+          "speed": {
+            "x": -100,
+            "y": 0
+          }
+        }
+      ],
+      "size": {
+        "x": 5,
+        "y": 1
+      },
+      "immovable": true
+    },
+    {
+      "positions": [
+        {
+          "x": 700,
+          "y": 360,
+          "speed": {
+            "x": 100,
+            "y": 0
+          }
+        },
+        {
+          "x": 1050,
+          "y": 360,
+          "speed": {
+            "x": -100,
+            "y": 0
+          }
+        }
+      ],
+      "size": {
+        "x": 5,
+        "y": 1
+      },
+      "immovable": true
+    },
+    {
+      "positions": [
+        {
+          "x": 800,
+          "y": 260,
+          "speed": {
+            "x": 100,
+            "y": 0
+          }
+        },
+        {
+          "x": 1150,
+          "y": 260,
+          "speed": {
+            "x": -100,
+            "y": 0
+          }
+        }
+      ],
+      "size": {
+        "x": 3,
+        "y": 3
+      },
+      "immovable": true,
+      "color": "Blue"    
+    },
+    {
+      "positions": [
+        {
+          "x": 2140,
+          "y": 460,
+          "speed": {
+            "x": 0,
+            "y": -100
+          }
+        },
+        {
+          "x": 2140,
+          "y": 260,
+          "speed": {
+            "x": 0,
+            "y": 100
+          }
+        }
+      ],
+      "size": {
+        "x": 1,
+        "y": 5
+      },
+      "immovable": true
+    },
+      {
+      "positions": [
+        {
+          "x": 1550,
+          "y": 200,
+          "speed": {
+            "x": 100,
+            "y": 0
+          }
+        },
+        {
+          "x": 2000,
+          "y": 200,
+          "speed": {
+            "x": -100,
+            "y": 0
+          }
+        }
+      ],
+      "size": {
+        "x": 5,
+        "y": 1
+      },
+      "immovable": true
+    }
+  ],
+  "mirrors": [
+    {
+      "x": 1720,
+      "y": 520,
+      "angle": 45,
+      "skin": "mirror"
+    },
+    {
+      "x": 1875,
+      "y": 200,
+      "angle": 45,
+      "skin": "mirror"
+    },  
+    {
+      "x": 2300,
+      "y": 320,
+      "angle": 45,
+      "skin": "mirror"
+    },  
+    {
+      "x": 2300,
+      "y": 200,
+      "angle": 45,
+      "skin": "mirror"
+    }  
+  ],
+  "filters": [
+    {
+      "x": 2000,
+      "y": 320,
+      "color": "red"
+    }
+  ],
+  "switch": [
+    {
+      "x": 2100,
+      "y": 320,
+      "color": "Blue"
+    }
+  ],
+  "coins":[
+  {
+	  "x":180,
+	  "y":510,
+	  "skin":"coin"
+  },
+  {
+	  "x":280,
+	  "y":460,
+	  "skin":"coin"
+  },
+  {
+	  "x":380,
+	  "y":410,
+	  "skin":"coin"
+  },
+  {
+	  "x":480,
+	  "y":460,
+	  "skin":"coin"
+  },
+  {
+	  "x":580,
+	  "y":510,
+	  "skin":"coin"
+  },
+  {
+	  "x":870,
+	  "y":320,
+	  "skin":"coin"
+  },
+  {
+	  "x":1300,
+	  "y":220,
+	  "skin":"coin"
+  },
+  {
+	  "x":1450,
+	  "y":420,
+	  "skin":"coin"
+  },   
+  {
+	  "x":1380,
+	  "y":320,
+	  "skin":"coin"
+  },
+  {
+	  "x":1520,
+	  "y":520,
+	  "skin":"coin"
+  }      
+  ],
+  "ennemis":[
+  {
+      "x": 380,
+      "y": 400,
+      "bounds": {
+        "left": 300,
+        "right": 700,
+		"lower":600,
+		"upper":0
+      },
+      "speed": {
+        "x": 150,
+		"y": 0
+      },
+      "skin": "baddie"
+    }
+   ],
+   "ends": [
+    {
+      "x": 2200,
+      "y": 500
+    }
+  ],
+  "action": {
+           "groupId" : 0, 
+           "id" : 0, 
+           "actionName": "a",
+           "args":  
+               {
+                   "x": 100,
+                   "y": 0
+                   
+               }
+  }
+}
