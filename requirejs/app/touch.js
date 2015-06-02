@@ -73,7 +73,7 @@ define(['phaser', 'app/phasergame', 'app/player'], function (Phaser, PhaserGame,
     }
 
     function killChangeColorButton() {
-        Player.changeColor = false;
+        //Player.changeColor = false;
         buttondown.visible = false;
     }
 

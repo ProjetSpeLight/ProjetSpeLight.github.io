@@ -15,10 +15,14 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon', 'a
 
     GameState.prototype = {
         preload: function () {
-            if(this.currentLevel === 0){
-                this.load.json('level0', 'http://projetspelight.github.io/assets/levels/Tutoriel.json');
+            if (this.currentLevel === 0) {
+                if (!PhaserGame.game.cache.checkJSONKey('level0')) {
+                    this.load.json('level0', 'http://projetspelight.github.io/assets/levels/Tutoriel.json');
+                }
             } else {
-                this.load.json('level' + this.currentLevel, 'http://projetspelight.github.io/assets/levels/Level' + this.currentLevel + '.json');
+                if (!PhaserGame.game.cache.checkJSONKey('level' + this.currentLevel)) {
+                    this.load.json('level' + this.currentLevel, 'http://projetspelight.github.io/assets/levels/Level' + this.currentLevel + '.json');
+                }
             }
         },
 
@@ -74,8 +78,6 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon', 'a
                     //sur la touche du bas pour changer de couleur
                     if (this.input.keyboard.isDown(Phaser.Keyboard.DOWN) || player.changeColor) {
                         player.changePlayerColor(colorplatform.color);
-
-
                     }
                 }
             }
