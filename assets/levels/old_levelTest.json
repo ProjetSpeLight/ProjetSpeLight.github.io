@@ -1,0 +1,265 @@
+{
+    "worldBounds": {
+        "leftBound": 0,
+        "rightBound": 2000,
+        "upperBound": 0,
+        "lowerBound": 800
+    },
+    "background": "sky",
+    "playerStart": {
+        "x": 30,
+        "y": 700
+    },
+    "platforms": [
+        {
+            "position": {
+                "x": 0,
+                "y": 750
+            },
+            "bounds": {
+                "left": 0,
+                "right": 0,
+                "lower": 0,
+                "upper": 0
+            },
+            "speed": {
+                "x": 0,
+                "y": 0
+            },
+            "size": {
+                "x": 2,
+                "y": 1
+            },
+            "skin": "ground",
+            "color": "",
+            "immovable": true
+        },
+        {
+            "position": {
+                "x": 75,
+                "y": 725
+            },
+            "bounds": {
+                "left": 0,
+                "right": 0,
+                "lower": 0,
+                "upper": 0
+            },
+            "speed": {
+                "x": 0,
+                "y": 0
+            },
+            "size": {
+                "x": 0.15,
+                "y": 0.5
+            },
+            "skin": "ground",
+            "color": "Red",
+            "immovable": true
+        },
+        {
+            "position": {
+                "x": 150,
+                "y": 725
+            },
+            "bounds": {
+                "left": 0,
+                "right": 0,
+                "lower": 0,
+                "upper": 0
+            },
+            "speed": {
+                "x": 0,
+                "y": 0
+            },
+            "size": {
+                "x": 0.15,
+                "y": 0.5
+            },
+            "skin": "ground",
+            "color": "Green",
+            "immovable": true
+        },
+        {
+            "position": {
+                "x": 225,
+                "y": 725
+            },
+            "bounds": {
+                "left": 0,
+                "right": 0,
+                "lower": 0,
+                "upper": 0
+            },
+            "speed": {
+                "x": 0,
+                "y": 0
+            },
+            "size": {
+                "x": 0.15,
+                "y": 0.5
+            },
+            "skin": "ground",
+            "color": "Blue",
+            "immovable": true
+        },
+        {
+            "position": {
+                "x": 300,
+                "y": 600
+            },
+            "bounds": {
+                "left": 300,
+                "right": 1000,
+                "lower": 600,
+                "upper": 600
+            },
+            "speed": {
+                "x": 100,
+                "y": 0
+            },
+            "size": {
+                "x": 1,
+                "y": 1
+            },
+            "skin": "ground",
+            "color": "",
+            "immovable": true
+        },
+        {
+            "position": {
+                "x": 600,
+                "y": 450
+            },
+            "bounds": {
+                "left": 600,
+                "right": 600,
+                "lower": 450,
+                "upper": 0
+            },
+            "speed": {
+                "x": 0,
+                "y": 50
+            },
+            "size": {
+                "x": 1,
+                "y": 1
+            },
+            "skin": "ground",
+            "color": "",
+            "immovable": true
+        },
+        {
+            "position": {
+                "x": 1000,
+                "y": 300
+            },
+            "bounds": {
+                "left": 1000,
+                "right": 2000,
+                "lower": 0,
+                "upper": 0
+            },
+            "speed": {
+                "x": 200,
+                "y": 0
+            },
+            "size": {
+                "x": 0.33,
+                "y": 1
+            },
+            "skin": "ground",
+            "color": "",
+            "immovable": true
+        },
+        {
+            "position": {
+                "x": 1700,
+                "y": 700
+            },
+            "bounds": {
+                "left": 0,
+                "right": 0,
+                "lower": 0,
+                "upper": 0
+            },
+            "speed": {
+                "x": 0,
+                "y": 0
+            },
+            "size": {
+                "x": 1,
+                "y": 1
+            },
+            "skin": "ground",
+            "color": "",
+            "immovable": true
+        }
+    ],
+    "ennemis": [
+
+    ],
+    "coins": [
+        {
+            "x": 400,
+            "y": 500,
+            "skin": "coin"
+        },
+        {
+            "x": 300,
+            "y": 500,
+            "skin": "coin"
+        }
+    ],
+    "ennemis": [
+        {
+            "x": 300,
+            "y": 0,
+            "bounds": {
+                "left": 300,
+                "right": 400,
+                "lower": 900,
+                "upper": 0
+            },
+            "speed": {
+                "x": 150,
+                "y": 200
+            },
+            "skin": "baddie"
+        }
+    ],
+    "filters": [
+        {
+            "x": 50,
+            "y": 600,
+            "color": "Magenta"
+        }
+    ],
+    "piques": [
+        {
+            "x": 600,
+            "y": 250,
+            "skin": "pique"
+        }
+    ],
+    "ends": [
+        {
+            "x": 500,
+            "y": 30
+        }
+    ],
+    "time": [
+        {
+            "value": 20
+        }
+    ],
+    "mirrors": [
+        {
+            "x": 200,
+            "y": 500,
+            "angle": 45,
+            "skin": "mirror",
+            "immovable": true
+        }
+    ]
+}

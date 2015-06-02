@@ -1,14 +1,14 @@
 {
   "worldBounds": {
     "leftBound": 0,
-    "rightBound": 3200,
+    "rightBound": 3000,
     "upperBound": 0,
     "lowerBound": 600
   },
   "background": "sky",
   "playerStart": {
-    "x": 1000,
-    "y": 50
+    "x": 50,
+    "y": 500
   },
   "platforms": [
     {
@@ -21,7 +21,7 @@
         "y": 2
       }
     },
-	{
+    {
       "position": {
         "x": 300,
         "y": 440
@@ -39,33 +39,33 @@
         "x": 4
       }
     },
-	{
+    {
       "position": {
         "x": 525,
-        "y": 359
+        "y": 360
       },
-	"color" : "Red"
+      "color": "Red"
     },
-	{
+    {
       "position": {
         "x": 1100,
-        "y": 559
+        "y": 560
       },
-	"color" : "Red"
+      "color": "Red"
     },
-	    {
+    {
       "position": {
         "x": 1400,
         "y": 560
       },
       "size": {
-        "x": 30,
+        "x": 25,
         "y": 2
       }
     },
-	{
+    {
       "position": {
-        "x": 2520,
+        "x": 2220,
         "y": 110
       },
       "size": {
@@ -74,75 +74,114 @@
       }
     }
   ],
-  "backAndForthPlatforms":[
-  {
-		  "positions": [
+  "backAndForthPlatforms": [
+    {
+      "positions": [
         {
-          "x": 2000,
-			"y":460,
+          "x": 1900,
+          "y": 460,
           "speed": {
             "x": 200,
-			"y":0
+            "y": 0
           }
         },
         {
-          "x": 2400,
+          "x": 2100,
           "y": 460,
-		  "speed": {
+          "speed": {
             "x": 0,
-			"y": -200
+            "y": -200
           }
         },
-		{
-          "x": 2400,
+        {
+          "x": 2100,
           "y": 100
         }
       ],
       "size": {
         "x": 6
       }
-  }
-  ],
-  "coins":[
-  {
-	  "x":380,
-	  "y":410,
-	  "skin":"coin"
-  },
-  {
-	  "x":700,
-	  "y":530,
-	  "skin":"coin"
-  }
-  ],
-  "piques":[
-  {
-	  "x": 900,
-      "y": 465,
-      "skin": "pique"
-  }
-  ],
-  "ennemis":[
-  {
-      "x": 1600,
-      "y": 500,
-      "bounds": {
-        "left": 1600,
-        "right": 1800,
-		"lower":600,
-		"upper":0
-      },
-      "speed": {
-        "x": 150,
-		"y": 0
-      },
-      "skin": "baddie"
     }
-	],
-	"ends":[
-	{
-		"x" : 3150,
-		"y" : 50
-	}]
+  ],
+  "coins": [
+    {
+      "x": 380,
+      "y": 410,
+      "skin": "coin"
+    },
+    {
+      "x": 700,
+      "y": 530,
+      "skin": "coin"
+    }
+  ],
+  "piques": [
+    {
+      "x": 900,
+      "y": 525,
+      "skin": "pique",
+      "size": {
+        "x": 3,
+        "y": 2
+      }
+    }
+  ],
+    "ennemis": [
+        {
+            "x": 1600,
+            "y": 500,
+            "bounds": {
+                "left": 1600,
+                "right": 1800,
+                "lower": 600,
+                "upper": 0
+            },
+            "speed": {
+                "x": 150,
+                "y": 0
+            },
+            "skin": "baddie"
+        }
+    ],
+    "ends": [
+        {
+            "x": 2950,
+            "y": 50
+        }
+    ],
+    "texts": [
+        {
+            "x": 20,
+            "y": 400,
+            "message": "Use arrow keys to move \n and jump"
+        },
+      {
+        "x": 400,
+        "y": 270,
+        "message": "You can gain a primary color here \n press <DOWN> on the platform"
+      },
+      {
+        "x": 760,
+        "y": 400,
+        "message": "The piques and ennemis \n will make you lose your color \n before they can kill you"
+      },
+      {
+        "x": 1180,
+        "y": 300,
+        "message": "Falling out of the map \n will get you killed though"
+      },
+      {
+        "x": 1400,
+        "y": 400,
+        "message": "To kill the ennemi \n shoot some photons at him with <SPACE>"
+      },
+      {
+        "x": 2450,
+        "y": 250,
+        "message": "Here's the end of the level"
+      }
+
+      
+    ]
 
 }

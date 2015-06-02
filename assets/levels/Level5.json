@@ -1,0 +1,210 @@
+{
+    "worldBounds": {
+        "leftBound": 0,
+        "rightBound": 3200,
+        "upperBound": 0,
+        "lowerBound": 600
+    },
+    "background": "sky",
+    "playerStart": {
+        "x": 10,
+        "y": 500
+    },
+    "platforms": [
+        {
+            "position": {
+                "x": 0,
+                "y": 560
+            },
+            "size": {
+                "x": 4,
+                "y": 2
+            }
+        },
+        {
+            "position": {
+                "x": 1500,
+                "y": 300
+            },
+            "size": {
+                "x": 5,
+                "y": 1
+            }
+        },
+        {
+            "id": 2,
+            "position": {
+                "x": 1100,
+                "y": 560
+            },
+            "size": {
+                "x": 5,
+                "y": 1
+            }
+        },
+        {
+            "id": 3,
+            "position": {
+                "x": 1300,
+                "y": 560
+            },
+            "size": {
+                "x": 5,
+                "y": 1
+            }
+        },
+        {
+            "position": {
+                "x": 150,
+                "y": 460
+            },
+            "size": {
+                "x": 5,
+                "y": 1
+            }
+        },
+        {
+            "position": {
+                "x": 20,
+                "y": 390
+            },
+            "size": {
+                "x": 5,
+                "y": 1
+            }
+        },
+        {
+            "id": 1,
+            "position": {
+                "x": 200,
+                "y": 50
+            },
+            "size": {
+                "x": 5,
+                "y": 1
+            }
+        },
+        {
+            "position": {
+                "x": 400,
+                "y": 200
+            },
+            "size": {
+                "x": 3,
+                "y": 15
+            }
+        },
+        {
+            "position": {
+                "x": 140,
+                "y": 560
+            },
+            "size": {
+                "x": 13,
+                "y": 2
+            }
+        },
+        {
+            "position": {
+                "x": 460,
+                "y": 560
+            },
+            "size": {
+                "x": 30,
+                "y": 2
+            }
+        },
+        {
+            "position": {
+                "x": 80,
+                "y": 560
+            },
+            "size": {
+                "x": 2,
+                "y": 4
+            },
+            "crossable": false,
+            "color": "Red"
+        },
+        {
+            "position": {
+                "x": 400,
+                "y": 560
+            },
+            "size": {
+                "x": 2,
+                "y": 4
+            },
+            "crossable": false,
+            "color": "Green"
+        }
+    ],
+    "switch": [
+        {
+            "x": 360,
+            "y": 350,
+            "color": "Red",
+            "action": {
+                "groupId": 4,
+                "id": 1,
+                "actionName": "actionMoveObject",
+                "args": 
+               {
+                    "x": 0,
+                    "y": 250
+                   
+               }
+            }
+        },
+        {
+            "x": 800,
+            "y": 500,
+            "color": "Red",
+            "action": {
+                "groupId": 4,
+                "id": 2,
+                "actionName": "actionMoveObject",
+                "args": 
+               {
+                    "x": 0,
+                    "y": -60
+                   
+               }
+            }
+        },
+        {
+            "x": 920,
+            "y": 500,
+            "color": "Green",
+            "action": {
+                "groupId": 4,
+                "id": 3,
+                "actionName": "actionMoveObject",
+                "args": 
+               {
+                    "x": 0,
+                    "y": -160
+                   
+               }
+            }
+        }
+    ],
+    "filters": [
+        {
+            "x": 360,
+            "y": 500,
+            "color": "Cyan"
+        },
+        {
+            "x": 460,
+            "y": 500,
+            "color": "Blue"
+        }
+    ],
+    "ends": [
+        {
+            "x": 1500,
+            "y": 50
+        }
+    ]
+}
