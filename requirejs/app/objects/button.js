@@ -1,35 +1,20 @@
-define(['phaser', 'app/phasergame', 'app/player', 'app/objects/filter'], function (Phaser, PhaserGame, player, ennemi) {
+define(['phaser', 'app/phasergame', 'app/player', 'app/objects/action'], function (Phaser, PhaserGame, player, action) {
 
     var CONST_DELAY = 5;
-    var counter = 0;
-
-    /// @function handlerbutton
-    /// Handler called when a photon hits a button : trigger the associated action
-    /// @param {Photon} the photon that hits the button
-    /// @param {Phaser.Sprite} the button that has been hit by the photon
-    function handlerButton(photon, buttonObject) {
-        // We check if the colors match
-       // if (photon.color.name == buttonObject.colorName) {
-            // If that's the case, the action is performed
-        //alert('interrupteur on');
-        ennemi.group.children[0].body.x += 10;
-        //}
-        // In any case, the photon is destructed
-        //photon.kill();
-    }
+    var counter = 0;   
 
     return {
         // The group of sprites
         group: null,
 
-       
-
         /// @function createObjectsGroup
         /// Creation of the differents buttons defined in the JSON file
         /// @param {Array} Array of the different buttons defined in the JSON file. Can be null if no buttons are used in the current level
-        createObjectsGroup: function (data) {
+        createObjectsGroup: function (data, Manager) {
             // Allocation of the group
             this.group = PhaserGame.game.add.physicsGroup();
+            // Intialization of the group in the manager
+            Manager.EnumModule.BUTTON.refGroup = this.group;
 
             // If no buttons are defined in the current level, there is nothing to do
             if (data == null) {
@@ -47,21 +32,39 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/objects/filter'], functio
                 //buttonObject.colorName = buttonData.color;
                 // By default, a button is immovable
                 buttonObject.body.immovable = true;
+
+                // Action associated to the switch
+                if (buttonData.action != null) {
+                    var objAction = action.createAction(buttonData.action, Manager);
+                    buttonObject.buttonAction = objAction.actionName;
+                    buttonObject.args = objAction.args;
+                }
             }
 
+        },
+
+        /// @function handlerButton
+        /// Handler called when the player is on a button : trigger the associated action
+        /// @param {Phaser.Sprite} the player sprite
+        /// @param {Phaser.Sprite} the button
+        handlerButton: function (playerSprite, button) {
+            // First, we check if the action was correctly defined
+            if (buttonObject.buttonAction == null) {
+                return;
+            }
+            if (playerSprite.body.touching.down && !playerSprite.body.touching.right && !playerSprite.body.touching.left) {
+                counter++;
+                if (counter == CONST_DELAY) {
+                    counter = 0;
+                    button.buttonAction(button.args);
+                }
+            }
         },
 
         /// @function updateObject
         /// Updates the group of buttons (to be called by the update() function of the game state)
         updateObject: function () {
-            counter++;
-            if (counter == CONST_DELAY) {
-                counter = 0;
-                PhaserGame.game.physics.arcade.collide(player.sprite, this.group, handlerButton);
-            } else {
-                PhaserGame.game.physics.arcade.collide(player.sprite, this.group, null);
-            }
-            
+            PhaserGame.game.physics.arcade.collide(player.sprite, this.group, this.handlerButton);
         }
     }
 

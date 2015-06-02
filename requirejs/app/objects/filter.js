@@ -34,14 +34,14 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/color'], function (Phaser
         /// @function createObjectsGroup
         /// Create the differents objects defines in the JSON file represented by this module
         /// @param {Array} Array of elements representing 
-        createObjectsGroup: function (data) {
+        createObjectsGroup: function (data, Manager) {
             // Allocation of the group
             this.group = PhaserGame.game.add.physicsGroup();
+            // Intialization of the group in the manager
+            Manager.EnumModule.FILTER.refGroup = this.group;
             // If no filters are defined in the current level, there is nothing to do
-            if (data == null) {
+            if (data == null)
                 return;
-            }
-
             for (var i = 0 ; i < data.length ; i++) {
                 var filterData = data[i];
                 // We create a new filter at the position (x,y) with the token "filterData.skin + filterData.color" to represent the corresponding image loaded

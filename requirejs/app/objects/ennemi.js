@@ -3,17 +3,15 @@
   *
   */
 
-define(['phaser', 'app/phasergame', 'app/player', 'app/objects/coin', 'app/photon', 'app/touch'], function (Phaser, PhaserGame, player, coinObject, photon, Touch) {
+define(['phaser', 'app/phasergame', 'app/player', 'app/objects/coin', 'app/photon', 'app/touch', 'app/objects/platforms'], function (Phaser, PhaserGame, player, coinObject, photon, Touch, platforms) {
 
     // on a une collision dans pique à corriger une fois finie
 
     function killPlayer(play, ennemi) {
 
-        if (!play.invincible){
-            if (!PhaserGame.game.device.desktop) {
-                Touch.stopMobile();
+        //player.animationDeath();
 
-            }
+        if (!play.invincible){
             coinObject.score = 0;    
             //check if the player has a color or not
             if (play.color.value != 0){
@@ -50,15 +48,10 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/objects/coin', 'app/photo
 
             this.group = PhaserGame.game.add.physicsGroup();
 
-            if (data == null) {
-                return;
-            }
-
-
-
+            if (data == null)
+                return;          
             for (var i = 0 ; i < data.length ; i++) {
                 var ennemiData = data[i];
-
                 var ennemi = this.group.create(ennemiData.x, ennemiData.y, ennemiData.skin);
                 ennemi.frame = 1;
                 if (ennemiData.speed.x != 0) {
@@ -66,7 +59,6 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/objects/coin', 'app/photo
                     ennemi.body.sprite.rightBounds = ennemiData.bounds.right;
                     ennemi.body.velocity.x = ennemiData.speed.x;
                 }
-
                 ennemi.body.bounce.y = 0;
                 ennemi.body.gravity.y = 1000;
 
@@ -76,7 +68,7 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/objects/coin', 'app/photo
 
         updateObject: function () {
 
-            PhaserGame.game.physics.arcade.collide(this.group, platforms);
+            PhaserGame.game.physics.arcade.collide(this.group, platforms.group);
             PhaserGame.game.physics.arcade.overlap(player.sprite, this.group, killPlayer, null, this);
             PhaserGame.game.physics.arcade.collide(photon.photons, this.group, killEnnemi, null, this);
 

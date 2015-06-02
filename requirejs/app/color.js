@@ -86,6 +86,12 @@ define(['phaser', 'app/phasergame', 'app/player'], function (Phaser, PhaserGame,
                 if (color == ColorEnum.MAGENTA) {
                     return color;
                 }
+                if (color == ColorEnum.CYAN) {
+                    return ColorEnum.BLUE;
+                }
+                if (color == ColorEnum.YELLOW) {
+                    return ColorEnum.RED;
+                }
                 break;
 
             case ColorEnum.YELLOW:
@@ -95,6 +101,12 @@ define(['phaser', 'app/phasergame', 'app/player'], function (Phaser, PhaserGame,
                 if (color == ColorEnum.YELLOW) {
                     return color;
                 }
+                if (color == ColorEnum.CYAN) {
+                    return ColorEnum.GREEN;
+                }
+                if (color == ColorEnum.MAGENTA) {
+                    return ColorEnum.RED;
+                }
                 break;
 
             case ColorEnum.CYAN:
@@ -103,6 +115,12 @@ define(['phaser', 'app/phasergame', 'app/player'], function (Phaser, PhaserGame,
                 }
                 if (color == ColorEnum.CYAN) {
                     return color;
+                }
+                if (color == ColorEnum.MAGENTA) {
+                    return ColorEnum.BLUE;
+                }
+                if (color == ColorEnum.YELLOW) {
+                    return ColorEnum.GREEN;
                 }
                 break;
 

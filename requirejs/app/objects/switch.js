@@ -1,4 +1,4 @@
-define(['phaser', 'app/phasergame', 'app/player'], function (Phaser, PhaserGame, player) {
+define(['phaser', 'app/phasergame', 'app/player', 'app/objects/action'], function (Phaser, PhaserGame, player, action) {
 
     /// @function handlerSwitch
     /// Handler called when a photon hits a switch : trigger the associated action
@@ -8,7 +8,11 @@ define(['phaser', 'app/phasergame', 'app/player'], function (Phaser, PhaserGame,
         // We check if the colors match
         if (photon.color.name == switchObject.colorName) {
             // If that's the case, the action is performed
-            alert('interrupteur on');
+            // We check first if the action was correctly defined
+            if (switchObject.switchAction == null) {
+                return;
+            }
+            switchObject.switchAction(switchObject.args);
         }
         // In any case, the photon is destructed
         photon.kill();
@@ -25,9 +29,11 @@ define(['phaser', 'app/phasergame', 'app/player'], function (Phaser, PhaserGame,
         /// @function createObjectsGroup
         /// Creation of the differents switchs defined in the JSON file
         /// @param {Array} Array of the different switchs defined in the JSON file. Can be null if no switchs are used in the current level
-        createObjectsGroup: function (data) {
+        createObjectsGroup: function (data, Manager) {
             // Allocation of the group
             this.group = PhaserGame.game.add.physicsGroup();
+            // Intialization of the group in the manager
+            Manager.EnumModule.SWITCH.refGroup = this.group;
 
             // If no switchs are defined in the current level, there is nothing to do
             if (data == null) {
@@ -43,6 +49,12 @@ define(['phaser', 'app/phasergame', 'app/player'], function (Phaser, PhaserGame,
                 var switchObject = this.group.create(switchData.x, switchData.y, 'switch');
                 // Attribute color
                 switchObject.colorName = switchData.color;
+                // Action associated to the switch
+                if (switchData.action != null) {
+                    var objAction = action.createAction(switchData.action, Manager);
+                    switchObject.switchAction = objAction.actionName;
+                    switchObject.args = objAction.args;
+                }
                 // By default, a switch is immovable
                 switchObject.body.immovable = true;
             }

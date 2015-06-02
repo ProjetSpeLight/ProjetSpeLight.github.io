@@ -2,38 +2,35 @@ define([
     'phaser'
 ], function (
     Phaser
-) { 
-    //'use strict';
+) {
+    function ChooseLevelState(game) { };
 
-    function ChooseLevelState(game) {
-        
-    };
-    
     ChooseLevelState.prototype = {
         create: function () {
-            // create main menu text and images -
-            // create a "Start Game" mechanism - variety of ways to do this...
-            button_play = this.add.button(400, 200, 'play1', this.playLevel, this);
-            button_play.name = 'play1';
-            button_play.anchor.setTo(0.5, 0.5);
-            
-             button_play = this.add.button(400, 300, 'play2', this.playLevel2, this);
-            button_play.name = 'play2';
-            button_play.anchor.setTo(0.5, 0.5);
-            
+            // We generate a text and a button (sprite) per level
+            var x = 10;
+            var y = 10;
+            for (var i = 1 ; i < 6 ; i++) {
+                var emptyButton = this.game.add.button(x, y, 'buttonEmpty', this.down, self);
+                var text = this.game.add.text(x + 50, y + 15, "Level " + i, { font: "28px Arial", fill: "#ffffff", align: "center" });
+                emptyButton.numLevel = i;
+                emptyButton.refGame = this;
+                y += emptyButton.height + 20;
+                if (y > this.game.world.height - emptyButton.height) {
+                    y = 10;
+                    x += emptyButton.width + 20;
+                }
+            }
         },
 
-        playLevel: function () {
-            this.game.state.states['Game'].currentLevel = 1;
-            this.state.start('Game',true,false);
+        down: function (button) {
+            button.refGame.game.state.states['Game'].currentLevel = button.numLevel;
+            button.refGame.state.start('Game');
         },
-        
-         playLevel2: function () {
-            this.game.state.states['Game'].currentLevel = 2;
-            this.state.start('Game',true,false);
-        }
+
+
 
     };
-       
+
     return ChooseLevelState;
 });

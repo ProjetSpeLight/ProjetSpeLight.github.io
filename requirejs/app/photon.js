@@ -4,6 +4,10 @@
 
 define(['phaser', 'app/phasergame'], function (Phaser, game) {
 
+    function killPhoton(photon) {
+        photon.kill();
+    }
+
     return {
         // Contains the group (container of display objects) of photons
         photons: null,
@@ -11,7 +15,7 @@ define(['phaser', 'app/phasergame'], function (Phaser, game) {
         photonTime: 0,
         // Button associated to the handler firePhoton()
         fireButton: null,
-        
+
 
         /// @function initPhotons
         /// Initialize the group of photons (the factory) in order to create photons and the button to use to throw photons
@@ -28,7 +32,7 @@ define(['phaser', 'app/phasergame'], function (Phaser, game) {
             this.photons.setAll('outOfBoundsKill', true);
             this.photons.setAll('checkWorldBounds', true);
 
-            this.fireButton = game.input.keyboard.addKey(Phaser.Keyboard.ENTER);
+            this.fireButton = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
         },
 
         /// @function firePhoton
@@ -40,7 +44,11 @@ define(['phaser', 'app/phasergame'], function (Phaser, game) {
                 //  Grab the first photon we can from the pool
                 var photon = this.photons.getFirstExists(false);
 
+
                 if (photon) {
+
+                    photon.hasHit = false;
+
                     //  And fire it
                     if (player.sprite.lookRight) {
                         photon.reset(player.sprite.x + player.sprite.width, player.sprite.y + player.sprite.height / 2 + photon.height / 2);
@@ -55,9 +63,16 @@ define(['phaser', 'app/phasergame'], function (Phaser, game) {
                     // Color of the photon
                     photon.color = player.sprite.color;
                     photon.frame = player.sprite.color.value - 1;
+
+                    // If the photon goes out the wolrd, it is destroyed
+                    photon.events.onOutOfBounds.add(killPhoton, photon);
                 }
             }
-        }
+
+
+
+        },
+        killPhoton: killPhoton
 
 
     }

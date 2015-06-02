@@ -25,11 +25,11 @@ define([
                var width;
                var height;
                if(screen.width > screen.height){
-                   width = screen.width - 30.0;
-                   height = screen.height - 17.0;
+                   width = screen.width - 45.0;
+                   height = screen.height - 27.0;
                } else {
-                   width = screen.height - 30.0;
-                   height = screen.width - 17.0;
+                   width = screen.height - 45.0;
+                   height = screen.width - 27.0;
                }
                this.game.scale.setUserScale(width/800.0, height/600.0);
                 this.game.scale.scaleMode = Phaser.ScaleManager.USER_SCALE;
