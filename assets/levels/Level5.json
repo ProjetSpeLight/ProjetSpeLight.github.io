@@ -144,6 +144,7 @@
             "x": 360,
             "y": 350,
             "color": "Red",
+            "skin":"switchRed",
             "action": {
                 "groupId": 4,
                 "id": 1,
@@ -160,6 +161,7 @@
             "x": 800,
             "y": 500,
             "color": "Red",
+            "skin":"switchRed",
             "action": {
                 "groupId": 4,
                 "id": 2,
@@ -176,6 +178,7 @@
             "x": 920,
             "y": 500,
             "color": "Green",
+            "skin":"switchGreen",
             "action": {
                 "groupId": 4,
                 "id": 3,

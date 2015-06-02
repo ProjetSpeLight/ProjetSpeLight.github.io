@@ -144,6 +144,7 @@
         {
             "x": 1750,
             "y": 220,
+            "skin":"switchBlue",
             "color": "Blue",
             "action": {
                 "groupId": 4,
@@ -254,7 +255,7 @@
                 "upper": 0
             },
             "speed": {
-                "x": 149,
+                "x": 150,
                 "y": 0
             },
             "skin": "baddie"

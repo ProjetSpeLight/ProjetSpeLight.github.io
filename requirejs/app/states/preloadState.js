@@ -25,7 +25,15 @@ define(['phaser', 'app/pause', 'app/phasergame'], function (Phaser, pause, Phase
 
             PhaserGame.game.load.image('logo', 'assets/phaser2.png');
             PhaserGame.game.load.image('dead', 'assets/dead.png');
-            PhaserGame.game.load.image('switch', 'assets/switch.png');
+            PhaserGame.game.load.image('switchRed', 'assets/Switch/Switch_Red.png');
+            PhaserGame.game.load.image('switchBlue', 'assets/Switch/Switch_Blue.png');
+            PhaserGame.game.load.image('switchGreen', 'assets/Switch/Switch_Green.png');
+            PhaserGame.game.load.image('switchMagenta', 'assets/Switch/Switch_Magenta.png');
+            PhaserGame.game.load.image('switchYellow', 'assets/Switch/Switch_Yellow.png');
+            PhaserGame.game.load.image('switchCyan', 'assets/Switch/Switch_Cyan.png');
+            PhaserGame.game.load.image('switchWhite', 'assets/Switch/Switch_White.png');
+            
+            
             PhaserGame.game.load.image('mirror', 'assets/mirror.png');
 
 

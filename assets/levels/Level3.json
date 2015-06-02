@@ -226,6 +226,7 @@
             "x": 2100,
             "y": 320,
             "color": "Blue",
+            "skin":"switchBlue",
             "action": {
                 "groupId": 4,
                 "id": 0,

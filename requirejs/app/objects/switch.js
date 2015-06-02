@@ -46,7 +46,7 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/objects/action'], functio
                 var switchData = data[i];
                 // We create a new switch at the position (x,y) with the token "switchData.skin + switchData.color" to represent the corresponding image loaded
                 //var switchObject = this.group.create(switchData.position.x, switchData.position.y, switchData.skin + switchData.color);
-                var switchObject = this.group.create(switchData.x, switchData.y, 'switch');
+                var switchObject = this.group.create(switchData.x, switchData.y, switchData.skin);
                 // Attribute color
                 switchObject.colorName = switchData.color;
                 // Action associated to the switch
