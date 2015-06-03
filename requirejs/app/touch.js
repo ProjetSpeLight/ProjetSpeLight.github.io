@@ -39,7 +39,7 @@ define(['phaser', 'app/phasergame', 'app/player'], function (Phaser, PhaserGame,
         buttonfire.events.onInputDown.add(function () { Player.fireActive = true; });
         buttonfire.events.onInputUp.add(function () { Player.fireActive = false; });
 
-        buttonleft = PhaserGame.game.add.button(25, 475, 'buttonGauche', null, this);
+        buttonleft = PhaserGame.game.add.button(25, 560, 'buttonGauche', null, this);
         buttonleft.fixedToCamera = true;
         buttonleft.alpha = opacity;
         buttonleft.events.onInputOver.add(function () { Player.moveLeft = true; });
@@ -47,7 +47,7 @@ define(['phaser', 'app/phasergame', 'app/player'], function (Phaser, PhaserGame,
         buttonleft.events.onInputDown.add(function () { Player.moveLeft = true; });
         buttonleft.events.onInputUp.add(function () { Player.moveLeft = false; });
 
-        buttonright = PhaserGame.game.add.button(160, 475, 'buttonDroite', null, this);
+        buttonright = PhaserGame.game.add.button(125, 560, 'buttonDroite', null, this);
         buttonright.fixedToCamera = true;
         buttonright.alpha = opacity;
         buttonright.events.onInputOver.add(function () { Player.moveRight = true; });
