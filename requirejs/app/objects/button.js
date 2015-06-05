@@ -41,7 +41,7 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/objects/action'], functio
 
                 // Action associated to the switch
                 if (buttonData.action != null) {
-                    var objAction = action.createAction(buttonData.action, Manager);
+                    var objAction = action.createActionButton(buttonData.action, Manager);
                     buttonObject.buttonAction = objAction.actionName;
                     buttonObject.args = objAction.args;
                 }

@@ -39,6 +39,8 @@ define([], function () {
                 return actionMoveObject;
             case 'actionChangeObjectColor':
                 return actionChangeObjectColor;
+            case 'actionChangeMirrorOrientation':
+                return actionChangeMirrorOrientation;
             default:
                 return null;
         }
@@ -101,6 +103,22 @@ define([], function () {
             }
     }
 
+
+    function createActionButton(data, manager) {
+        // We get the object on which the action is
+        var object = manager.getObject(data.groupId, data.id);
+        var args = {};
+        if (data.args != null) {
+            args = data.args;
+        }
+        args.target = object;
+        return {
+            "actionName": getFunctionAction(data.actionName),
+            "args" : args
+        }
+
+    }
+
     function actionMoveObject(args) {
         args.target.body.x += args.x;
         args.target.body.y += args.y;
@@ -115,7 +133,7 @@ define([], function () {
     }
 
     function actionChangeMirrorOrientation(args) {
-
+        args.target.angle += args.incr;
     }
 
     function actionChangeObjectColor(args) {
@@ -130,7 +148,8 @@ define([], function () {
         actionDeleteObject: actionDeleteObject,
         actionCreateObject: actionCreateObject,
         actionChangeMirrorOrientation: actionChangeMirrorOrientation,
-        actionChangeObjectColor: actionChangeObjectColor
+        actionChangeObjectColor: actionChangeObjectColor,
+        createActionButton: createActionButton
     }
 
 });

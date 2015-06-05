@@ -12,8 +12,8 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon', 'a
     // Object displaying the score
     var scoreText;
 
-    //var adresse_json = "http://localhost:4200/assets/levels/";
-    var adresse_json = "http://projetspelight.github.io/assets/levels/"
+    var adresse_json = "http://localhost:4200/assets/levels/";
+    //var adresse_json = "http://projetspelight.github.io/assets/levels/"
     
 
     GameState.prototype = {
