@@ -40,12 +40,12 @@
     DeadState    
     ) {
         document.addEventListener("deviceready", Touch.onDeviceReady, false);
-        if (screenfull.enabled) {
+        /*if (screenfull.enabled) {
             document.addEventListener(screenfull.raw.fullscreenerror, function (event) {
                 alert('Failed to enable fullscreen');
             });
             screenfull.request();
-        }
+        }*/
         PhaserGame.start();
         PhaserGame.game.state.add('Boot', BootState);
         PhaserGame.game.state.add('Preload', PreloadState);
