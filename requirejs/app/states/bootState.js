@@ -13,7 +13,9 @@ define([
             this.load.image('preloaderBar', 'assets/preloader-bar.png');
         },
         create: function () {
+        
             // setup game environment
+            this.game.nbLevel = 5;
             // scale, input etc..
            if (this.game.device.desktop) {
                //this.game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
@@ -24,12 +26,12 @@ define([
            else {
                var width;
                var height;
-               if(screen.width > screen.height){
-                   width = screen.width - 45.0;
-                   height = screen.height - 27.0;
+               if (window.orientation == 0 || window.orientation == 180) {
+                   width = window.innerHeight - window.innerHeight * 5 / 100;
+                   height = window.innerWidth - window.innerWidth * 5 / 100;
                } else {
-                   width = screen.height - 45.0;
-                   height = screen.width - 27.0;
+                   width = window.innerWidth - window.innerWidth * 5 / 100;
+                   height = window.innerHeight - window.innerHeight * 5 / 100;
                }
                this.game.scale.setUserScale(width/800.0, height/600.0);
                 this.game.scale.scaleMode = Phaser.ScaleManager.USER_SCALE;

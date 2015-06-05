@@ -38,10 +38,14 @@ define(['phaser', 'app/phasergame', 'app/player'], function (Phaser, PhaserGame,
         buttonfire.events.onInputOut.add(function () { Player.fireActive = false; });
         buttonfire.events.onInputDown.add(function () { Player.fireActive = true; });
         buttonfire.events.onInputUp.add(function () { Player.fireActive = false; });
+      
 
         buttonleft = PhaserGame.game.add.button(25, 560, 'buttonGauche', null, this);
         buttonleft.fixedToCamera = true;
         buttonleft.alpha = opacity;
+        //PhaserGame.game.input.pointer1.button = buttonleft;
+        //pointer_dir.button = buttonleft;
+        
         buttonleft.events.onInputOver.add(function () { Player.moveLeft = true; });
         buttonleft.events.onInputOut.add(function () { Player.moveLeft = false; });
         buttonleft.events.onInputDown.add(function () { Player.moveLeft = true; });
@@ -128,7 +132,7 @@ define(['phaser', 'app/phasergame', 'app/player'], function (Phaser, PhaserGame,
     function onSuccess(acceleration) {
         if (inGame) {            
             var signe;
-            if(acceleration.x < 0){
+            if (window.orientation == 90 ){//acceleration.x < 0) {
                 signe = -1;
             } else {
                 signe = 1;
@@ -136,14 +140,14 @@ define(['phaser', 'app/phasergame', 'app/player'], function (Phaser, PhaserGame,
             var temp
             if (Math.abs(acceleration.y) > zoneMorte) {
                 if(acceleration.y > 0){
-                    temp = signe * (acceleration.y - zoneMorte) / (9.80 - zoneMorte) * 900;
+                    temp = signe * (acceleration.y - zoneMorte) / (9.80 - zoneMorte) * 1200;
                     if(Math.abs(temp) >= 300){
                         Player.velocity = signe * 300;
                     } else {
                         Player.velocity = temp;   
                     }
                 } else {
-                    temp = signe * (acceleration.y + zoneMorte) / (9.80 - zoneMorte) * 900;
+                    temp = signe * (acceleration.y + zoneMorte) / (9.80 - zoneMorte) * 1200;
                     if(-Math.abs(temp) <= - 300){
                         Player.velocity = - signe * 300;
                     } else {
@@ -212,6 +216,27 @@ define(['phaser', 'app/phasergame', 'app/player'], function (Phaser, PhaserGame,
         alert("Acceleromètre ne marche pas");
     }
     
+    function update(){
+       /* if(PhaserGame.game.input.pointer1.active && PhaserGame.game.input.pointer1.y <= 595){
+            //alert(PhaserGame.game.input.pointer1.y);
+            if(PhaserGame.game.input.pointer1.x > 25 && PhaserGame.game.input.pointer1.x < 125){
+                Player.moveLeft = true;
+                Player.moveRight = false;
+            } else if(PhaserGame.game.input.pointer1.x >= 125 && PhaserGame.game.input.pointer1.x < 225){
+                Player.moveLeft = false;
+                Player.moveRight = true;
+            } else {
+                Player.moveLeft = false;
+                Player.moveRight = false;
+                PhaserGame.game.input.pointer1.reset();
+            }
+        } else {
+            Player.moveLeft = false;
+            Player.moveRight = false;
+            PhaserGame.game.input.pointer1.reset();
+        }*/
+    }
+    
 
     return {
         init: init,
@@ -220,6 +245,7 @@ define(['phaser', 'app/phasergame', 'app/player'], function (Phaser, PhaserGame,
         changeControls: changeControls,
         boutonsSwitch: boutonsSwitch,
         showChangeColorButton: showChangeColorButton,
-        killChangeColorButton: killChangeColorButton
+        killChangeColorButton: killChangeColorButton,
+        update: update
     };
 });

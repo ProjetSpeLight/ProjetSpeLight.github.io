@@ -12,16 +12,19 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon', 'a
     // Object displaying the score
     var scoreText;
 
+    var adresse_json = "http://localhost:4200/assets/levels/";
+    //var adresse_json = "http://projetspelight.github.io/assets/levels/"
+    
 
     GameState.prototype = {
         preload: function () {
             if (this.currentLevel === 0) {
                 if (!PhaserGame.game.cache.checkJSONKey('level0')) {
-                    this.load.json('level0', 'http://projetspelight.github.io/assets/levels/Tutoriel.json');
+                    this.load.json('level0', adresse_json + 'Tutoriel.json');
                 }
             } else {
                 if (!PhaserGame.game.cache.checkJSONKey('level' + this.currentLevel)) {
-                    this.load.json('level' + this.currentLevel, 'http://projetspelight.github.io/assets/levels/Level' + this.currentLevel + '.json');
+                    this.load.json('level' + this.currentLevel, adresse_json + 'Level' + this.currentLevel + '.json');
                 }
             }
         },
@@ -29,8 +32,11 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon', 'a
         create: function () {
             // First we initialize the scope variables
             stopped = false;
-            coinObject.score = 0;
             compt = 0;
+
+            // the score is stored in the game variable
+            PhaserGame.score = 0;
+
 
 
             // Initialization of the physics motor
@@ -70,36 +76,11 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon', 'a
         update: function () {
 
 
-            function makeColor(sprite, colorplatform) {
-                // Oblige le joueur à etre au dessus 
-                //de la plateforme coloree pour changer de couleur
-                if (sprite.body.touching.down) {
-                    // Oblige le joueur à appuyer 
-                    //sur la touche du bas pour changer de couleur
-                    if (this.input.keyboard.isDown(Phaser.Keyboard.DOWN) || player.changeColor) {
-                        player.changePlayerColor(colorplatform.color);
-                    }
-                }
-            }
-
-            function processColor(sprite, colorplatform) {
-                if (colorplatform.color == "") {
-                    if (!this.game.device.desktop) {
-                        Touch.killChangeColorButton();
-                    }
-                    return false;
-                } else {
-                    if (!this.game.device.desktop) {
-                        Touch.showChangeColorButton();
-                    }
-                    return true;
-                }
+            if (screen.touched) {
+                alert("lol");
             }
 
 
-            function finish(player, diamond) {
-                PhaserGame.game.state.start('FinishLevel');
-            }
 
             // If the level had not been loaded, we return to the main lmenu
             if (stopped) {
@@ -118,23 +99,14 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon', 'a
 
 
                 // Update of the score
-                scoreText.text = 'Score: ' + coinObject.score;
+                scoreText.text = 'Score: ' + PhaserGame.score;
 
-
-                // Update of the objects
-                PhaserGame.game.physics.arcade.collide(player.sprite, platforms.group, makeColor, processColor, this);
                 
-                PhaserGame.game.physics.arcade.collide(player.sprite, platforms.group);
-
-                PhaserGame.game.physics.arcade.collide(ends, platforms.group);
-                PhaserGame.game.physics.arcade.overlap(player.sprite, ends, finish, null, this);
+                Touch.update();
 
                 objectsManager.updateObjects();
-                coinObject.updateObject();
-                piqueObject.updateObject();
-                ennemiObject.updateObject();
-
                 player.updatePlayer();
+                
 
 
 
@@ -142,20 +114,16 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon', 'a
 
                 // We restart the game when "R" is pushed
                 if (PhaserGame.game.input.keyboard.isDown(Phaser.Keyboard.R)) {
-                    coinObject.score = 0;
                     PhaserGame.game.state.start('RestartGame');
                 }
 
                 // We restart the game when the character falls of the map
                 if (player.sprite.body.y > PhaserGame.game.world.height - 64) {
-                    coinObject.score = 0;
                     PhaserGame.game.state.start('RestartGame');
                 }
 
                 // Mort du personnage quand coincé entre deux plateformes
                 if ((player.sprite.body.touching.down && player.sprite.body.touching.up) || (player.sprite.body.touching.right && player.sprite.body.touching.left)) {
-                    coinObject.score = 0;
-
                     if (!PhaserGame.game.device.desktop) {
                         Touch.stop();
                     }
@@ -180,8 +148,8 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/photon', 'a
         },
 
         render: function () {
-            /*PhaserGame.game.debug.body(player.sprite);
-            for (var i = 0 ; i < piqueObject.group.length ; i++) {
+            //PhaserGame.game.debug.body(player.sprite);
+            /*for (var i = 0 ; i < piqueObject.group.length ; i++) {
                 PhaserGame.game.debug.body(piqueObject.group.children[i]);
             }*/
             /*for (var i = 0 ; i < objectsManager.EnumModule.MIRROR.refGroup.children.length ; i++) {

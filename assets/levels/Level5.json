@@ -144,7 +144,7 @@
             "x": 360,
             "y": 350,
             "color": "Red",
-            "skin":"switchRed",
+            "skin":"switchRedOFF",
             "action": {
                 "groupId": 4,
                 "id": 1,
@@ -161,7 +161,7 @@
             "x": 800,
             "y": 500,
             "color": "Red",
-            "skin":"switchRed",
+            "skin":"switchRedOFF",
             "action": {
                 "groupId": 4,
                 "id": 2,
@@ -178,7 +178,7 @@
             "x": 920,
             "y": 500,
             "color": "Green",
-            "skin":"switchGreen",
+            "skin":"switchGreenOFF",
             "action": {
                 "groupId": 4,
                 "id": 3,
@@ -192,22 +192,46 @@
             }
         }
     ],
+    "coins": [
+        {
+            "x": 415,
+            "y": 510,
+            "skin": "coin"
+        },
+        {
+            "x": 715,
+            "y": 510,
+            "skin": "coin"
+        },
+        {
+            "x": 1320,
+            "y": 350,
+            "skin": "coin"
+        },
+        {
+            "x": 1150,
+            "y": 450,
+            "skin": "coin"
+        }
+    ],
     "filters": [
         {
             "x": 360,
             "y": 500,
-            "color": "Cyan"
+            "color": "Green",
+            "skin": "filterGreen"
         },
         {
             "x": 460,
             "y": 500,
-            "color": "Blue"
+            "color": "Blue",
+            "skin": "filterBlue"
         }
     ],
     "ends": [
         {
             "x": 1500,
-            "y": 50
+            "y": 250
         }
     ]
 }

@@ -4,12 +4,12 @@
     requirejs.config({
         baseUrl: "requirejs/",
         paths: {
-            phaser: 'lib/phaser/phaser',
+            phaser: 'lib/phaser/phaser'
         },
         shim: {
             'phaser': {
                 exports: 'Phaser',
-            },
+            }
         }
     });
 
@@ -24,7 +24,7 @@
     'app/states/chooseLevelState',
     'app/states/restartGameState',
     'app/touch',
-    'app/states/deadState'
+    'app/states/deadState',
     ],
     function (
         Phaser,
@@ -37,9 +37,15 @@
     ChooseLevelState,
     RestartGameState,
     Touch,
-    DeadState
+    DeadState    
     ) {
         document.addEventListener("deviceready", Touch.onDeviceReady, false);
+        if (screenfull.enabled) {
+            document.addEventListener(screenfull.raw.fullscreenerror, function (event) {
+                alert('Failed to enable fullscreen');
+            });
+            screenfull.request();
+        }
         PhaserGame.start();
         PhaserGame.game.state.add('Boot', BootState);
         PhaserGame.game.state.add('Preload', PreloadState);

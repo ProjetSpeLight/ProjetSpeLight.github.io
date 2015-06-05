@@ -113,46 +113,7 @@
             "id": 5,
             "position": {
                 "x": 690,
-                "y": 760
-            },
-            "size": {
-                "x": 5,
-                "y": 1
-            },
-            "crossable": false
-            
-        },
-        {
-            "id": 6,
-            "position": {
-                "x": 800,
-                "y": 760
-            },
-            "size": {
-                "x": 5,
-                "y": 1
-            },
-            "crossable": false
-            
-        },
-        {
-            "id": 7,
-            "position": {
-                "x": 910,
-                "y": 760
-            },
-            "size": {
-                "x": 5,
-                "y": 1
-            },
-            "crossable": false
-            
-        }
-        ,
-        {
-            "position": {
-                "x": 1120,
-                "y": 100
+                "y": 250
             },
             "size": {
                 "x": 5,
@@ -162,12 +123,17 @@
             
         }
     ],
+    "time": [
+        {
+            "value": 50
+        }
+    ],
     "switch": [
         {
             "x": 400,
             "y": 700,
-            "color": "Blue",
-            "skin":"switchBlue",
+            "color": "Red",
+            "skin":"switchRedOFF",
             "action": {
                 "groupId": 4,
                 "id": 1,
@@ -183,8 +149,8 @@
         {
             "x": 510,
             "y": 600,
-            "color": "Red",
-            "skin":"switchRed",
+            "color": "Magenta",
+            "skin":"switchMagentaOFF",
             "action": {
                 "groupId": 4,
                 "id": 2,
@@ -200,8 +166,8 @@
         {
             "x": 620,
             "y": 500,
-            "color": "Green",
-            "skin":"switchGreen",
+            "color": "Yellow",
+            "skin":"switchYellowOFF",
             "action": {
                 "groupId": 4,
                 "id": 3,
@@ -217,8 +183,8 @@
         {
             "x": 730,
             "y": 400,
-            "color": "Magenta",
-            "skin":"switchMagenta",
+            "color": "White",
+            "skin":"switchWhiteOFF",
             "action": {
                 "groupId": 4,
                 "id": 4,
@@ -230,80 +196,54 @@
                    
                }
             }
+        }
+    ],
+    "coins": [
+        {
+            "x": 410,
+            "y": 510,
+            "skin": "coin"
         },
         {
-            "x": 840,
-            "y": 300,
-            "color": "Yellow",
-            "skin":"switchYellow",
-            "action": {
-                "groupId": 4,
-                "id": 5,
-                "actionName": "actionMoveObject",
-                "args": 
-               {
-                    "x": 0,
-                    "y": -500
-                   
-               }
-            }
+            "x": 310,
+            "y": 610,
+            "skin": "coin"
         },
         {
-            "x": 950,
-            "y": 200,
-            "color": "Cyan",
-            "skin":"switchCyan",
-            "action": {
-                "groupId": 4,
-                "id": 6,
-                "actionName": "actionMoveObject",
-                "args": 
-               {
-                    "x": 0,
-                    "y": -600
-                   
-               }
-            }
+            "x": 510,
+            "y": 410,
+            "skin": "coin"
         },
         {
-            "x": 1060,
-            "y": 100,
-            "color": "White",
-            "skin":"switchWhite",
-            "action": {
-                "groupId": 4,
-                "id": 7,
-                "actionName": "actionMoveObject",
-                "args": 
-               {
-                    "x": 0,
-                    "y": -650
-                   
-               }
-            }
+            "x": 610,
+            "y": 310,
+            "skin": "coin"
         }
     ],
     "filters": [
         {
             "x": 20,
             "y": 500,
-            "color": "Blue"
+            "color": "Blue",
+            "skin": "filterBlue"
         },
         {
-            "x": 60,
+            "x": 70,
             "y": 500,
-            "color": "Red"
+            "color": "Red",
+            "skin": "filterRed"
         },
         {
-            "x": 100,
+            "x": 120,
             "y": 500,
-            "color": "Green"
+            "color": "Green",
+            "skin": "filterGreen"
         }
     ],
     "ends": [
         {
-            "x": 1120,
-            "y": 50
+            "x": 700,
+            "y": 200
         }
     ]
 }

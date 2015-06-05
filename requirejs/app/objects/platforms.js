@@ -2,12 +2,12 @@
  * This module implements the functions that create and animate platforms
  */
 
-define(['phaser', 'app/phasergame', 'app/player'], function (Phaser, PhaserGame, player) {
+define(['phaser', 'app/phasergame', 'app/player', 'app/touch'], function (Phaser, PhaserGame, player, Touch) {
 
     /// @function setParameters
     /// Create and initialize a platforms with default value or specified ones stored in the argument
     /// @param {Object} a JSON object that contains the informations for the initialisation of the platform
-    function setParameters(platformData, platforms) {       
+    function setParameters(platformData, platforms) {
 
         // We get the differents attributes from the JSON file
 
@@ -55,10 +55,10 @@ define(['phaser', 'app/phasergame', 'app/player'], function (Phaser, PhaserGame,
             if (size.y == null)
                 size.y = 1;
             platform.scale.setTo(size.x, size.y);
-        } else
+        } else {
             // default value. (the platform has the side given by it's skin)
             platform.scale.setTo(1, 1);
-
+        }
 
         // if the platform is set as crossable the player can jump through it from beow and cross it from side to side
         if (platformData.crossable == true) {
@@ -127,6 +127,34 @@ define(['phaser', 'app/phasergame', 'app/player'], function (Phaser, PhaserGame,
                 platform.body.velocity.y = platformData.positions[0].speed.y;
                 this.loopingPlatforms.push(platform);
             }
+        }
+    }
+
+    /// @function makeColor
+    /// If the player is on a colored platform and is pressing the down key it will call the changing color method of the player
+    function makeColor(sprite, colorPlatform) {
+        // Oblige le joueur à etre au dessus 
+        //de la plateforme coloree pour changer de couleur
+        if (playerRidingPlatform(colorPlatform)) {
+            // Oblige le joueur à appuyer 
+            //sur la touche du bas pour changer de couleur
+            if (PhaserGame.game.input.keyboard.isDown(Phaser.Keyboard.DOWN) || player.changeColor) {
+                player.changePlayerColor(colorPlatform.color);
+            }
+        }
+    }
+
+    function processColor(sprite, colorplatform) {
+        if (colorplatform.color == "") {
+            if (!PhaserGame.game.device.desktop) {
+                Touch.killChangeColorButton();
+            }
+            return false;
+        } else {
+            if (!PhaserGame.game.device.desktop) {
+                Touch.showChangeColorButton();
+            }
+            return true;
         }
     }
 
@@ -210,8 +238,18 @@ define(['phaser', 'app/phasergame', 'app/player'], function (Phaser, PhaserGame,
 
         group: null,
 
+        /// @function preloadObjectImage
+        /// Preloads the different images / spritesheets used by this module
+        preloadObjectsImages: function () {
+            PhaserGame.game.load.image('ground', 'assets/platform.png');
+            PhaserGame.game.load.image('groundRed', 'assets/platform_Rouge.png');
+            PhaserGame.game.load.image('groundBlue', 'assets/platform_Bleu.png');
+            PhaserGame.game.load.image('groundGreen', 'assets/platform_Vert.png');
+            // PhaserGame.game.load.image('groundYellow', 'assets/platform_Jaune.png');
+        },
+
         // Create all the object of type platform
-        createObjectGroup: function (levelData, Manager) {
+        createObjectsGroup: function (levelData, Manager) {
             this.group = PhaserGame.game.add.physicsGroup();
             // Intialization of the group in the manager
             Manager.EnumModule.PLATFORM.refGroup = this.group;
@@ -221,8 +259,10 @@ define(['phaser', 'app/phasergame', 'app/player'], function (Phaser, PhaserGame,
         },
 
         // Update the movement of moving platforms
-        updateObject: function () {
+        updateObjects: function () {
             PhaserGame.game.physics.arcade.overlap(player.refPhotons.photons, this.group, player.refPhotons.killPhoton);
+            PhaserGame.game.physics.arcade.collide(player.sprite, this.group, makeColor, processColor, PhaserGame);
+            PhaserGame.game.physics.arcade.collide(player.sprite, this.group);
             updateLoopingPlatforms();
             updateBackAndForthPlatforms();
         },

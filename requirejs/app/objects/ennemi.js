@@ -3,87 +3,130 @@
   *
   */
 
-define(['phaser', 'app/phasergame', 'app/player', 'app/objects/coin', 'app/photon', 'app/touch', 'app/objects/platforms'], function (Phaser, PhaserGame, player, coinObject, photon, Touch, platforms) {
+define(['phaser', 'app/phasergame', 'app/player', 'app/photon'], function (Phaser, PhaserGame, player, photon) {
 
-    // on a une collision dans pique à corriger une fois finie
 
-    function killPlayer(play, ennemi) {
 
-        //player.animationDeath();
-
-        if (!play.invincible){
-            coinObject.score = 0;    
-            //check if the player has a color or not
-            if (play.color.value != 0){
-                 //he has a color so we remove the last color
-                player.timeInvincible=1;
-                player.removePlayerColor();
-            } else {
-                //he hasn't so we restart the game
-                PhaserGame.game.state.start('RestartGame');
-            }
+    function killEnnemi(photon, enemy) {
+        photon.kill();
+        enemy.nbLives--;
+        if (enemy.nbLives == 0) {
+            enemy.destroy();
+            PhaserGame.score += 10;
         }
-
+        
     }
 
-    function killEnnemi(photon, ennemi) {
-        ennemi.kill();
-        photon.kill();
+    function killPlayer(playerSprite, ennemi) {
+        player.kill();
     }
 
     return {
 
-        /***** Attributes *****/
-
         // Object containing the physic group of ennemis
         group: null,
 
+        /// @function preloadObjectImage
+        /// Preloads the different images / spritesheets used by this module
+        preloadObjectsImages: function () {
+            PhaserGame.game.load.spritesheet('normalEnemy', 'assets/baddie.png', 32, 32);
+            PhaserGame.game.load.spritesheet('flyingEnemy', 'assets/Fantome.png', 75, 60);
 
-        /***** Methodes *****/
+        },
 
         /// @function createObjectsGroup
         /// Create the differents objects defines in the JSON file represented by this module
         /// @param {Array} Array of elements representing 
-        createObjectGroup: function (data) {
+        createObjectsGroup: function (data, Manager) {
 
+            // Allocation of the group
             this.group = PhaserGame.game.add.physicsGroup();
 
+            // Intialization of the group in the manager
+            Manager.EnumModule.ENEMY.refGroup = this.group;
+
             if (data == null)
-                return;          
+                return;
             for (var i = 0 ; i < data.length ; i++) {
                 var ennemiData = data[i];
-                var ennemi = this.group.create(ennemiData.x, ennemiData.y, ennemiData.skin);
-                ennemi.frame = 1;
-                if (ennemiData.speed.x != 0) {
-                    ennemi.body.sprite.leftBounds = ennemiData.bounds.left;
-                    ennemi.body.sprite.rightBounds = ennemiData.bounds.right;
-                    ennemi.body.velocity.x = ennemiData.speed.x;
+
+                // We get the type of enemy
+                var enemyType = 'normal';
+                if (ennemiData.type != null) {
+                    enemyType = ennemiData.type;
                 }
-                ennemi.body.bounce.y = 0;
-                ennemi.body.gravity.y = 1000;
 
 
+                var skin = enemyType + 'Enemy';
+
+                var ennemi = this.group.create(ennemiData.x, ennemiData.y, skin);
+                ennemi.frame = 1;
+                ennemi.id = ennemiData.id
+                var speed = ennemiData.speed;
+                if (speed != null) {
+                    if (speed.x == null)
+                        speed.x = 0;
+                    if (speed.y == null)
+                        speed.y = 0;
+                } else {
+                    speed.x = 0;
+                    speed.y = 0;
+                }
+                ennemi.body.velocity.x = speed.x;
+                ennemi.body.velocity.y = speed.y;
+
+                ennemi.saveSpeedX = speed.x;
+                ennemi.saveSpeedY = speed.y;
+
+                var bounds = ennemiData.bounds;
+                if (bounds != null) {
+                    if (bounds.left != null)
+                        ennemi.body.sprite.leftBounds = ennemiData.bounds.left;
+                    if (bounds.right != null)
+                        ennemi.body.sprite.rightBounds = ennemiData.bounds.right;
+                    if (bounds.top != null)
+                        ennemi.body.sprite.topBounds = ennemiData.bounds.top;
+                    if (bounds.bottom != null)
+                        ennemi.body.sprite.bottomBounds = ennemiData.bounds.bottom;
+                }
+
+                ennemi.body.collideWorldBounds = true;
+                ennemi.body.bounce.y = 1;
+                ennemi.body.bounce.x = 1;
+
+                if (enemyType == 'normal') {
+                    ennemi.nbLives = 5;
+                } else {
+                    ennemi.nbLives = 1;
+                    ennemi.animations.add('animFlying', [0, 1, 2, 1], 6, true);
+                    ennemi.play('animFlying');
+                }
             }
         },
 
-        updateObject: function () {
-
-            PhaserGame.game.physics.arcade.collide(this.group, platforms.group);
+        updateObjects: function () {            
             PhaserGame.game.physics.arcade.overlap(player.sprite, this.group, killPlayer, null, this);
             PhaserGame.game.physics.arcade.collide(photon.photons, this.group, killEnnemi, null, this);
 
+
+
             //Déplacement des ennemis
             this.group.forEach(function (element) {
-                if (element.body.x >= element.body.sprite.rightBounds) {
-                    element.body.velocity.x *= -1;
-                } else if (element.body.x <= element.body.sprite.leftBounds) {
-                    element.body.velocity.x *= -1;
+
+                if (element.body.velocity.x != element.saveSpeedX && element.body.velocity.x != -element.saveSpeedX) {
+                    element.body.velocity.x = element.saveSpeedX;
                 }
-                if (element.body.y <= element.body.sprite.topBounds) {
-                    element.body.velocity.y *= -1;
-                } else if (element.body.y >= element.body.sprite.bottomBounds) {
-                    element.body.velocity.y *= -1;
+
+                if (element.body.velocity.y != element.saveSpeedY && element.body.velocity.y != -element.saveSpeedY) {
+                    element.body.velocity.y = element.saveSpeedY;
                 }
+
+                if (element.body.x >= element.body.sprite.rightBounds || element.body.x <= element.body.sprite.leftBounds)
+                    element.body.velocity.x *= -1;
+
+                if (element.body.y <= element.body.sprite.topBounds || element.body.y >= element.body.sprite.bottomBounds)
+                    element.body.velocity.y *= -1;
+
             })
 
         }

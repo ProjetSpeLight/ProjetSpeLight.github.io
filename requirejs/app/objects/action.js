@@ -31,20 +31,45 @@ define([], function () {
 
 
     function getFunctionAction(name) {
-        if (name == 'actionDeleteObject') {
-            return actionDeleteObject;
+        switch (name) {
+            case 'actionCreateObject':
+            case 'actionDeleteObject':
+                return actionDeleteObject;
+            case 'actionMoveObject':
+                return actionMoveObject;
+            case 'actionChangeObjectColor':
+                return actionChangeObjectColor;
+            default:
+                return null;
         }
-
-        if (name == 'actionMoveObject') {
-            return actionMoveObject;
-        }
-
-        if (name == 'actionPutInMoveObject') {
-            actionPutInMoveObject;
-        }
-
-        return null;
     }
+
+    function getOppositeFunctionAction(name) {
+        switch (name) {
+            case 'actionCreateObject':
+            case 'actionDeleteObject':
+                return actionCreateObject;
+            case 'actionMoveObject':
+                return actionMoveObject;
+            default:
+                return null;
+        }
+    }
+
+    function computeOppositeArgs(args, actionName) {
+        switch (actionName) {
+            case 'actionMoveObject':
+                return {
+                    "x": -args.x,
+                    "y": -args.y
+                };
+            default:
+                return args;
+
+        }
+    }
+
+
 
     /// @function createAction
     /// Creates and returns an array composed of the different elements of an action : the target, the action function and its argument(s) from the JSON file
@@ -57,11 +82,23 @@ define([], function () {
         if (data.args != null) {
             args = data.args;
         }
+        var oppositeArgs = computeOppositeArgs(args, data.actionName);
         args.target = object;
-        return {
-            "actionName": getFunctionAction(data.actionName),
-            "args": args
-        }
+        oppositeArgs.target = object;
+        if (data.actionName == "actionMoveObject")
+            return {
+                "onActionName": getFunctionAction(data.actionName),
+                "offActionName": getFunctionAction(data.actionName),
+                "onArgs": oppositeArgs,
+                "offArgs": args
+            }
+        else
+            return {
+                "onActionName": getFunctionAction(data.actionName),
+                "offActionName": getOppositeFunctionAction(data.actionName),
+                "onArgs": args,
+                "offArgs": oppositeArgs
+            }
     }
 
     function actionMoveObject(args) {
@@ -70,16 +107,11 @@ define([], function () {
     }
 
     function actionDeleteObject(args) {
-        args.target.destroy();
-    }
-
-    function actionPutInMoveObject(args) {
-        args.target.body.velocity.x = args.velocity.x;
-        args.target.body.velocity.y = args.velocity.y;
+        args.target.kill();
     }
 
     function actionCreateObject(args) {
-
+        args.target.revive();
     }
 
     function actionChangeMirrorOrientation(args) {
@@ -87,7 +119,8 @@ define([], function () {
     }
 
     function actionChangeObjectColor(args) {
-
+        var i = args.colors.indexOf(args.target.color);
+        args.target.color = agrs.colors[(i + 1) % (args.colors.length)].color;
     }
 
 
@@ -97,8 +130,7 @@ define([], function () {
         actionDeleteObject: actionDeleteObject,
         actionCreateObject: actionCreateObject,
         actionChangeMirrorOrientation: actionChangeMirrorOrientation,
-        actionChangeObjectColor: actionChangeObjectColor,
-        actionPutInMoveObject: actionPutInMoveObject
+        actionChangeObjectColor: actionChangeObjectColor
     }
 
 });

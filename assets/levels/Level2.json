@@ -21,16 +21,7 @@
                 "y": 2
             }
         },
-        {
-            "position": {
-                "x": 1810,
-                "y": 520
-            },
-            "size": {
-                "x": 2,
-                "y": 2
-            }
-        },
+        
         {
             "position": {
                 "x": 2160,
@@ -42,7 +33,7 @@
             }
         },
         {
-            "id":1,
+            "id": 1,
             "position": {
                 "x": 2000,
                 "y": 560
@@ -135,30 +126,31 @@
         {
             "x": 1720,
             "y": 540,
-            "angle": 45,
-            "skin": "mirror",
-            "isMovable": true
+            "immovable": false,
+            "bounds": {
+                "left": 1600,
+                "right": 1800
+            }
         }
     ],
     "switch": [
         {
             "x": 1750,
             "y": 220,
-            "skin":"switchBlue",
+            "skin": "switchBlueOFF",
             "color": "Blue",
             "action": {
                 "groupId": 4,
                 "id": 1,
                 "actionName": "actionMoveObject",
-                "args": 
-               {
-                   
+                "args": {
+
                     "x": 0,
                     "y": -150
-                   
-                   
-                   
-               }
+
+
+
+                }
             }
         }
     ],
@@ -228,11 +220,11 @@
                 "x": 150,
                 "y": 0
             },
-            "skin": "baddie"
+            "type": "flying"
         },
         {
             "x": 600,
-            "y": 500,
+            "y": 528,
             "bounds": {
                 "left": 550,
                 "right": 750,
@@ -247,7 +239,7 @@
         },
         {
             "x": 1000,
-            "y": 500,
+            "y": 528,
             "bounds": {
                 "left": 900,
                 "right": 1100,
@@ -262,7 +254,7 @@
         },
         {
             "x": 1205,
-            "y": 500,
+            "y": 528,
             "bounds": {
                 "left": 1100,
                 "right": 1300,
@@ -279,7 +271,7 @@
     "ends": [
         {
             "x": 2200,
-            "y": 100
+            "y": 200
         }
     ]
 }

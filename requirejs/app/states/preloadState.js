@@ -1,4 +1,4 @@
-define(['phaser', 'app/pause', 'app/phasergame'], function (Phaser, pause, PhaserGame) {
+define(['phaser', 'app/pause', 'app/phasergame', 'app/objects/objectsManager'], function (Phaser, pause, PhaserGame, Manager) {
     // 'use strict';
 
     function PreloadState(game) { }
@@ -12,34 +12,12 @@ define(['phaser', 'app/pause', 'app/phasergame'], function (Phaser, pause, Phase
             // load all game assets
             // images, spritesheets, atlases, audio etc..
             PhaserGame.game.load.image('sky', 'assets/sky.png');
-            PhaserGame.game.load.image('ground', 'assets/platform.png');
-            PhaserGame.game.load.image('diamond', 'assets/diamond.png');
-
-
-            PhaserGame.game.load.image('groundYellow', 'assets/platform_Jaune.png');
-            PhaserGame.game.load.image('groundRed', 'assets/platform_Rouge.png');
-            PhaserGame.game.load.image('groundBlue', 'assets/platform_Bleu.png');
-            PhaserGame.game.load.image('groundGreen', 'assets/platform_Vert.png');
-
-            PhaserGame.game.load.image('coin', 'assets/star.png');
-
-            PhaserGame.game.load.image('logo', 'assets/phaser2.png');
-            PhaserGame.game.load.image('dead', 'assets/dead.png');
-            PhaserGame.game.load.image('switchRed', 'assets/Switch/Switch_Red.png');
-            PhaserGame.game.load.image('switchBlue', 'assets/Switch/Switch_Blue.png');
-            PhaserGame.game.load.image('switchGreen', 'assets/Switch/Switch_Green.png');
-            PhaserGame.game.load.image('switchMagenta', 'assets/Switch/Switch_Magenta.png');
-            PhaserGame.game.load.image('switchYellow', 'assets/Switch/Switch_Yellow.png');
-            PhaserGame.game.load.image('switchCyan', 'assets/Switch/Switch_Cyan.png');
-            PhaserGame.game.load.image('switchWhite', 'assets/Switch/Switch_White.png');
-            
-            
-            PhaserGame.game.load.image('mirror', 'assets/mirror.png');
-
-
+            PhaserGame.game.load.image('diamond', 'assets/diamond.png');            
+            PhaserGame.game.load.image('dead', 'assets/dead.png');         
             PhaserGame.game.load.image('buttonEmpty', 'assets/emptyButton.png');
 
-
+            // Loading images for the different objects
+            Manager.preloadObjects();
 
             // For the pause state
             pause.preload_pause();
@@ -48,7 +26,6 @@ define(['phaser', 'app/pause', 'app/phasergame'], function (Phaser, pause, Phase
             this.load.image('screentitle', 'assets/ScreenTitle.png');
 
             this.load.image('button_jump', 'assets/button_jump.png', 64, 64);
-            this.load.image('pique', 'assets/pique.png');
 
             if (!this.game.device.desktop) {
                 this.load.image('buttonChangeColor', 'assets/boutons/changeColor.png');
@@ -58,7 +35,6 @@ define(['phaser', 'app/pause', 'app/phasergame'], function (Phaser, pause, Phase
                 this.load.image('buttonTir', 'assets/boutons/tir.png')
             }
 
-            //this.load.image('play', 'assets/button_play.png');
             this.load.spritesheet('play', 'assets/boutons/New_Game.png', 190, 68);
             this.load.image('play1', 'assets/button_play_level1.png');
             this.load.image('play2', 'assets/button_play_level2.png');
@@ -69,13 +45,12 @@ define(['phaser', 'app/pause', 'app/phasergame'], function (Phaser, pause, Phase
             this.load.spritesheet('accelerometre', 'assets/boutons/Accelerometre.png', 190, 68);
 
 
-            this.load.spritesheet('dude', 'assets/colordude.png', 32, 48);
-            this.load.spritesheet('photon', 'assets/photons.png', 20, 20);
-            this.load.spritesheet('baddie', 'assets/baddie.png', 32, 32);
+            //this.load.spritesheet('dude', 'assets/colordude.png', 32, 48);
+            this.load.spritesheet('dude', 'assets/colordude_melo.png', 100, 100);
+            //this.load.spritesheet('photon', 'assets/photons.png', 20, 20);
+            this.load.spritesheet('photon', 'assets/photons_explosion.png', 60, 60);
 
-
-
-            this.load.image('button', 'assets/photon_vert.png');
+            
 
             // Tutoriel
             //this.load.json('level0', 'http://localhost:4200/assets/levels/Tutoriel.json');

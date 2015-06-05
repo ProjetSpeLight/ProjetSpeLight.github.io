@@ -1,13 +1,13 @@
 {
     "worldBounds": {
         "leftBound": 0,
-        "rightBound": 3200,
+        "rightBound": 2400,
         "upperBound": 0,
         "lowerBound": 600
     },
     "background": "sky",
     "playerStart": {
-        "x": 2050,
+        "x": 50,
         "y": 500
     },
     "platforms": [
@@ -45,7 +45,7 @@
         {
             "position": {
                 "x": 1690,
-                "y": 260
+                "y": 140
             },
             "size": {
                 "x": 3,
@@ -133,7 +133,32 @@
         {
             "positions": [
                 {
-                    "x": 800,
+                    "x": 500,
+                    "y": 360,
+                    "speed": {
+                        "x": 100,
+                        "y": 0
+                    }
+                },
+                {
+                    "x": 850,
+                    "y": 360,
+                    "speed": {
+                        "x": -100,
+                        "y": 0
+                    }
+                }
+            ],
+            "size": {
+                "x": 5,
+                "y": 1
+            },
+            "immovable": true
+        },
+        {
+            "positions": [
+                {
+                    "x": 600,
                     "y": 260,
                     "speed": {
                         "x": 100,
@@ -141,7 +166,7 @@
                     }
                 },
                 {
-                    "x": 1150,
+                    "x": 950,
                     "y": 260,
                     "speed": {
                         "x": -100,
@@ -169,8 +194,7 @@
     "switch": [
         {
             "x": 1690,
-            "y": 270,
-            "skin":"switchBlue",
+            "y": 150,
             "color": "Blue",
             "action": {
                 "groupId": 4,
@@ -236,8 +260,23 @@
             "x": 380,
             "y": 400,
             "bounds": {
-                "left": 300,
-                "right": 700,
+                "left": 200,
+                "right": 550,
+                "lower": 600,
+                "upper": 0
+            },
+            "speed": {
+                "x": 150,
+                "y": 0
+            },
+            "type": "flying"
+        },
+        {
+            "x": 1220,
+            "y": 528,
+            "bounds": {
+                "left": 1200,
+                "right": 1300,
                 "lower": 600,
                 "upper": 0
             },

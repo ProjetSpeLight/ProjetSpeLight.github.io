@@ -12,8 +12,7 @@ define([
     };
     
     MainMenuState.prototype = {
-        create: function () {
-            
+        create: function () {            
 
             this.game.state.states['Game'].currentLevel = 1;
             // create main menu text and images -

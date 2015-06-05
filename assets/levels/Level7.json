@@ -1,0 +1,302 @@
+{
+    "worldBounds": {
+        "leftBound": 0,
+        "rightBound": 2500,
+        "upperBound": 0,
+        "lowerBound": 600
+    },
+    "background": "sky",
+    "playerStart": {
+        "x": 1500,
+        "y": 290
+    },
+    "platforms": [
+        {
+            "position": {
+                "x": 0,
+                "y": 560
+            },
+            "size": {
+                "x": 40,
+                "y": 2
+            }
+        },
+        {
+            "position": {
+                "x": 1200,
+                "y": 560
+            },
+            "size": {
+                "x": 153,
+                "y": 2
+            }
+        },
+        {
+            "position": {
+                "x": 2300,
+                "y": 360
+            },
+            "size": {
+                "x": 1,
+                "y": 10
+            },
+            "crossable": false
+        },
+        {
+            "position": {
+                "x": 2160,
+                "y": 360
+            },
+            "size": {
+                "x": 8,
+                "y": 1
+            }
+        },
+        {
+            "id": 0,
+            "positions": [
+                {
+                    "x": 2140,
+                    "y": 360,
+                    "speed": {
+                        "x": 0,
+                        "y": -100
+                    }
+                },
+                {
+                    "x": 2140,
+                    "y": 260,
+                    "speed": {
+                        "x": 0,
+                        "y": 100
+                    }
+                }
+            ],
+            "size": {
+                "x": 1,
+                "y": 10
+            },
+            "immovable": true
+        }
+    ],
+    "backAndForthPlatforms": [
+        {
+            "positions": [
+                {
+                    "x": 800,
+                    "y": 460,
+                    "speed": {
+                        "x": 100,
+                        "y": 0
+                    }
+                },
+                {
+                    "x": 1150,
+                    "y": 460,
+                    "speed": {
+                        "x": -100,
+                        "y": 0
+                    }
+                }
+            ],
+            "size": {
+                "x": 5,
+                "y": 1
+            },
+            "immovable": true
+        },
+         {
+            "positions": [
+                {
+                    "x": 600,
+                    "y": 460,
+                    "speed": {
+                        "x": 100,
+                        "y": 0
+                    }
+                },
+                {
+                    "x": 950,
+                    "y": 460,
+                    "speed": {
+                        "x": -100,
+                        "y": 0
+                    }
+                }
+            ],
+            "size": {
+                "x": 5,
+                "y": 1
+            },
+            "immovable": true
+        },
+        {
+            "positions": [
+                {
+                    "x": 700,
+                    "y": 360,
+                    "speed": {
+                        "x": 100,
+                        "y": 0
+                    }
+                },
+                {
+                    "x": 1050,
+                    "y": 360,
+                    "speed": {
+                        "x": -100,
+                        "y": 0
+                    }
+                }
+            ],
+            "size": {
+                "x": 3,
+                "y": 3
+            },
+            "immovable": true,
+            "color": "Red"
+        }
+    ],
+    "mirrors": [
+        {
+            "x": 1720,
+            "y": 540,
+            "immovable": false,
+            "bounds": {
+                "left": 1600,
+                "right":  2000
+            }
+            
+        },
+        {
+            "x": 1675,
+            "y": 250,
+            "angle": -135
+        },
+        {
+            "x": 1675,
+            "y": 450,
+            "angle": 135
+        },
+        {
+            "x": 1800,
+            "y": 450,
+            "angle": -45
+        },
+        {
+            "x": 2150,
+            "y": 250,
+            "angle": -45
+        },
+        {
+            "x": 2150,
+            "y": 350
+        },
+        {
+           "id": 1,
+            "x": 1900,
+            "y": 350,
+            "angle": 135
+        },
+        {
+            "x": 1900,
+            "y": 450
+        },
+        {
+            "id": 2,
+            "x": 1900,
+            "y": 100,
+            "angle": 45
+        }
+    ],
+    "buttons": [
+        {
+            "x": 2100,
+            "y": 520,
+            "action": {
+                "groupId": 0,
+                "id": 2,
+                "actionName": "actionChangeMirrorOrientation"
+                
+            }
+        }
+    ],
+    "switch": [
+        {
+            "x": 1400,
+            "y": 100,
+            "color": "Red",
+            "skin":"switchRedOFF",
+            "action": {
+                "groupId": 4,
+                "id": 0,
+                "actionName": "actionDeleteObject"
+            }
+        },
+        {
+            "x": 1400,
+            "y": 500,
+            "color": "Red",
+            "skin":"switchRedOFF",
+            "action": {
+                "groupId": 0,
+                "id": 1,
+                "actionName": "actionMoveObject",
+                "args": 
+               {
+                    "x": -300,
+                    "y": 0
+                   
+               }
+            }
+        }
+    ],
+    "coins": [
+        {
+            "x": 180,
+            "y": 510,
+            "skin": "coin"
+        },
+        {
+            "x": 280,
+            "y": 460,
+            "skin": "coin"
+        },
+        {
+            "x": 380,
+            "y": 410,
+            "skin": "coin"
+        },
+        {
+            "x": 480,
+            "y": 460,
+            "skin": "coin"
+        },
+        {
+            "x": 580,
+            "y": 510,
+            "skin": "coin"
+        },
+        {
+            "x": 1450,
+            "y": 420,
+            "skin": "coin"
+        },
+         {
+            "x": 1380,
+            "y": 520,
+            "skin": "coin"
+        },
+        {
+            "x": 1520,
+            "y": 520,
+            "skin": "coin"
+        }
+    ],
+    "ends": [
+        {
+            "x": 2200,
+            "y": 500
+        }
+    ]
+}
