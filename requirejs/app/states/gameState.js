@@ -66,18 +66,21 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/phasergame'
             scoreText = PhaserGame.game.add.text(16, 16, 'Score: 0', { fontSize: '32px', fill: '#000' });
             scoreText.fixedToCamera = true;
 
-
+             musicObject.create();
+            
             // Initialization of the pause button
             var button_pause = PhaserGame.game.add.sprite(750, 20, 'pause');
             button_pause.inputEnabled = true;
             button_pause.name = 'pause';
             button_pause.anchor.setTo(0.5, 0.5);
             button_pause.fixedToCamera = true;
-
+            
             // Signal binding for the pause mode
             PhaserGame.game.input.onDown.add(pause.unpause, self);
+            
+           
 
-            musicObject.create();
+           
           
         },
 
@@ -187,6 +190,21 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/phasergame'
                 if (PhaserGame.game.input.keyboard.isDown(Phaser.Keyboard.R)) {
                     PhaserGame.game.state.start('RestartGame');
                 }
+                
+                // We stop the music when "D" is pushed
+                if (PhaserGame.game.input.keyboard.isDown(Phaser.Keyboard.D)) {
+                        musicObject.music.stop();
+                        musicObject.pause= true;
+                }
+                
+                // We restart the music when "D" is pushed
+                if (PhaserGame.game.input.keyboard.isDown(Phaser.Keyboard.U)) {
+                    if (!musicObject.music.isPlaying) {
+                        musicObject.music.play();
+                        musicObject.pause=false;
+                    }
+                }
+
 
                 // We stop the game when "ESC" is pushed 
                 if (PhaserGame.game.input.keyboard.isDown(Phaser.Keyboard.ESC)) {

@@ -313,6 +313,14 @@
 
         finIntro: function () {
             PhaserGame.game.world.alpha = 1;
+            if (musique1 != null) {
+                musique1.destroy();
+            }
+            if (musique2 != null) {
+                musique2.destroy();
+            }
+            PhaserGame.game.input.keyboard.onPressCallback = null;
+            PhaserGame.game.input.touch.touchStartCallback = null;
             PhaserGame.game.state.start('MainMenu');
         },
 

@@ -4,8 +4,10 @@ define([
     Phaser
 ) { 
     // 'use strict';
+    var orientated = false;
 
-    function BootState(game) {}
+    function BootState(game) {    
+    }
     
     BootState.prototype = {
         preload: function () {
@@ -13,12 +15,16 @@ define([
             this.load.image('preloaderBar', 'assets/preloader-bar.png');
         },
         create: function () {
-        
+            orientated = false;
             // setup game environment
             this.game.nbLevel = 14;
             // scale, input etc..
+
+            this.input.maxPointers = 1;
+            this.stage.disableVisibilityChange = true;
+
            if (this.game.device.desktop) {
-               //this.game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+               this.game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
                this.game.scale.pageAlignHorizontally = true;
                this.game.scale.pageAlignVertically = true;
                
@@ -38,15 +44,33 @@ define([
                    lockOrientation('landscape');
                 }
                this.game.scale.setUserScale(width/800.0, height/600.0);
-                this.game.scale.scaleMode = Phaser.ScaleManager.USER_SCALE;
-                this.game.scale.fullScreenScaleMode = Phaser.ScaleManager.EXACT_FIT; // Important
+                //this.game.scale.scaleMode = Phaser.ScaleManager.USER_SCALE;
+               this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+               //this.game.scale.fullScreenScaleMode = Phaser.ScaleManager.EXACT_FIT; // Important
                 this.game.scale.pageAlignHorizontally = true;
                 this.game.scale.pageAlignVertically = true;
                 this.game.scale.forceOrientation(true, false);
-                this.game.scale.setResizeCallback(this.gameResized, this);
+                this.scale.enterIncorrectOrientation.add(this.enterIncorrectOrientation, this);
+                this.scale.leaveIncorrectOrientation.add(this.leaveIncorrectOrientation, this);
             }
             this.state.start('Preload');
           
+        },
+
+        enterIncorrectOrientation: function () {
+
+            orientated = false;
+
+            document.getElementById('orientation').style.display = 'block';
+
+        },
+
+        leaveIncorrectOrientation: function () {
+
+            orientated = true;
+
+            document.getElementById('orientation').style.display = 'none';
+
         }
     };
     
