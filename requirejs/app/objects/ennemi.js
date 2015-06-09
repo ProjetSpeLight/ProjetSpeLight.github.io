@@ -24,7 +24,7 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/photon'], function (Phase
                 PhaserGame.score += 30;
             }
         }
-        
+
     }
 
     function killPlayer(playerSprite, ennemi) {
@@ -104,15 +104,19 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/photon'], function (Phase
                 ennemi.body.bounce.y = 1;
                 ennemi.body.bounce.x = 1;
 
+                PhaserGame.game.physics.arcade.enable(ennemi); // Physics parameter
+
                 if (enemyType == 'normal') {
                     ennemi.nbLives = 3;
                     ennemi.animations.add('animNormal', [0, 1, 2, 3], 6, true);
                     ennemi.play('animNormal');
+                    ennemi.body.gravity.y = 1000;
                 } else {
                     ennemi.nbLives = 1;
                     ennemi.animations.add('animFlying', [0, 1, 2, 1], 6, true);
                     ennemi.play('animFlying');
                     ennemi.scale.setTo(0.6, 0.6);
+                    ennemi.body.gravity.y = 0;
                 }
                 ennemi.LifeBarShown = false;
                 ennemi.LifeBarLifeTime = 100;
@@ -121,13 +125,17 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/photon'], function (Phase
             }
         },
 
-        updateObjects: function () {            
+        updateObjects: function () {
             PhaserGame.game.physics.arcade.overlap(player.sprite, this.group, killPlayer, null, this);
             PhaserGame.game.physics.arcade.collide(photon.photons, this.group, killEnnemi, null, this);
             PhaserGame.game.physics.arcade.collide(this.group, this.group);
 
+            // If we are in a camera animation, we freeze the animations
+            if (PhaserGame.relaunchGame || PhaserGame.freezeGame) {
+                return;
+            }
 
-            //Déplacement des ennemis
+            // Deplacement of the enemies
             this.group.forEach(function (element) {
 
                 if (element.body.velocity.x != element.saveSpeedX && element.body.velocity.x != -element.saveSpeedX) {

@@ -162,7 +162,7 @@
             "x": 380,
             "y": 250,
             "en": "You can gain a primary color here \n press <DOWN> on the platform",
-            "fr": "Sur une plateforme colorée, \n appuyes sur la flèche du bas \n pour gagner cette couleur"
+            "fr": "Sur une plateforme colorée, \n appuye sur la flèche du bas \n pour gagner cette couleur"
         },
         {
             "x": 780,
@@ -174,7 +174,7 @@
             "x": 1080,
             "y": 300,
             "en": "Falling out of the map \n will get you killed though",
-            "fr": "Tomber dans un trou \n te tueras instantanément en revanche"
+            "fr": "Tomber dans un trou \n te tuera instantanément en revanche"
         },
         {
             "x": 1350,

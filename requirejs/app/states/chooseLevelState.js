@@ -11,6 +11,12 @@ define([
 
     ChooseLevelState.prototype = {
         create: function () {
+            //Fond
+            title = this.game.add.sprite(0, 0, 'BG_bad');
+            var coef = 600 / 720;
+            title.scale.x = coef;
+            title.scale.y = coef;
+
             // We generate a text and a button (sprite) per level
             var x = 10;
             var y = 10;

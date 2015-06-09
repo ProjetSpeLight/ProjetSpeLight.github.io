@@ -5,6 +5,12 @@ define([], function () {
     DeadState.prototype = {
         create: function () {
 
+            //Fond
+            title = this.game.add.sprite(0, 0, 'BG_bad');
+            var coef = 600 / 720;
+            title.scale.x = coef;
+            title.scale.y = coef;
+
             this.add.text(320, 80, 'Game Over', { fontSize: '48px', fill: '#fff' });
 
             if (this.message != null) {
