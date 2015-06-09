@@ -1,0 +1,213 @@
+{
+  "worldBounds": {
+    "leftBound": 0,
+    "rightBound": 1600,
+    "upperBound": 0,
+    "lowerBound": 600
+  },
+  "background": "sky",
+  "playerStart": {
+    "x": 32,
+    "y": 15
+  },
+  "platforms": [
+    {
+      "position": {
+        "x": 600,
+        "y": 250
+      },
+      "bounds": {
+        "left": 0,
+        "right": 0,
+        "lower": 0,
+        "upper": 0
+      },
+      "speed": {
+        "x": 0,
+        "y": 0
+      },
+      "size": {
+        "x": 1,
+        "y": 1
+      },
+      "skin": "ground",
+      "color": "Green",
+      "immovable": true
+    },
+    {
+      "position": {
+        "x": 600,
+        "y": 50
+      },
+      "bounds": {
+        "left": 0,
+        "right": 0,
+        "lower": 0,
+        "upper": 0
+      },
+      "speed": {
+        "x": 0,
+        "y": 0
+      },
+      "size": {
+        "x": 1,
+        "y": 1
+      },
+      "skin": "ground",
+      "color": "Red",
+      "immovable": true
+    },
+    {
+      "position": {
+        "x": 400,
+        "y": 400
+      },
+      "bounds": {
+        "left": 0,
+        "right": 0,
+        "lower": 0,
+        "upper": 0
+      },
+      "speed": {
+        "x": 0,
+        "y": 0
+      },
+      "size": {
+        "x": 1,
+        "y": 1
+      },
+      "skin": "ground",
+      "color": "",
+      "immovable": true,
+      "crossable": true
+    },
+    {
+      "position": {
+        "x": 50,
+        "y": 250
+      },
+      "bounds": {
+        "left": 0,
+        "right": 0,
+        "lower": 0,
+        "upper": 0
+      },
+      "speed": {
+        "x": 0,
+        "y": 0
+      },
+      "size": {
+        "x": 1,
+        "y": 1
+      },
+      "skin": "ground",
+      "color": "",
+      "immovable": true,
+      "crossable": true
+    },
+    {
+      "position": {
+        "x": 0,
+        "y": 450
+      },
+      "bounds": {
+        "left": 0,
+        "right": 0,
+        "lower": 0,
+        "upper": 0
+      },
+      "speed": {
+        "x": 0,
+        "y": 0
+      },
+      "size": {
+        "x": 2,
+        "y": 2
+      },
+      "skin": "ground",
+      "color": "",
+      "immovable": false
+    },
+    {
+      "position": {
+        "x": 100,
+        "y": 150
+      },
+      "bounds": {
+        "left": 100,
+        "right": 700,
+        "lower": 900,
+        "upper": 0
+      },
+      "speed": {
+        "x": 150,
+        "y": 200
+      },
+      "size": {
+        "x": 1,
+        "y": 1
+      },
+      "color": "",
+      "skin": "ground",
+      "immovable": true
+    }
+  ],
+  "coins": [
+    {
+      "x": 50,
+      "y": 250,
+      "skin": "coin"
+    },
+    {
+      "x": 0,
+      "y": 152,
+      "skin": "coin"
+    }
+  ],
+  "ennemis": [
+    {
+      "x": 100,
+      "y": 0,
+      "bounds": {
+        "left": 100,
+        "right": 200,
+        "lower": 900,
+        "upper": 0
+      },
+      "speed": {
+        "x": 150,
+        "y": 200
+      },
+      "skin": "baddie"
+    }
+  ],
+  "piques": [
+    {
+      "x": 450,
+      "y": 0,
+      "skin": "pique"
+    }
+  ],
+  "time": [
+     {
+        "value": 20
+     }
+  ],
+  "ends": [
+    {
+      "x": 300,
+      "y": 30
+    },
+    {
+      "x": 400,
+      "y": 30
+    }
+  ],
+  "switch": [
+    {
+      "x": 350,
+      "y": 30,
+      "color": "Red"
+    }
+  ]
+}

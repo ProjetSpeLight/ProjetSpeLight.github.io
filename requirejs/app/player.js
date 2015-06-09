@@ -17,9 +17,9 @@ define(['phaser', 'app/photon', 'app/phasergame', 'app/color'], function (Phaser
     /// {Array} The enumeration of the colors with their different properties
     function initializePlayerAnimations(sprite) {
         // Annimation when the sprite moves to the left
-        sprite.animations.add('left', [0, 1, 0, 2], 4, true);
+        sprite.animations.add('left', [0, 1, 0, 2], 8, true);
         // Animation when the sprite moves to the right
-        sprite.animations.add('right', [4, 5, 4, 6], 4, true);
+        sprite.animations.add('right', [4, 5, 4, 6], 8, true);
         // Animation when for the game over
         sprite.animations.add('finalDeath', [8, 7, 8, 9], 4, true);
     }

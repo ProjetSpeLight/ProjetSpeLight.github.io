@@ -6,6 +6,7 @@ define(['phaser', 'app/pause', 'app/phasergame', 'app/objects/objectsManager', '
     PreloadState.prototype = {
         preload: function () {
             // common to add a loading bar sprite here...
+            PhaserGame.game.add.sprite(0, 0, 'chargement');
             this.preloadBar = PhaserGame.game.add.sprite(PhaserGame.game.width / 2 - 100, PhaserGame.game.height / 2, 'preloaderBar');
             PhaserGame.game.load.setPreloadSprite(this.preloadBar);
 
@@ -25,7 +26,7 @@ define(['phaser', 'app/pause', 'app/phasergame', 'app/objects/objectsManager', '
 
             // For the musics
             music.preload();
-            this.load.audio('Titre', 'assets/audio/MainMenu.mp3');
+            this.load.audio('Titre', ['assets/audio/MainMenu.mp3', 'assets/audio/MainMenu.ogg']);
 
             //Chargement ecran titre
             this.load.image('screentitle', 'assets/ScreenTitle.png');

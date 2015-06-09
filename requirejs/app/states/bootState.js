@@ -13,6 +13,7 @@ define([
         preload: function () {
             // load assets to be used later in the preloader e.g. for loading screen / splashscreen
             this.load.image('preloaderBar', 'assets/preloader-bar.png');
+            this.load.image('chargement', 'assets/Chargement.jpg');
         },
         create: function () {
             orientated = false;
