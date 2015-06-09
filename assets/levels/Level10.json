@@ -7,8 +7,8 @@
     },
     "background": "sky",
     "playerStart": {
-        "x": 20,
-        "y": 600
+        "x": 100,
+        "y": 460
     },
     "platforms": [
         {
@@ -126,7 +126,7 @@
         {
             "position": {
                 "x": 100,
-                "y": 700
+                "y": 720
             },
             "size": {
                 "x": 3,
@@ -162,7 +162,7 @@
     "buttons": [
         {
             "x": 1600,
-            "y": 490,
+            "y": 500,
             "action": {
                 "actionName": "actionChangeMirrorOrientation",
                 "groupId": 0,
@@ -175,7 +175,7 @@
 
         {
             "x": 400,
-            "y": 700,
+            "y": 720,
             "action": {
                 "actionName": "actionChangeMirrorOrientation",
                 "groupId": 0,
@@ -267,6 +267,11 @@
             "type":  "flying"
         }
        
+    ],
+    "time": [
+        {
+            "value": 70
+        }
     ],
     "ends": [
         {

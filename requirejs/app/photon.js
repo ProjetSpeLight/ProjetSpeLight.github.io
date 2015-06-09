@@ -2,7 +2,7 @@
  * This file implements the functions related to the photon
  */
 
-define(['phaser', 'app/phasergame', 'app/color'], function (Phaser, PhaserGame, Color) {
+define(['phaser', 'app/phasergame', 'app/color', 'app/music'], function (Phaser, PhaserGame, Color, music) {
 
     var count = 0;
 
@@ -55,6 +55,7 @@ define(['phaser', 'app/phasergame', 'app/color'], function (Phaser, PhaserGame, 
             this.photons.setAll('outOfBoundsKill', true);
             this.photons.setAll('checkWorldBounds', true);
             this.photons.setAll('setSize', true);
+            photonFire = PhaserGame.game.add.audio('photonFire', 1, false);
             /*for (var i = 0 ; i < this.photons.children.length ; ++i) {
                 this.photons.children[i].body.setSize(24, 20, 20, 20);
             }*/
@@ -80,17 +81,16 @@ define(['phaser', 'app/phasergame', 'app/color'], function (Phaser, PhaserGame, 
 
 
                 if (photon) {
-
                     photon.hasHit = false;
-
+                    photonFire.play();
                     //  And fire it
                     if (player.sprite.lookRight) {
                         photon.reset(player.sprite.x, player.sprite.y - photon.height / 2);
                         //photon.reset(player.sprite.x, player.sprite.y + player.sprite.height / 2 - photon.height / 2);
                         photon.body.velocity.x = 600;
                     } else {
-                        photon.reset(player.sprite.x - 30, player.sprite.y  - photon.height / 2);
-                       // photon.reset(player.sprite.x - 30, player.sprite.y + player.sprite.height / 2 - photon.height / 2);
+                        photon.reset(player.sprite.x - 30, player.sprite.y - photon.height / 2);
+                        // photon.reset(player.sprite.x - 30, player.sprite.y + player.sprite.height / 2 - photon.height / 2);
                         //photon.reset(player.sprite.x, player.sprite.y + player.sprite.height / 2 + 20 / 2);
                         photon.body.velocity.x = -600;
                     }
@@ -102,7 +102,7 @@ define(['phaser', 'app/phasergame', 'app/color'], function (Phaser, PhaserGame, 
                     //photon.frame = (player.sprite.color.value - 1) * 6; // Si anim
                     photon.frame = (player.sprite.color.value - 1);
 
-                    photon.scale.setTo(1 + (7-player.sprite.color.energy)*0.1, 1 + (7-player.sprite.color.energy)*0.1);
+                    photon.scale.setTo(1 + (7 - player.sprite.color.energy) * 0.1, 1 + (7 - player.sprite.color.energy) * 0.1);
 
                     // If the photon goes out the wolrd, it is destroyed
                     photon.events.onOutOfBounds.add(killPhoton, photon);

@@ -1,6 +1,17 @@
 define(['phaser', 'app/phasergame', 'app/player', 'app/objects/action'], function (Phaser, PhaserGame, player, action) {
 
+    /************ CONSTANTS ****************/
+    // Delay in order not to trigger the action at each update
     var CONST_DELAY = 5;
+
+    var WIDTH_BUTTON = 37;
+    var HEIGHT_BUTTON_PRESSED = 8;
+    var HEIGHT_BUTTON_RELEASED = 11;
+
+    /************ END CONSTANTS ****************/
+
+
+    // Variable used to count the time
     var counter = 0;
 
     return {
@@ -32,18 +43,14 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/objects/action'], functio
                 // We get its data
                 var buttonData = data[i];
                 // We create a new button at the position (x,y) with the token "buttonData.skin + buttonData.color" to represent the corresponding image loaded
-                //var buttonObject = this.group.create(buttonData.position.x, buttonData.position.y, buttonData.skin + buttonData.color);
                 var buttonObject = this.group.create(buttonData.x, buttonData.y, 'button');
-                // Attribute color
-                //buttonObject.colorName = buttonData.color;
                 // By default, a button is immovable
                 buttonObject.body.immovable = true;
-
+                // At the beggining, the button is not pressed
                 buttonObject.frame = 0;
+                // We define the anchor for the hit box
                 buttonObject.anchor.y = 0.5;
                 buttonObject.body.y += buttonObject.body.height / 2;
-                //buttonObject.scale = new Phaser.Point(3, 1);
-
 
                 // Action associated to the switch
                 if (buttonData.action != null) {
@@ -52,6 +59,7 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/objects/action'], functio
                     buttonObject.args = objAction.args;
                 }
 
+                // Initialization of an attribute used to the update of the button
                 buttonObject.isCollidingPlayer = false;
             }
 
@@ -67,38 +75,29 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/objects/action'], functio
                 return;
             }
 
+            // We indicate that the player is colliding the player
             button.isCollidingPlayer = true;
 
-            
-            
+            // We allow the player to go on a button without jumping (like a stair)
             if (playerSprite.body.touching.right) {
                 button.frame = 1;
-                //playerSprite.body.x += 10;
                 playerSprite.body.y = button.body.y - playerSprite.body.height + 5;
-                button.body.setSize(37, 8);
+                button.body.setSize(WIDTH_BUTTON, HEIGHT_BUTTON_PRESSED);
                 return;
-
             }
 
             if (playerSprite.body.touching.left) {
                 button.frame = 1;
-                //playerSprite.body.x -= 10;
                 playerSprite.body.y = button.body.y - playerSprite.body.height + 5;
-                button.body.setSize(37, 8);
-                //button.body.anchor.setSize(0.5, 0.5);
+                button.body.setSize(WIDTH_BUTTON, HEIGHT_BUTTON_PRESSED);
                 return;
-
-
             }
 
+            // If the player is on the button, we trigger the action
             if (playerSprite.body.touching.down && !playerSprite.body.touching.right && !playerSprite.body.touching.left) {
-                //alert(playerSprite.body.y);
                 button.frame = 1;
                 playerSprite.body.y = button.body.y - playerSprite.body.height + 5;
-                button.body.setSize(37, 8);
-
-                //playerSprite.body.x -= 10;
-                //playerSprite.body.y = button.body.y - playerSprite.body.height + 5;
+                button.body.setSize(WIDTH_BUTTON, HEIGHT_BUTTON_PRESSED);
 
                 counter++;
                 if (counter == CONST_DELAY) {
@@ -106,13 +105,17 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/objects/action'], functio
                     button.buttonAction(button.args);
                 }
             }
-            
+
         },
 
+        /// @function handlerButton
+        /// Handler called when the player overlap a button : trigger the associated action
+        /// @param {Phaser.Sprite} the player sprite
+        /// @param {Phaser.Sprite} the button
         handlerOverlap: function (playerSprite, button) {
             button.isCollidingPlayer = true;
             button.frame = 1;
-            button.body.setSize(37, 8);
+            button.body.setSize(WIDTH_BUTTON, HEIGHT_BUTTON_PRESSED);
             playerSprite.body.y = button.body.y - playerSprite.body.height + 5;
             playerSprite.body.velocity.x /= 2;
             playerSprite.body.touching.down = true;
@@ -126,18 +129,23 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/objects/action'], functio
         /// @function updateObject
         /// Updates the group of buttons (to be called by the update() function of the game state)
         updateObjects: function () {
+            // First, we initialize the attribute isCollidingPlayer for each button
             for (var i = 0 ; i < this.group.length ; ++i) {
                 this.group.children[i].isCollidingPlayer = false;
             }
+
+            // Then, we treat the collision / overlap between the player and a button
             var test = PhaserGame.game.physics.arcade.collide(player.sprite, this.group, this.handlerButton);
             if (!test) {
                 PhaserGame.game.physics.arcade.overlap(player.sprite, this.group, this.handlerOverlap);
             }
+
+            // Finally, we change the button if the player is not on it anymore
             for (var i = 0 ; i < this.group.length ; ++i) {
                 if (!this.group.children[i].isCollidingPlayer) {
                     this.group.children[i].frame = 0;
-                    this.group.children[i].body.setSize(37, 11);
-                } 
+                    this.group.children[i].body.setSize(WIDTH_BUTTON, HEIGHT_BUTTON_RELEASED);
+                }
             }
         }
     }

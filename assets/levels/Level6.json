@@ -1,13 +1,13 @@
 {
     "worldBounds": {
         "leftBound": 0,
-        "rightBound": 3200,
+        "rightBound": 2400,
         "upperBound": 0,
         "lowerBound": 800
     },
     "background": "sky",
     "playerStart": {
-        "x": 20,
+        "x": 70,
         "y": 500
     },
     "platforms": [
@@ -112,7 +112,7 @@
     "buttons": [
         {
             "x": 1850,
-            "y": 520,
+            "y": 560,
             "action": {
                 "groupId": 4,
                 "id": 2,
@@ -219,12 +219,12 @@
         },
         {
             "x": 1000,
-            "y": 500,
+            "y": 450,
             "bounds": {
                 "left": 0,
-                "right": 1100,
-                "bottom": 600,
-                "top": 350
+                "right": 1150,
+                "bottom": 510,
+                "top": 300
             },
             "speed": {
                 "x": 0,
@@ -234,12 +234,12 @@
         },
         {
             "x": 1100,
-            "y": 450,
+            "y": 400,
             "bounds": {
                 "left": 0,
-                "right": 1100,
-                "bottom": 600,
-                "top": 350
+                "right": 1150,
+                "bottom": 510,
+                "top": 300
             },
             "speed": {
                 "x": 0,
@@ -249,12 +249,12 @@
         },
         {
             "x": 1200,
-            "y": 400,
+            "y": 350,
             "bounds": {
                 "left": 900,
-                "right": 1100,
-                "bottom": 600,
-                "top": 350
+                "right": 1150,
+                "bottom": 510,
+                "top": 300
             },
             "speed": {
                 "x": 0,

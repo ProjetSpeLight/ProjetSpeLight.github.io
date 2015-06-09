@@ -1,4 +1,4 @@
-define(['phaser', 'app/phasergame', 'app/player'], function (Phaser, PhaserGame, player) {
+﻿define(['app/phasergame', 'app/player'], function (PhaserGame, player) {
 
     function collectCoin(player, coin) {
         // Removes the star from the screen
@@ -26,6 +26,7 @@ define(['phaser', 'app/phasergame', 'app/player'], function (Phaser, PhaserGame,
 
             // Allocation of the group
             this.group = PhaserGame.game.add.physicsGroup();
+
             // Intialization of the group in the manager
             Manager.EnumModule.COIN.refGroup = this.group;
 
@@ -36,14 +37,11 @@ define(['phaser', 'app/phasergame', 'app/player'], function (Phaser, PhaserGame,
 
             for (var i = 0 ; i < data.length ; i++) {
                 var coinData = data[i];
-
                 var coin = this.group.create(coinData.x, coinData.y, 'coin');
                 if (coinData.value == null)
                     coin.value = 1;
                 else
                     coin.value = coinData.value;
-
-
             }
         },
 

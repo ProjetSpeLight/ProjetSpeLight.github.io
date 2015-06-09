@@ -1,492 +1,236 @@
 {
     "worldBounds": {
         "leftBound": 0,
-        "rightBound": 3200,
+        "rightBound": 2400,
         "upperBound": 0,
-        "lowerBound": 600
+        "lowerBound": 800
     },
     "background": "sky",
     "playerStart": {
-        "x":10,
-        "y": 500
+        "x": 50,
+        "y": 650
     },
     "platforms": [
         {
             "position": {
                 "x": 0,
-                "y": 560
+                "y": 720
             },
             "size": {
-                "x": 100,
-                "y": 2
-            }
-        },
-        {
-            "position": {
-                "x": 1500,
-                "y": 150
-            },
-            "size": {
-                "x": 6,
-                "y": 1
-            }
-        },
-         {
-            "position": {
-                "x": 1350,
-                "y": 150
-            },
-            "size": {
-                "x": 6,
-                "y": 1
-            }
-        },
-        {
-           "position": {
-                "x": 1700,
-                "y": 300
-            },
-            "size": {
-                "x": 8,
-                "y": 1
-            }
-        },
-        {
-            "id":2,
-            "position": {
-                "x": 1900,
-                "y": 450
-            },
-            "size": {
-                "x": 3,
-                "y": 1
-            },
-            "immovable": false
-            
-        },
-        {
-            "id":2,
-            "position": {
-                "x": 2000,
-                "y": 450
-            },
-            "size": {
-                "x": 3,
-                "y": 1
-            },
-            "immovable": false
-            
-        },
-        {
-            "id": 1,
-            "position": {
-                "x": 2200,
-                "y": 560
-            },
-            "size": {
-                "x": 6,
-                "y": 1
-            }
-            
-        },
-        {
-            "position": {
-                "x": 2020,
-                "y": 560
-            },
-            "size": {
-                "x": 6,
-                "y": 1
-            }
-            
-        },
-        {
-            "position": {
-                "x": 2500,
-                "y": 360
-            },
-            "size": {
-                "x": 8,
-                "y": 1
-            }
-            
-        },
-        {
-            "position": {
-                "x": 300,
-                "y": 100
-            },
-            "size": {
-                "x": 2,
-                "y": 2
-            },
-            "color":"Blue"
-            
-        },
-        {
-            "position": {
                 "x": 50,
-                "y": 290
+                "y": 4
+            }
+        },
+        {
+            "position": {
+                "x": 100,
+                "y": 720
             },
             "size": {
                 "x": 2,
                 "y": 2
+            },
+            "color": "Green"
+        },
+
+
+        {
+            "position": {
+                "x": 1450,
+                "y": 720
+            },
+            "size": {
+                "x": 80,
+                "y": 4
+            }
+        },
+
+        {
+            "position": {
+                "x": 0,
+                "y": 170
+            },
+            "size": {
+                "x": 50,
+                "y": 1
+            }
+        },
+        {
+            "position": {
+                "x": 200,
+                "y": 170
+            },
+            "size": {
+                "x": 2,
+                "y": 2
+            },
+            "color": "Blue"
+        },
+        {
+            "position": {
+                "x": 2300,
+                "y": 620
+            },
+            "size": {
+                "x": 1,
+                "y": 5
+            },
+            "crossable": false
+        },
+        {
+            "position": {
+                "x": 2160,
+                "y": 620
+            },
+            "size": {
+                "x": 8,
+                "y": 1
             }
         }
-        
+
     ],
     "backAndForthPlatforms": [
         {
+            "id": 0,
             "positions": [
                 {
-                    "x": 200,
-                    "y": 460,
-                    "speed": {
-                        "x": 200,
-                        "y": 0
-                    }
-                },
-                {
-                    "x": 700,
-                    "y": 460,
-                    "speed": {
-                        "x": -200,
-                        "y": -40
-                    }
-                },
-                {
-                    "x": 200,
-                    "y": 360,
-                    "speed": {
-                        "x": -200,
-                        "y": 0
-                    }
-                }
-                
-            ],
-            "size": {
-                "x": 5,
-                "y": 1
-            },
-            "immovable": true
-            
-        },
-        {
-            "positions": [
-                {
-                    "x": 700,
+                    "x": 1200,
                     "y": 250,
                     "speed": {
-                        "x": -150,
-                        "y": 0
+                        "x": 0,
+                        "y": 100
                     }
                 },
                 {
-                    "x": 200,
-                    "y": 250,
+                    "x": 1200,
+                    "y": 650,
                     "speed": {
-                        "x": 150,
-                        "y": -30
-                    }
-                },
-                {
-                    "x": 700,
-                    "y": 150,
-                    "speed": {
-                        "x": -100,
-                        "y": 0
+                        "x": 0,
+                        "y": -100
                     }
                 }
-                
             ],
             "size": {
-                "x": 5,
+                "x": 10,
                 "y": 1
-            },
-            "immovable": true
-            
+            }
         }
-        
+    ],
+    "filters": [
+        {
+            "x": 300,
+            "y": 120,
+            "color": "Blue"
+        }
+    ],
+    "buttons": [
+        {
+            "x": 500,
+            "y": 720,
+            "action": {
+                "actionName": "actionChangeMirrorOrientation",
+                "groupId": 0,
+                "id": 0,
+                "args": {
+                    "incr": 1
+                }
+            }
+        },
+
+        {
+            "x": 440,
+            "y": 720,
+            "action": {
+                "actionName": "actionChangeMirrorOrientation",
+                "groupId": 0,
+                "id": 0,
+                "args": {
+                    "incr": -1
+                }
+            }
+        }
     ],
     "mirrors": [
         {
-            "x": 1720,
-            "y": 540,
-            "immovable": false,
-            "bounds": {
-                "left": 1600,
-                "right":  1850
-            }
-        },
-        {
-            "x": 1620,
-            "y": 250,
-            "angle": -135
-        }
-        
-    ],
-    "coins": [
-        {
-            "x": 180,
-            "y": 510,
-            "skin": "coin"
-        },
-        {
-            "x": 280,
-            "y": 460,
-            "skin": "coin"
+            "x": 700,
+            "y": 700,
+            "id": 0
         },
         {
             "x": 380,
-            "y": 410,
-            "skin": "coin"
-        },
-        {
-            "x": 480,
-            "y": 460,
-            "skin": "coin"
-        },
-        {
-            "x": 580,
-            "y": 510,
-            "skin": "coin"
-        },
-        {
-            "x": 870,
-            "y": 320,
-            "skin": "coin"
-        },
-        {
-            "x": 1300,
-            "y": 220,
-            "skin": "coin"
-        },
-        {
-            "x": 1450,
-            "y": 420,
-            "skin": "coin"
-        },
-        {
-            "x": 1380,
-            "y": 320,
-            "skin": "coin"
-        },
-        {
-            "x": 1520,
-            "y": 520,
-            "skin": "coin"
-        },
-        {
-            "x": 1050,
-            "y": 520,
-            "skin": "coin"
-        },
-        {
-            "x": 1080,
-            "y": 520,
-            "skin": "coin"
-        },
-        {
-            "x": 1110,
-            "y": 520,
-            "skin": "coin"
-        }
-    ],
-    "ennemis": [
-        
-        {
-            "x": 150,
             "y": 300,
-            "bounds": {
-                "left": 450,
-                "right": 550,
-                "bottom": 400,
-                "top": 200
-            },
-            "speed": {
-                "x": 0,
-                "y": 150
-            },
-            "type": "flying"
-        }, 
-        {
-            "x": 1050,
-            "y": 500,
-            "bounds": {
-                "left": 0,
-                "right": 3200,
-                "bottom": 520,
-                "top": 0
-            },
-            "speed": {
-                "x": 150,
-                "y": -150
-            },
-            "type": "flying"
-        },
-        {
-            "x": 1050,
-            "y": 500,
-            "bounds": {
-                "left": 0,
-                "right": 1130,
-                "bottom": 520,
-                "top": 0
-            },
-            "speed": {
-                "x": -150,
-                "y": -150
-            },
-            "type": "flying"
-        },
-        {
-            "x": 1050,
-            "y": 510,
-            "bounds": {
-                "left": 0,
-                "right": 1130,
-                "bottom": 520,
-                "top": 0
-            },
-            "speed": {
-                "x": -150,
-                "y": 0
-            },
-            "type": "flying"
-        },
-        {
-            "x": 1050,
-            "y": 505,
-            "bounds": {
-                "left": 1000,
-                "right": 3200,
-                "bottom": 520,
-                "top": 0
-            },
-            "speed": {
-                "x": 150,
-                "y": 0
-            },
-            "type": "flying"
-        },
-        {
-            "x": 1050,
-            "y": 500,
-            "bounds": {
-                "left": 1000,
-                "right": 1130,
-                "bottom": 520,
-                "top": 0
-            },
-            "speed": {
-                "x": 0,
-                "y": -150
-            },
-            "type": "flying"
-        },
-        {
-            "x": 1710,
-            "y": 250,
-            "bounds": {
-                "left": 1690,
-                "right": 1725,
-                "lower": 600,
-                "upper": 0
-            },
-            "speed": {
-                "x": 150,
-                "y": 0
-            },
-            "type": "flying"
-        },
-        {
-            "x": 1820,
-            "y": 250,
-            "bounds": {
-                "left": 1790,
-                "right": 1840,
-                "lower": 600,
-                "upper": 0
-            },
-            "speed": {
-                "x": -150,
-                "y": 0
-            },
-            "type": "flying"
-        },
-        {
-            "x": 1750,
-            "y": 250,
-            "bounds": {
-                "left": 1749,
-                "right": 1751,
-                "lower": 600,
-                "upper": 0
-            },
-            "speed": {
-                "x": 0,
-                "y": 0
-            },
-            "type": "flying"
-        }
-    ],
-     "walls": [
-       {
-            "x": 1000,
-            "y": 450,
-            "size": {
-                "x": 2,
-                "y": 6
-            },
-            "minEnergy": 1
-        },
-        {
-            "x": 1150,
-            "y": 450,
-            "size": {
-                "x": 2,
-                "y": 6
-            },
-            "minEnergy": 1
-        },
-        {
-            "x": 1000,
-            "y": 450,
-            "size": {
-                "x": 8,
-                "y": 2
-            },
-            "minEnergy": 1
+            "angle": 205
         }
     ],
     "switch": [
         {
-            "x": 1350,
-            "y": 100,
-            "color": "Blue",
-            "skin":"switchBlueOFF",
+            "x": 750,
+            "y": 300,
+            "color": "Green",
+            "state": "Off",
             "action": {
                 "groupId": 4,
-                "id": 1,
-                "actionName": "actionMoveObject",
-                "args": 
-               {
-                    "x": 0,
-                    "y": -100
-                   
-               }
+                "id": "0",
+                "actionName": "actionPutInMovePlatform"
+
             }
-        }
-    ],
-    "time": [
-        {
-            "value": 120
+
         }
     ],
     "ends": [
         {
-            "x": 2550,
-            "y": 320
+            "x": 2200,
+            "y": 690
         }
+
+    ],
+    "walls": [
+        {
+            "x": 2160,
+            "y": 640,
+            "size": {
+                "x": 1,
+                "y": 4
+            },
+            "minEnergy": 5
+        }
+    ],
+    "time": [
+        {
+            "value": 110
+        }
+    ],
+     "ennemis": [
+        {
+            "x": 1800,
+            "y": 620,
+            "bounds": {
+                "left": 1700,
+                "right": 1900,
+                "lower": 0,
+                "upper": 0
+            },
+            "speed": {
+                "x": 150,
+                "y": 0
+            }
+        },
+         {
+            "x": 1100,
+            "y": 400,
+            "bounds": {
+                "left": 0,
+                "right": 0,
+                "top": 100,
+                "bottom": 600
+            },
+            "speed": {
+                "x": 0,
+                "y": 150
+            },
+            "type":  "flying"
+        }
+       
     ]
+
 }

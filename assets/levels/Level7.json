@@ -1,14 +1,14 @@
 {
     "worldBounds": {
         "leftBound": 0,
-        "rightBound": 2500,
+        "rightBound": 3200,
         "upperBound": 0,
         "lowerBound": 600
     },
     "background": "sky",
     "playerStart": {
-        "x": 20,
-        "y": 290
+        "x": 10,
+        "y": 500
     },
     "platforms": [
         {
@@ -17,224 +17,186 @@
                 "y": 560
             },
             "size": {
-                "x": 5,
+                "x": 4,
                 "y": 2
             }
         },
         {
             "position": {
-                "x": 250,
-                "y": 560
-            },
-            "size": {
-                "x": 5,
-                "y": 2
-            }
-        },
-        {
-            "position": {
-                "x": 580,
-                "y": 560
-            },
-            "size": {
-                "x": 10,
-                "y": 2
-            }
-        },
-        {
-            "position": {
-                "x": 1200,
-                "y": 560
-            },
-            "size": {
-                "x": 153,
-                "y": 2
-            }
-        },
-        {
-            "position": {
-                "x": 950,
-                "y": 560
+                "x": 1400,
+                "y": 300
             },
             "size": {
                 "x": 5,
-                "y": 4
-            },
-            "color":"Red"
-        },
-        {
-            "position": {
-                "x": 2300,
-                "y": 360
-            },
-            "size": {
-                "x": 1,
-                "y": 10
-            },
-            "crossable": false
-        },
-        {
-            "position": {
-                "x": 2160,
-                "y": 360
-            },
-            "size": {
-                "x": 8,
                 "y": 1
             }
         },
         {
-            "id": 0,
-            "positions": [
-                {
-                    "x": 2140,
-                    "y": 360,
-                    "speed": {
-                        "x": 0,
-                        "y": -100
-                    }
-                },
-                {
-                    "x": 2140,
-                    "y": 260,
-                    "speed": {
-                        "x": 0,
-                        "y": 100
-                    }
-                }
-            ],
-            "size": {
-                "x": 1,
-                "y": 10
-            },
-            "immovable": true
-        }
-    ],
-    "backAndForthPlatforms": [
-        
-    ],
-    "piques": [
-        {
-            "x": 800,
-            "y": 560,
-            "skin": "pique",
-            "size": {
-                "x": 8,
-                "y": 2
-            }
-        },
-        {
-            "x": 1100,
-            "y": 560,
-            "skin": "pique",
-            "size": {
-                "x": 4,
-                "y": 2
-            }
-        }
-    ],
-    "mirrors": [
-        {
-            "x": 1720,
-            "y": 540,
-            "immovable": false,
-            "bounds": {
-                "left": 1600,
-                "right":  2000
-            }
-            
-        },
-        {
-            "x": 1675,
-            "y": 250,
-            "angle": -135
-        },
-        {
-            "x": 1675,
-            "y": 450,
-            "angle": 135
-        },
-        {
-            "x": 1800,
-            "y": 450,
-            "angle": -45
-        },
-        {
-            "x": 2150,
-            "y": 250,
-            "angle": -45
-        },
-        {
-            "x": 2150,
-            "y": 350
-        },
-        {
-           "id": 1,
-            "x": 1600,
-            "y": 350,
-            "angle": 135
-        },
-        
-        {
             "id": 2,
-            "x": 1900,
-            "y": 100,
-            "angle": 45
-        }
-    ],
-    "buttons": [
-        {
-            "x": 2100,
-            "y": 520,
-            "action": {
-                "groupId": 0,
-                "id": 2,
-                "actionName": "actionChangeMirrorOrientation",
-                "args": {
-                    "incr":15    
-                }
-                
+            "position": {
+                "x": 1100,
+                "y": 560
+            },
+            "size": {
+                "x": 5,
+                "y": 1
             }
         },
         {
-            "x": 2000,
-            "y": 520,
-            "action": {
-                "groupId": 0,
-                "id": 2,
-                "actionName": "actionChangeMirrorOrientation",
-                "args": {
-                    "incr":-15    
-                }
-                
+            "id": 3,
+            "position": {
+                "x": 1300,
+                "y": 560
+            },
+            "size": {
+                "x": 5,
+                "y": 1
             }
+        },
+        {
+            "position": {
+                "x": 150,
+                "y": 460
+            },
+            "size": {
+                "x": 5,
+                "y": 1
+            }
+        },
+        {
+            "position": {
+                "x": 20,
+                "y": 350
+            },
+            "size": {
+                "x": 5,
+                "y": 1
+            }
+        },
+        {
+            "id": 1,
+            "position": {
+                "x": 200,
+                "y": 50
+            },
+            "size": {
+                "x": 5,
+                "y": 1
+            }
+        },
+        {
+            "position": {
+                "x": 500,
+                "y": 350
+            },
+            "size": {
+                "x": 5,
+                "y": 1
+            }
+        },
+        {
+            "position": {
+                "x": 400,
+                "y": 190
+            },
+            "size": {
+                "x": 3,
+                "y": 15
+            }
+        },
+        {
+            "position": {
+                "x": 140,
+                "y": 560
+            },
+            "size": {
+                "x": 13,
+                "y": 2
+            }
+        },
+        {
+            "position": {
+                "x": 460,
+                "y": 560
+            },
+            "size": {
+                "x": 30,
+                "y": 2
+            }
+        },
+        {
+            "position": {
+                "x": 80,
+                "y": 560
+            },
+            "size": {
+                "x": 2,
+                "y": 4
+            },
+            "crossable": false,
+            "color": "Red"
+        },
+        {
+            "position": {
+                "x": 400,
+                "y": 560
+            },
+            "size": {
+                "x": 2,
+                "y": 4
+            },
+            "crossable": false,
+            "color": "Green"
         }
     ],
     "switch": [
         {
-            "x": 1400,
-            "y": 100,
+            "x": 360,
+            "y": 300,
             "color": "Red",
             "skin":"switchRedOFF",
             "action": {
                 "groupId": 4,
-                "id": 0,
-                "actionName": "actionDeleteObject"
-            }
-        },
-        {
-            "x": 1400,
-            "y": 500,
-            "color": "Red",
-            "skin":"switchRedOFF",
-            "action": {
-                "groupId": 0,
                 "id": 1,
                 "actionName": "actionMoveObject",
                 "args": 
                {
-                    "x": 300,
-                    "y": 0
+                    "x": 0,
+                    "y": 250
+                   
+               }
+            }
+        },
+        {
+            "x": 700,
+            "y": 500,
+            "color": "Red",
+            "skin":"switchRedOFF",
+            "action": {
+                "groupId": 4,
+                "id": 2,
+                "actionName": "actionMoveObject",
+                "args": 
+               {
+                    "x": 0,
+                    "y": -60
+                   
+               }
+            }
+        },
+        {
+            "x": 920,
+            "y": 500,
+            "color": "Green",
+            "skin":"switchGreenOFF",
+            "action": {
+                "groupId": 4,
+                "id": 3,
+                "actionName": "actionMoveObject",
+                "args": 
+               {
+                    "x": 0,
+                    "y": -160
                    
                }
             }
@@ -242,73 +204,49 @@
     ],
     "coins": [
         {
-            "x": 180,
-            "y": 400,
-            "skin": "coin"
-        },
-       
-        {
-            "x": 480,
-            "y": 400,
+            "x": 415,
+            "y": 510,
             "skin": "coin"
         },
         {
-            "x": 800,
-            "y": 400,
+            "x": 615,
+            "y": 510,
+            "skin": "coin"
+        },
+        {
+            "x": 1320,
+            "y": 350,
             "skin": "coin"
         },
         {
             "x": 1150,
-            "y": 400,
-            "skin": "coin"
-        },
-        {
-            "x": 1450,
-            "y": 420,
-            "skin": "coin"
-        },
-        {
-            "x": 1520,
-            "y": 520,
+            "y": 450,
             "skin": "coin"
         }
     ],
-    "ennemis": [
+    "filters": [
         {
-            "x": 150,
-            "y": 400,
-            "bounds": {
-                "left": 200,
-                "right": 550,
-                "bottom": 600,
-                "top": 400
-            },
-            "speed": {
-                "x": 0,
-                "y": 150
-            },
-            "type": "flying"
+            "x": 360,
+            "y": 500,
+            "color": "Green",
+            "skin": "filterGreen"
         },
         {
-            "x": 450,
+            "x": 460,
             "y": 500,
-            "bounds": {
-                "left": 200,
-                "right": 550,
-                "bottom": 600,
-                "top": 400
-            },
-            "speed": {
-                "x": 0,
-                "y": 150
-            },
-            "type": "flying"
+            "color": "Blue",
+            "skin": "filterBlue"
         }
-        ],
+    ],
+    "time": [
+        {
+            "value": 50
+        }
+    ],
     "ends": [
         {
-            "x": 2200,
-            "y": 500
+            "x": 1450,
+            "y": 250
         }
     ]
 }

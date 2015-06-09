@@ -352,6 +352,7 @@
             aux.scale.x = 0.6;
             aux.scale.y = 0.6;
             aux.frame = color * 4;
+            aux.animations.add('anim', [4 * color, 4 * color + 1, 4 * color + 2, 4 * color + 3], 6, true);
             var tween = PhaserGame.game.add.tween(aux).to({ y: ystart + 30 }, 1000 + color * 100, Phaser.Easing.Linear.None, true, 0, -1, true);
             tween.delay(color * 100);
             return aux;

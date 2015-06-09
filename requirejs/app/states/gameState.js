@@ -6,9 +6,6 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/phasergame'
     // Boolean used to stopped the game where the level can not be loaded
     var stopped = false;
 
-    // Variable used to count a second
-    var compt = 0;
-
     // Object displaying the score
     var scoreText;
 
@@ -17,10 +14,12 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/phasergame'
 
 
     GameState.prototype = {
+        /// @function preload
+        /// Preloads the current level if it has not been done before
         preload: function () {
+            // We check if the level requested is the tutorial because the file name is different
             if (this.currentLevel === 0) {
-                //if (!PhaserGame.game.cache.checkJSONKey('level0')) {
-                if (true) {
+                if (!PhaserGame.game.cache.checkJSONKey('level0')) {
                     this.load.json('level0', adresse_json + 'Tutoriel.json');
                 }
             } else {
@@ -33,7 +32,6 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/phasergame'
         create: function () {
             // First we initialize the scope variables
             stopped = false;
-            compt = 0;
 
             // Initialization of the score
             PhaserGame.score = 0;
@@ -63,10 +61,10 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/phasergame'
             }
 
             // Initialization of the label displaying the score
-            scoreText = PhaserGame.game.add.text(16, 16, 'Score: 0', { fontSize: '32px', fill: '#000' });
+            scoreText = PhaserGame.game.add.text(16, 16, 'Score: 0', { fontSize: '32px', fill: '#ffffff' });
             scoreText.fixedToCamera = true;
 
-             musicObject.create();
+            musicObject.create();
             
             // Initialization of the pause button
             var button_pause = PhaserGame.game.add.sprite(750, 20, 'pause');
@@ -78,10 +76,7 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/phasergame'
             // Signal binding for the pause mode
             PhaserGame.game.input.onDown.add(pause.unpause, self);
             
-           
-
-           
-          
+        
         },
 
         update: function () {
@@ -94,17 +89,22 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/phasergame'
 
             /********** Animation to show the action of a switch **************/
 
+            // If the game is on the freeze (i.e. the camera is moving on its own)
             if (PhaserGame.freezeGame) {
+                // First, we freeze the game if it is the first time (the functions will idle if the game has already been freezed)
                 objectsManager.freezeGame(PhaserGame.handlerSwitchObj.onArgs.target);
                 player.freezeGame();
+                // Then, we check if the object is on the screen by doing the intersection between the camera and the object itself
                 var cameraView = PhaserGame.game.camera.view;
                 var contains = Phaser.Rectangle.containsRect(PhaserGame.rectObj, cameraView);
                 if (contains) {
+                    // If the object is on the screen, we trigger the action associated to the switch and pass to the relaunch state
                     moduleSwitch.triggerAction(PhaserGame.handlerSwitchObj);
                     PhaserGame.freezeGame = false;
                     PhaserGame.relaunchGame = true;
                     PhaserGame.countRelaunch = 0;
                 } else {
+                    // If not, we move the camera toward the object
                     if (cameraView.x > PhaserGame.rectObj.x) {
                         PhaserGame.game.camera.view.x -= 4;
                     } else if (cameraView.x < PhaserGame.rectObj.x) {
@@ -119,12 +119,17 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/phasergame'
                 }
             }
 
+            // If the game is in the relaunch state (i.e. the camera has been moved and the action triggered, we just wait a little and replace the camera)
             if (PhaserGame.relaunchGame) {
+                // We wait a little
                 PhaserGame.countRelaunch++;
                 if (PhaserGame.countRelaunch == 60) {
+                    // We have waited enough
                     PhaserGame.relaunchGame = false;
+                    // We relaunch the game
                     objectsManager.relaunchGame();
                     player.relaunchGame();
+                    // We replace the camera
                     PhaserGame.game.camera.follow(player.sprite);
                 }
             }
@@ -133,7 +138,7 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/phasergame'
             /************** Animation for the death of the player ***************/
             if (PhaserGame.dead) {
 
-                player.sprite.animations.play('finalDeath' + player.sprite.color.name, 10);
+                player.sprite.animations.play('finalDeath', 10);
 
 
                 if (player.sprite.timePreAnimationDeath > 0) {
@@ -158,22 +163,18 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/phasergame'
             }
 
 
-            
+
 
             if (!PhaserGame.game.paused) {
 
                 // Update of the timer
-                compt++;
-                if (compt == 60) {
-                    compt = 0;
-                    time.updateTime();
-                }
+                time.updateTime();
 
                 // Update of the score
                 scoreText.text = 'Score: ' + PhaserGame.score;
-                
+
                 musicObject.update();
-                
+
                 Touch.update();
 
                 objectsManager.updateObjects();
@@ -182,7 +183,7 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/phasergame'
                     player.updatePlayer();
 
 
-              
+
 
                 /*********** Events ***********/
 
@@ -208,7 +209,7 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/phasergame'
 
                 // We stop the game when "ESC" is pushed 
                 if (PhaserGame.game.input.keyboard.isDown(Phaser.Keyboard.ESC)) {
-                     if (!PhaserGame.game.paused) {
+                    if (!PhaserGame.game.paused) {
                         pause.gamePaused();
                     }
                 }
@@ -247,9 +248,23 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/phasergame'
             /*for (var i = 0 ; i < piqueObject.group.length ; i++) {
                 PhaserGame.game.debug.body(piqueObject.group.children[i]);
             }*/
-             /*for (var i = 0 ; i < objectsManager.EnumModule.FILTER.refGroup.children.length ; i++) {
-                 PhaserGame.game.debug.body(objectsManager.EnumModule.FILTER.refGroup.children[i]);
+
+            /* for (var i = 0 ; i < objectsManager.EnumModule.MIRROR.refGroup.children.length ; i++) {
+                 PhaserGame.game.debug.body(objectsManager.EnumModule.MIRROR.refGroup.children[i]);
              }*/
+            /*for (var i = 0 ; i < objectsManager.EnumModule.PLATFORM.refGroup.children.length ; i++) {
+                var child = objectsManager.EnumModule.PLATFORM.refGroup.children[i];
+                if (child.spriteColor != null) {
+                    PhaserGame.game.debug.spriteInfo(child.spriteColor, 30, 100*i);
+                }
+            }*/
+            
+
+           /* for (var i = 0 ; i < objectsManager.EnumModule.BUTTON.refGroup.children.length ; i++) {
+                PhaserGame.game.debug.body(objectsManager.EnumModule.BUTTON.refGroup.children[i]);
+            }*/
+            //PhaserGame.game.debug.spriteInfo(player.sprite, 32, 32);
+            //PhaserGame.game.debug.body(player.sprite);
         },
 
 

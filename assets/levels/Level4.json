@@ -1,7 +1,7 @@
 {
     "worldBounds": {
         "leftBound": 0,
-        "rightBound": 3200,
+        "rightBound": 900,
         "upperBound": 0,
         "lowerBound": 800
     },

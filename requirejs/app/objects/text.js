@@ -6,7 +6,7 @@ define(['phaser', 'app/phasergame', 'app/player'], function (Phaser, PhaserGame,
 
         // Object containing the physic group of coins
         group: null,
-
+        
         /// @function preloadObjectImage
         /// Preloads the different images / spritesheets used by this module
         preloadObjectsImages: function () {

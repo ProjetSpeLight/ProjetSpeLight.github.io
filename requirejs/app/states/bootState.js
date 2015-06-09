@@ -20,11 +20,12 @@ define([
             this.game.nbLevel = 14;
             // scale, input etc..
 
-            this.input.maxPointers = 1;
+            this.input.maxPointers = 3;
             this.stage.disableVisibilityChange = true;
 
            if (this.game.device.desktop) {
-               this.game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+               //this.game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+               this.game.scale.scaleMode = Phaser.ScaleManager.EXACT_FIT;
                this.game.scale.pageAlignHorizontally = true;
                this.game.scale.pageAlignVertically = true;
                

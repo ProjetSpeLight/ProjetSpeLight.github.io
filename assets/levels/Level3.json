@@ -277,6 +277,13 @@
             "skin": "filterRed"
         }
     ],
+    "texts": [
+    {
+      "x": 1950,
+      "y": 50,
+      "fr": "Le filtre soustrait les couleurs \n différentes de la sienne "
+    }
+  ],
     "switch": [
         {
             "x": 2200,

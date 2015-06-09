@@ -1,9 +1,7 @@
-/**
-  * This module defines the text representing the time
-  *
-  */
+define(['app/phasergame', 'app/player'], function (PhaserGame, player) {
 
-define(['phaser', 'app/phasergame', 'app/player'], function (Phaser, PhaserGame, player, coinObject, photon) {
+    // Variable used to count a second
+    var compt;
     
     return {
        
@@ -19,13 +17,16 @@ define(['phaser', 'app/phasergame', 'app/player'], function (Phaser, PhaserGame,
         
         /***** Methodes *****/
         
-        createTime: function(data) {
+        createTime: function (data) {
+
+            compt = 0;
+
             if (data == null) {
                 this.time=-1;
                 return;
             }
             
-            this.timeText = PhaserGame.game.add.text(150, 16, 'Time: Infinity ', { fontSize: '32px', fill: '#000' });
+            this.timeText = PhaserGame.game.add.text(150, 16, 'Time: Infinity ', { fontSize: '32px', fill: '#ffffff' });
             this.timeText.fixedToCamera = true;
             
             for (var i = 0 ; i < data.length ; i++) {
@@ -40,7 +41,16 @@ define(['phaser', 'app/phasergame', 'app/player'], function (Phaser, PhaserGame,
         
         // @function updateTime
         /// update the time and kill the player if the time is equal to 0 
-        updateTime: function() {
+        updateTime: function () {
+
+            compt++;
+            if (compt != 60) {                
+                return;
+            }
+
+            compt = 0;
+
+
             if (this.time>0){
                 this.time --;
                 this.timeText.text = 'Temps: ' + this.time;

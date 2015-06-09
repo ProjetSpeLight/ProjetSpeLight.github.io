@@ -1,4 +1,4 @@
-define(['phaser', 'app/pause', 'app/phasergame', 'app/objects/objectsManager', 'app/music'], function (Phaser, pause, PhaserGame, Manager, music) {
+define(['phaser', 'app/pause', 'app/phasergame', 'app/objects/objectsManager', 'app/music', 'app/player'], function (Phaser, pause, PhaserGame, Manager, music, player) {
     // 'use strict';
 
     function PreloadState(game) { }
@@ -12,9 +12,10 @@ define(['phaser', 'app/pause', 'app/phasergame', 'app/objects/objectsManager', '
             // load all game assets
             // images, spritesheets, atlases, audio etc..
             PhaserGame.game.load.image('sky', 'assets/sky.png');
-            PhaserGame.game.load.image('diamond', 'assets/diamond.png');            
-            PhaserGame.game.load.image('dead', 'assets/dead.png');         
+            PhaserGame.game.load.image('diamond', 'assets/diamond.png');
             PhaserGame.game.load.image('buttonEmpty', 'assets/emptyButton.png');
+
+            player.preloadPlayer();
 
             // Loading images for the different objects
             Manager.preloadObjects();
@@ -24,6 +25,7 @@ define(['phaser', 'app/pause', 'app/phasergame', 'app/objects/objectsManager', '
 
             // For the musics
             music.preload();
+            this.load.audio('Titre', 'assets/audio/MainMenu.mp3');
 
             //Chargement ecran titre
             this.load.image('screentitle', 'assets/ScreenTitle.png');
@@ -44,38 +46,11 @@ define(['phaser', 'app/pause', 'app/phasergame', 'app/objects/objectsManager', '
             this.load.image('buttonNextLevel', 'assets/button_nextlevel.png');
             this.load.spritesheet('bouton', 'assets/boutons/Boutons.png', 190, 68);
             this.load.spritesheet('accelerometre', 'assets/boutons/Accelerometre.png', 190, 68);
-
-
-            //this.load.spritesheet('dude', 'assets/colordude.png', 32, 48);
-            this.load.spritesheet('dude', 'assets/player.png', 100, 100);
             this.load.spritesheet('photon', 'assets/photons.png', 20, 20);
-            //this.load.spritesheet('photon', 'assets/photons_explosion.png', 60, 60);
-
-            
-
-            // Tutoriel
-            //this.load.json('level0', 'http://localhost:4200/assets/levels/Tutoriel.json');
-
-            // Niveaux du jeu
-            /*this.load.json('level1', 'http://localhost:4200/assets/levels/Level1.json');
-            this.load.json('level2', 'http://localhost:4200/assets/levels/Level2.json');
-            this.load.json('level3', 'http://localhost:4200/assets/levels/Level3.json');
-            this.load.json('level4', 'http://localhost:4200/assets/levels/Level4.json');
-            this.load.json('level5', 'http://localhost:4200/assets/levels/Level5.json');*/
-            
-            /*this.load.json('level1', 'http://projetspelight.github.io/assets/levels/Level1.json');
-            this.load.json('level2', 'http://projetspelight.github.io/assets/levels/Level2.json');
-            this.load.json('level3', 'http://projetspelight.github.io/assets/levels/Level3.json');
-            this.load.json('level4', 'http://projetspelight.github.io/assets/levels/Level4.json');
-            this.load.json('level5', 'http://projetspelight.github.io/assets/levels/Level5.json');*/
-
-
-
         },
 
         create: function () {
             //call next state
-            //this.state.start('MainMenu');
             this.state.start('Prelude');
         }
     };
