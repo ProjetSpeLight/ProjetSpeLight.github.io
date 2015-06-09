@@ -294,6 +294,7 @@ define(['phaser', 'app/photon', 'app/phasergame', 'app/color'], function (Phaser
         },
 
         filterColor: function (color) {
+            var frame = this.sprite.frame;
             this.sprite.color = Color.subFilterColor(this.sprite.color, Color.getColor(color));
             this.firstAddColor = Color.subFilterColor(this.firstAddColor, Color.getColor(color));
             if (this.firstAddColor == this.sprite.color) {
@@ -301,6 +302,7 @@ define(['phaser', 'app/photon', 'app/phasergame', 'app/color'], function (Phaser
             }
             this.secondAddColor = Color.ColorEnum.BLACK;
             this.sprite.loadTexture('player' + this.sprite.color.name);
+            this.sprite.frame = frame;
         },
 
         freezeGame: function () {

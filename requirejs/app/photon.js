@@ -8,8 +8,12 @@ define(['phaser', 'app/phasergame', 'app/color', 'app/music'], function (Phaser,
 
     // Counter to help to delay the throw of photons
     var count = 0;
+
     // The music played at each throw
     var musicPhotonFire;
+
+    // Timer to delay the creation of photons
+    var photonTime = 0;
 
 
     /******** Scope functions **********/
@@ -23,8 +27,7 @@ define(['phaser', 'app/phasergame', 'app/color', 'app/music'], function (Phaser,
     return {
         // Contains the group (container of display objects) of photons
         photons: null,
-        // Timer to delay the creation of photons
-        photonTime: 0,
+
         // Button associated to the handler firePhoton()
         fireButton: null,
 
@@ -54,13 +57,11 @@ define(['phaser', 'app/phasergame', 'app/color', 'app/music'], function (Phaser,
         /// @param {Phaser.Game} a reference to the game itself
         firePhoton: function (game, player) {
             //  To avoid them being allowed to fire too fast we set a time limit
-            if (game.time.now > this.photonTime) {
+            if (game.time.now > photonTime) {
                 //  Grab the first photon we can from the pool
                 var photon = this.photons.getFirstExists(false);
-
-
+                // We check if the creation of the photon is successful
                 if (photon) {
-
                     // First, we define some attributes which will be used after
                     photon.hasHit = false; // Boolean to improve the reflexion on a mirror
 
@@ -77,29 +78,21 @@ define(['phaser', 'app/phasergame', 'app/color', 'app/music'], function (Phaser,
                     }
 
                     // Delay the next fire of photon
-                    this.photonTime = game.time.now + player.sprite.color.delay;
+                    photonTime = game.time.now + player.sprite.color.delay;
 
                     // Color of the photon
                     photon.color = player.sprite.color;
                     photon.frame = player.sprite.color.value - 1;
 
                     // We change the size of the photon depending on its energy
-                    // 
+                    // When the energy rises, the size decreases
                     photon.scale.setTo(1 + (7 - player.sprite.color.energy) * 0.1, 1 + (7 - player.sprite.color.energy) * 0.1);
-
-                    // If the photon goes out the wolrd, it is destroyed
-                    photon.events.onOutOfBounds.add(killPhoton, photon);
-
-
                 }
             }
-
-
-
         },
 
         /// @function updatePhotons
-        /// Checks the position of each photon and kill them if they are out of the screen (and not only the wolrd)
+        /// Checks the position of each photon and kill them if they are out of the screen (and not only the world)
         updatePhotons: function () {
             for (var i = 0 ; i < this.photons.children.length ; ++i) {
                 var p = this.photons.children[i];
@@ -113,9 +106,7 @@ define(['phaser', 'app/phasergame', 'app/color', 'app/music'], function (Phaser,
                         p.kill();
                     }
                 }
-
             }
-
         },
 
         killPhoton: killPhoton
