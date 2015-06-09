@@ -28,11 +28,6 @@ define(['phaser', 'app/pause', 'app/phasergame', 'app/objects/objectsManager', '
             music.preload();
             this.load.audio('Titre', ['assets/audio/MainMenu.mp3', 'assets/audio/MainMenu.ogg']);
 
-            //Chargement ecran titre
-            this.load.image('screentitle', 'assets/ScreenTitle.png');
-
-            this.load.image('button_jump', 'assets/button_jump.png', 64, 64);
-
             if (!this.game.device.desktop) {
                 this.load.image('buttonChangeColor', 'assets/boutons/changeColor.png');
                 this.load.image('buttonDroite', 'assets/boutons/droite_rect.png');
