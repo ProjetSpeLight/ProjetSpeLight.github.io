@@ -201,10 +201,16 @@ define([], function () {
                 break;
         }
         args.target.color = args.colors[(i + 1) % (args.colors.length)].color;
-        if (args.target.objectType == 'switch')
+        if (args.target.objectType == 'switch') {
             args.target.loadTexture(args.target.objectType + args.target.color + args.target.state);
-        else
+
+        } else if (args.target.objectType == 'platform') {
             args.target.loadTexture(args.target.objectType + args.target.color);
+            args.target.spriteColor.play('move' + args.target.color);
+        }
+        else {
+            args.target.loadTexture(args.target.objectType + args.target.color);
+        }
 
     }
 

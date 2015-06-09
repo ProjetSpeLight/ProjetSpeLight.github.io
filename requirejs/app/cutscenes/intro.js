@@ -233,10 +233,10 @@
 
         intro7: function () {
             //Le joueur se retourne 4 fois
-            player.sprite.frame = player.sprite.color.value * 9 + 0;
-            PhaserGame.game.time.events.add(500, function () { player.sprite.frame = player.sprite.color.value * 9 + 5; }, this);
-            PhaserGame.game.time.events.add(1000, function () { player.sprite.frame = player.sprite.color.value * 9 + 0; }, this);
-            PhaserGame.game.time.events.add(1500, function () { player.sprite.frame = player.sprite.color.value * 9 + 5; }, this);
+            player.sprite.frame = 0;
+            PhaserGame.game.time.events.add(500, function () { player.sprite.frame = 4; }, this);
+            PhaserGame.game.time.events.add(1000, function () { player.sprite.frame = 0; }, this);
+            PhaserGame.game.time.events.add(1500, function () { player.sprite.frame = 4; }, this);
             PhaserGame.game.time.events.add(2000, function () { this.intro8();}, this);
             
         },
@@ -244,11 +244,11 @@
         intro8: function () {
             //Le joueur marche à droite
             player.sprite.body.velocity.x = 75;
-            player.sprite.animations.play('right' + player.sprite.color.name);
+            player.sprite.animations.play('right');
             PhaserGame.game.time.events.add(2000, function () {
                 player.sprite.body.velocity.x = 0;
                 player.sprite.animations.stop();
-                player.sprite.frame = player.sprite.color.value * 9 + 5;
+                player.sprite.frame = 4;
                 this.intro9();
             }, this);
             
@@ -304,7 +304,7 @@
         intro10: function () {
             //Le joueur se déplace à droite et fondu du monde
             player.sprite.body.velocity.x = 75;
-            player.sprite.animations.play('right' + player.sprite.color.name);
+            player.sprite.animations.play('right');
             tween[0] = PhaserGame.game.add.tween(PhaserGame.game.world).to({ alpha: 0 }, 5000, Phaser.Easing.Linear.None);
             tween[0].onComplete.add(this.finIntro, this);
             tween[0].start();

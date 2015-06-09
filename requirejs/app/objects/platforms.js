@@ -13,12 +13,8 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/touch'], function (Phaser
         platform.spriteColor.scale = new Phaser.Point(0.5, 0.5);
         PhaserGame.game.physics.arcade.enable(platform.spriteColor);
 
-        initializeAnimationColor(platform.spriteColor, platform.color);
-
-        //platform.spriteColor.body.velocity.x = -1.72 * platform.body.width/2 * Math.sin(1.72);
-        //platform.spriteColor.body.velocity.y = 1.72 * platform.body.width/2 * Math.cos(1.72);
-        //platform.spriteColor.body.position.x = platform.body.x;
-        //platform.spriteColor.body.position.y = platform.body.y - 2 * platform.spriteColor.body.height - platform.body.width / 2 -100;
+        initializeAnimationColor(platform.spriteColor);
+        
         platform.spriteColor.circleCenterX = platform.body.x + platform.body.width / 2;
         platform.spriteColor.circleCenterY = platform.body.y - 2 * initSpriteColorHeight * spriteColorScale - platform.body.height / 2;
         platform.spriteColor.circleRadius = platform.body.width / 2;
@@ -26,22 +22,10 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/touch'], function (Phaser
 
     /// @function initializeAnimationColor
     /// Initializes the animation around the colored platforms
-    function initializeAnimationColor(spriteColor, color) {
-        var value;
-        switch (color) {
-            case 'Red':
-                value = 0;
-                break;
-            case 'Blue':
-                value = 1;
-                break;
-            case 'Green':
-                value = 2;
-                break;
-            default:
-                value = 0;
-        }
-        spriteColor.animations.add('move' + color, [0 + value*4, 1 + value*4, 2 + value*4, 3 + value*4], 4, true);
+    function initializeAnimationColor(spriteColor) {       
+        spriteColor.animations.add('moveRed', [0, 1, 2, 3], 4, true);
+        spriteColor.animations.add('moveBlue', [4,5,6,7], 4, true);
+        spriteColor.animations.add('moveGreen', [8,9,10,11], 4, true);
     }
 
     /// @function setParameters
@@ -278,22 +262,6 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/touch'], function (Phaser
     function updateSpriteColor(group) {
         group.children.forEach(function (element) {
             if (element.color != "") {
-                /*if (isNear(element.body.x, element.body.y - 2 * element.spriteColor.body.height - element.body.width / 2, element.spriteColor.body.x, element.spriteColor.body.y, 1)) {
-                    element.spriteColor.body.velocity.x = -element.spriteColor.body.velocity.x;
-                }
-
-                if (isNear(element.body.x + element.body.width / 2, element.body.y - 2 * element.spriteColor.body.height, element.spriteColor.body.x, element.spriteColor.body.y, 1)) {
-                    element.spriteColor.body.velocity.y = -element.spriteColor.body.velocity.y;
-                }
-
-                if (isNear(element.body.x + element.body.width, element.body.y - 2 * element.spriteColor.body.height - element.body.width / 2, element.spriteColor.body.x, element.spriteColor.body.y, 1)) {
-                    element.spriteColor.body.velocity.x = -element.spriteColor.body.velocity.x;
-                }
-
-                if (isNear(element.body.x + element.body.width / 2, element.body.y - 2 * element.spriteColor.body.height - element.body.width, element.spriteColor.body.x, element.spriteColor.body.y, 1)) {
-                    element.spriteColor.body.velocity.y = -element.spriteColor.body.velocity.y;
-                }*/
-
                 var sprite = element.spriteColor;
                 sprite.circleCenterX = element.body.x + element.body.width / 2;
                 sprite.circleCenterY = element.body.y - 2 * initSpriteColorHeight * spriteColorScale - element.body.height / 2;
@@ -364,8 +332,7 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/touch'], function (Phaser
             updateLoopingPlatforms();
             updateBackAndForthPlatforms();
             updateSpriteColor(this.group);
-        },
-
+        }
 
 
     }

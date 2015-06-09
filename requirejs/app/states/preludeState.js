@@ -52,7 +52,7 @@
             //Création du joueur
             player.initializePlayer(PhaserGame.game, 100, 100);
             player.sprite.body.gravity.y = 30;
-            player.sprite.frame = player.sprite.color.value * 9 + 4;
+            player.sprite.frame = 3;
             player.sprite.alpha = 0;
 
             //Passage de cutscene
