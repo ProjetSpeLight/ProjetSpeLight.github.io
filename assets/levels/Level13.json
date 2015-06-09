@@ -1,0 +1,486 @@
+{
+    "worldBounds": {
+        "leftBound": 0,
+        "rightBound": 800,
+        "upperBound": 0,
+        "lowerBound": 1500
+    },
+    "background": "sky",
+    "playerStart": {
+        "x": 200,
+        "y": 1400 
+    },
+    "platforms": [
+        {
+            "position": {
+                "x": 0,
+                "y": 1430
+            },
+            "size": {
+                "x": 130,
+                "y": 2
+            }
+        },
+        {
+            "position": {
+                "x": 100,
+                "y": 1430
+            },
+            "size": {
+                "x": 5,
+                "y": 1
+            },
+            "color":"Blue"
+        },
+        {
+            "position": {
+                "x": 700,
+                "y": 1100
+            },
+            "size": {
+                "x": 5,
+                "y": 1
+            }
+        },
+        {
+            "position": {
+                "x": 200,
+                "y": 330
+            },
+            "size": {
+                "x": 5,
+                "y": 1
+            }
+        },
+        {
+            "position": {
+                "x": 300,
+                "y": 200
+            },
+            "size": {
+                "x": 5,
+                "y": 1
+            }
+        },
+        {
+            "position": {
+                "x": 300,
+                "y": 450
+            },
+            "size": {
+                "x": 3,
+                "y": 3
+            },
+            "color":"Red"
+        },
+        {
+            "position": {
+                "x": 580,
+                "y": 450
+            },
+            "size": {
+                "x": 4,
+                "y": 1
+            }
+        },
+        {
+            "position": {
+                "x": 100,
+                "y": 450
+            },
+            "size": {
+                "x": 3,
+                "y": 3
+            },
+            "color":"Red"
+        },
+        {
+            "position": {
+                "x": 0,
+                "y": 600
+            },
+            "size": {
+                "x": 3,
+                "y": 1
+            }
+        },
+        {
+            "position": {
+                "x": 700,
+                "y": 450
+            },
+            "size": {
+                "x": 3,
+                "y": 1
+            }
+        },
+        {
+            "position": {
+                "x": 150,
+                "y": 650
+            },
+            "size": {
+                "x": 5,
+                "y": 1
+            }
+        },
+        {
+            "position": {
+                "x": 0,
+                "y": 150
+            },
+            "size": {
+                "x": 10,
+                "y": 1
+            }
+        },
+        {
+            "position": {
+                "x": 0,
+                "y": 1000
+            },
+            "size": {
+                "x": 7,
+                "y": 1
+            }
+        },
+        {
+            "position": {
+                "x": 100,
+                "y": 1460
+            },
+            "size": {
+                "x": 1,
+                "y": 1
+            }
+        },
+        {
+            "position": {
+                "x": 0,
+                "y": 0
+            },
+            "size": {
+                "x": 1,
+                "y": 130
+            }
+        },
+        {
+            "position": {
+                "x": 780,
+                "y": 0
+            },
+            "size": {
+                "x": 1,
+                "y": 130
+            }
+        },
+        {
+            "id": 0,
+            "position": {
+                "x": 0,
+                "y": 500
+            },
+            "size": {
+                "x": 40,
+                "y": 1
+            }
+        },
+        {
+            "id": 3,
+            "position": {
+                "x": 200,
+                "y": 0
+            },
+            "size": {
+                "x": 1,
+                "y": 7
+            }
+        }
+    ],
+    "backAndForthPlatforms": [
+        {
+            "positions": [
+                {
+                    "x": 650,
+                    "y": 1400,
+                    "speed": {
+                        "x": -70,
+                        "y": 0
+                    }
+                },
+                {
+                    "x": 350,
+                    "y": 1400,
+                    "speed": {
+                        "x": 0,
+                        "y": -70
+                    }
+                },
+                {
+                    "x": 350,
+                    "y": 1000,
+                    "speed": {
+                        "x": 0,
+                        "y": -70
+                    }
+                }
+            ],
+            "size": {
+                "x": 5,
+                "y": 1
+            }
+        },
+        {
+            "positions": [
+                {
+                    "x": 150,
+                    "y": 1100,
+                    "speed": {
+                        "x": 0,
+                        "y": -60
+                    }
+                },
+                {
+                    "x": 150,
+                    "y": 800,
+                    "speed": {
+                        "x": 0,
+                        "y": -60
+                    }
+                }
+            ],
+            "size": {
+                "x": 5,
+                "y": 1
+            }
+        },
+        {
+            "positions": [
+                {
+                    "x": 350,
+                    "y": 950,
+                    "speed": {
+                        "x": 0,
+                        "y": -40
+                    }
+                },
+                {
+                    "x": 350,
+                    "y": 450,
+                    "speed": {
+                        "x": 0,
+                        "y": -40
+                    }
+                }
+            ],
+            "size": {
+                "x": 5,
+                "y": 1
+            }
+        },
+        {
+            "positions": [
+                {
+                    "x": 450,
+                    "y": 450,
+                    "speed": {
+                        "x": 0,
+                        "y": -50
+                    }
+                },
+                {
+                    "x": 450,
+                    "y": 250,
+                    "speed": {
+                        "x": 0,
+                        "y": -50
+                    }
+                }
+            ],
+            "size": {
+                "x": 5,
+                "y": 1
+            }
+        }
+    ],
+    "coins": [
+        {
+            "x": 750,
+            "y": 1070,
+            "skin": "coin"
+        },
+        {
+            "x": 78,
+            "y": 970,
+            "skin": "coin"
+        },
+        {
+            "x": 36,
+            "y": 570,
+            "skin": "coin"
+        },
+        {
+            "x": 359,
+            "y": 170,
+            "skin": "coin"
+        }
+    ],
+    "piques": [
+    {
+      "x": 584,
+      "y": 413,
+      "skin": "pique",
+      "size": {
+        "x": 3,
+        "y": 1
+      }
+    }
+  ],
+    "buttons": [
+        {
+            "x": 20,
+            "y": 1000,
+            "action": {
+                "actionName": "actionMoveObject",
+                "groupId": 0,
+                "id": 1,
+                "args": {
+                    "x": 1,
+                    "y": 0
+                }
+            }
+        },
+        {
+            "x": 95,
+            "y": 1000,
+            "action": {
+                "actionName": "actionMoveObject",
+                "groupId": 0,
+                "id": 1,
+                "args": {
+                    "x": -1,
+                    "y": 0
+                }
+            }
+        }
+    ],
+    "filters": [
+        {
+            "x": 600,
+            "y": 300,
+            "color": "Red"
+        }
+    ],
+    "mirrors": [
+       {
+            "x": 300,
+            "y": 950,
+            "id":1    
+      }
+    ],
+    "switch": [
+       {
+            "x": 700,
+            "y": 550,
+            "color": "Blue",
+            "state": "Off",
+            "action": {
+                "groupId": 4,
+                "id": "0",
+                "actionName": "actionDeleteObject"
+                
+            }
+
+        },
+        {
+            "x": 700,
+            "y": 50,
+            "color": "Red",
+            "state": "Off",
+            "action": {
+                "groupId": 4,
+                "id": "3",
+                "actionName": "actionDeleteObject"
+                
+            }
+
+        }
+    ],
+    "walls": [
+        {
+            "x": 100,
+            "y": 800,
+            "size": {
+                "x": 5,
+                "y": 1
+            },
+            "minEnergy": 5
+        },
+        {
+            "x": 200,
+            "y": 800,
+            "size": {
+                "x": 5,
+                "y": 1
+            },
+            "minEnergy": 5
+        },
+        {
+            "x": 300,
+            "y": 800,
+            "size": {
+                "x": 5,
+                "y": 1
+            },
+            "minEnergy": 5
+        },
+        {
+            "x": 400,
+            "y": 800,
+            "size": {
+                "x": 5,
+                "y": 1
+            },
+            "minEnergy": 5
+        } 
+    ],
+    "ennemis": [
+        {
+            "x": 600,
+            "y": 1200,
+            "bounds": {
+                "left": 200,
+                "right": 900,
+                "top": 0,
+                "bottom": 1500
+            },
+            "speed": {
+                "x": 150,
+                "y": 0
+            },
+            "type":  "flying"
+        },
+        {
+            "x": 200,
+            "y": 1100,
+            "bounds": {
+                "left": 100,
+                "right": 900,
+                "top": 0,
+                "bottom": 1500
+            },
+            "speed": {
+                "x": 150,
+                "y": 0
+            },
+            "type":  "flying"
+        }
+    ],
+    "ends": [
+         {
+            "x": 30,
+            "y": 50
+        }
+       
+    ]
+}

@@ -1,4 +1,4 @@
-define(['phaser', 'app/pause', 'app/phasergame', 'app/objects/objectsManager'], function (Phaser, pause, PhaserGame, Manager) {
+define(['phaser', 'app/pause', 'app/phasergame', 'app/objects/objectsManager', 'app/music'], function (Phaser, pause, PhaserGame, Manager, music) {
     // 'use strict';
 
     function PreloadState(game) { }
@@ -22,6 +22,9 @@ define(['phaser', 'app/pause', 'app/phasergame', 'app/objects/objectsManager'], 
             // For the pause state
             pause.preload_pause();
 
+            // For the musics
+            music.preload();
+
             //Chargement ecran titre
             this.load.image('screentitle', 'assets/ScreenTitle.png');
 
@@ -36,8 +39,6 @@ define(['phaser', 'app/pause', 'app/phasergame', 'app/objects/objectsManager'], 
             }
 
             this.load.spritesheet('play', 'assets/boutons/New_Game.png', 190, 68);
-            this.load.image('play1', 'assets/button_play_level1.png');
-            this.load.image('play2', 'assets/button_play_level2.png');
             this.load.spritesheet('help', 'assets/boutons/Aide.png', 190, 68);
             this.load.spritesheet('tutorial', 'assets/boutons/Tuto.png', 190, 68);
             this.load.image('buttonNextLevel', 'assets/button_nextlevel.png');
@@ -46,9 +47,9 @@ define(['phaser', 'app/pause', 'app/phasergame', 'app/objects/objectsManager'], 
 
 
             //this.load.spritesheet('dude', 'assets/colordude.png', 32, 48);
-            this.load.spritesheet('dude', 'assets/colordude_melo.png', 100, 100);
-            //this.load.spritesheet('photon', 'assets/photons.png', 20, 20);
-            this.load.spritesheet('photon', 'assets/photons_explosion.png', 60, 60);
+            this.load.spritesheet('dude', 'assets/player.png', 100, 100);
+            this.load.spritesheet('photon', 'assets/photons.png', 20, 20);
+            //this.load.spritesheet('photon', 'assets/photons_explosion.png', 60, 60);
 
             
 
@@ -74,7 +75,8 @@ define(['phaser', 'app/pause', 'app/phasergame', 'app/objects/objectsManager'], 
 
         create: function () {
             //call next state
-            this.state.start('MainMenu');
+            //this.state.start('MainMenu');
+            this.state.start('Prelude');
         }
     };
 

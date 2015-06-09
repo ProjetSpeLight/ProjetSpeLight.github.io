@@ -1,193 +1,219 @@
 // Color item : Black, Red, Blue, Green, Yellow, Magenta, Cyan, White
 // ActionName item : actionMoveObject, actionDeleteObject, actionCreateObject, actionChangeMirrorOrientation, actionChangeObjectColor, actionPutInMoveObject
 // (cf fichier action.js)
+// MIRROR: 0
+// FILTER: 1
+// BUTTON: 2
+// SWITCH: 3
+// PLATFORM: 4
+// ENEMY: 5
+// PIQUE: 6
+// COIN: 7
+// END: 8
+// TEXT: 9
+// WALL: 10
 
 {
-  "worldBounds": {
-    "leftBound": 0,
-    "rightBound": 3200,
-    "upperBound": 0,
-    "lowerBound": 800
-  },
-  // Skin used for the backGround
-  "background": "sky",
-  // Player position at the begining of the game
-  "playerStart": {
-    "x": 50,
-    "y": 150
-  },
-  // List of all the platforms except for the ones that move
-  "platforms": [
-    // Minimal description for a platform
-    {
-      "position": {
-        "x": 0,
-        "y": 200
-      }
+    "worldBounds": {
+        "leftBound": 0,
+        "rightBound": 3200,
+        "upperBound": 0,
+        "lowerBound": 800
     },
-    // Equivalent to the following full definition
-    {
-      "position": {
-        "x": 0,
-        "y": 200
-      },
-      // Size of the platform with (1,1) being the size of the skin used
-      "size": {
-        "x": 1,
-        "y": 1
-      },
-      // Color of the platform, if empty or null then the color has no platform
-      "color": "",
-      // Skin used for the platform (altered by the color)
-      "skin": "ground",
-      // If true the platform can be crossed from anywhere except above
-      "crossable": false,
-      // If false the platform will collapse as soon as the player or something is put on it
-      "immovable": true,
-      // Id of the platform within the group for the actions
-      "id": 0
-    }
-  ],
-  // List containing all the platform with a looping movement
-  "loopingPlatforms": [
-    {
-      // List of all the point the platform go through during its movement
-      // The first point of the list is the one where the platform is initialized
-      "positions": [
+    // Skin used for the backGround
+    "background": "sky",
+    // Player position at the begining of the game
+    "playerStart": {
+        "x": 50,
+        "y": 150
+    },
+    // List of all the platforms except for the ones that move
+    "platforms": [
+        // Minimal description for a platform
         {
-          "x": 150,
-          "y": 300,
-          "speed": {
+            "position": {
+                "x": 0,
+                "y": 200
+            }
+        },
+        // Equivalent to the following full definition
+        {
+            "position": {
+                "x": 0,
+                "y": 200
+            },
+            // Size of the platform with (1,1) being the size of the skin used
+            "size": {
+                "x": 1,
+                "y": 1
+            },
+            // Color of the platform, if empty or null then the color has no platform
+            "color": "",
+            // Skin used for the platform (altered by the color)
+            "skin": "ground",
+            // If true the platform can be crossed from anywhere except above
+            "crossable": false,
+            // If false the platform will collapse as soon as the player or something is put on it
+            "immovable": true,
+            // Id of the platform within the group for the actions
+            "id": 0
+        }
+    ],
+    // List containing all the platform with a looping movement
+    "loopingPlatforms": [
+        {
+            // List of all the point the platform go through during its movement
+            // The first point of the list is the one where the platform is initialized
+            "positions": [
+                {
+                    "x": 150,
+                    "y": 300,
+                    "speed": {
+                        "x": 100,
+                        "y": 100
+                    }
+                },
+                {
+                    "x": 250,
+                    "y": 400,
+                    "speed": {
+                        "x": -100,
+                        "y": 100
+                    }
+                },
+                {
+                    "x": 150,
+                    "y": 500,
+                    "speed": {
+                        "x": 0,
+                        "y": -200
+                    }
+                }
+            ]
+            // All parameters used for a basic platform can also be specified here
+        }
+    ],
+    // Same as LoopingPlatforms except the movement is a back and forth instead of a loop
+    "backAndForthPlatforms": [
+    ],
+
+    "ennemis": [
+        {
+            // Initial position
             "x": 100,
-            "y": 100
-          }
-        },
+            "y": 0,
+            // Bounds of the ennemi's movement
+            "bounds": {
+                "left": 100,
+                "right": 200,
+                "bottom": 900,
+                "top": 0
+            },
+            // Initial speed
+            "speed": {
+                "x": 150,
+                "y": 200
+            },
+            // Skin used for the ennemi
+            "type": "flying" // Optional ; Default value = normal ; Enum = normal or flying
+        }
+    ],
+    "filters": [
         {
-          "x": 250,
-          "y": 400,
-          "speed": {
-            "x": -100,
-            "y": 100
-          }
-        },
-        {
-          "x": 150,
-          "y": 500,
-          "speed": {
+            // Position
             "x": 0,
-            "y": -200
-          }
+            "y": 0,
+            "color": "Red", // Color of the filter
+            "id": 0, // Optional ; Default value = null/undefined ; An id for the action
+            "size": 1, //  Optional ; Default value = 1 ; Multiply the size in x (resp y) of the filter if it is not turned (resp if it is turned)
+            "turned": true // Optional ; Default value = false ; By default, the filter is vertical. This parameter allows to turn it horizontally
         }
-      ]
-      // All parameters used for a basic platform can also be specified here
-    }
-  ],
-  // Same as LoopingPlatforms except the movement is a back and forth instead of a loop
-  "backAndForthPlatforms": [
-  ],
-
-  "ennemis": [
-    {
-      // Initial position
-      "x": 100,
-      "y": 0,
-      // Bounds of the ennemi's movement
-      "bounds": {
-        "left": 100,
-        "right": 200,
-        "bottom": 900,
-        "top": 0
-      },
-      // Initial speed
-      "speed": {
-        "x": 150,
-        "y": 200
-      },
-      // Skin used for the ennemi
-      "type": "flying" // Optional ; Default value = normal ; Enum = normal or flying
-    }
-  ],
-  "filters": [
-    {
-      // Position
-      "x": 0,
-      "y": 0,
-      // Color of the filter
-      "color": "Red",
-      "id": 0 // Optional ; Default value = null/undefined ; An id for the action
-    }
-  ],
-  "mirrors": [
-    {
-      "x": 0,
-      "y": 0,
-      "angle": 45, // Optional ; Default value = 45
-      "immovable": true, // Optional ; Default value = true (a mirror is by default immovable)
-      "bounds": { // Optional ; Used only if the mirror is movable (i.e. immovable == false)
-        "left": 10, // Default value = x
-        "right": 20 // Default value = x
-      },
-      "id": 0 // Optional ; Default value = null/undefined ; An id for the action
-    }
-  ],
-  "coins": [
-    {
-      "x": 0,
-      "y": 0,
-      "skin": "star",
-      "value": 10
-    }
-  ],
-  "piques": [
-    {
-      "x": 0,
-      "y": 0,
-      "skin": "piques"
-    }
-  ],
-  "switchs": [
-    {
-      "x": 2200,
-      "y": 300,
-      "color": "Blue",
-      "state": "On",
-      "action": {
-        "groupId": 4,
-        "id": 0,
-        "actionName": "actionDeleteObject"
-      }
-    },
-    {
-      "x": 2200,
-      "y": 300,
-      "color": "Blue",
-      "state": "On",
-      "action": {
-        "groupId": 4,
-        "id": 0,
-        "actionName": "actionChangeObjectColor"
-        "args": {
-          "colors": [
-            { "color": "" },
-            { "color": "Red" },
-            { "color": "" },
-            { "color": "Blue" },
-            { "color": "Green" },
-            { "color": "" },
-            { "color": "Red" }
-
-          ]
+    ],
+    "mirrors": [
+        {
+            "x": 0,
+            "y": 0,
+            "angle": 45, // Optional ; Default value = 45
+            "immovable": true, // Optional ; Default value = true (a mirror is by default immovable)
+            "bounds": { // Optional ; Used only if the mirror is movable (i.e. immovable == false)
+                "left": 10, // Default value = x
+                "right": 20 // Default value = x
+            },
+            "id": 0 // Optional ; Default value = null/undefined ; An id for the action
         }
-      }
-    }
+    ],
+    "coins": [
+        {
+            "x": 0,
+            "y": 0,
+            "skin": "star",
+            "value": 10
+        }
+    ],
+    "piques": [
+        {
+            "x": 0,
+            "y": 0,
+            "skin": "piques"
+        }
+    ],
+    "switchs": [
+        {
+            "x": 2200,
+            "y": 300,
+            "color": "Blue",
+            "state": "On",
+            "action": {
+                "groupId": 4,
+                "id": 0,
+                "actionName": "actionDeleteObject"
+            }
+        },
+        {
+            "x": 2200,
+            "y": 300,
+            "color": "Blue",
+            "state": "On",
+            "action": {
+                "groupId": 4,
+                "id": 0,
+                "actionName": "actionChangeObjectColor"
+                "args": {
+                    "colors": [
+                        { "color": "" },
+                        { "color": "Red" },
+                        { "color": "" },
+                        { "color": "Blue" },
+                        { "color": "Green" },
+                        { "color": "" },
+                        { "color": "Red" }
 
-  ],
-  // List of the different level ending areas
-  "ends": [
+                    ]
+                }
+            }
+        }
+
+    ],
+    // List of the different level ending areas
+    "ends": [
+        {
+            // Position
+            "x": 300,
+            "y": 30
+        }
+    ],
+
+
+
+  "walls": [
     {
-      // Position
-      "x": 300,
-      "y": 30
+      "x": 2160, // Mandatory : abscissa of the top-left point of the wall
+      "y": 640, // Mandatory : ordiante of the top-left point of the wall
+      "size": { // Optional : if we want to duplicate to sprite (to ease the construction of the JSON file)
+        "x": 1, // Number of sprites in width
+        "y": 4 // Number of sprites in height
+      },
+      "minEnergy": 5 // Mandatory, minimal energy to break the wall (cf ColorEnum for the different energies)
     }
   ]
 }

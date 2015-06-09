@@ -1,4 +1,4 @@
-define(['phaser', 'app/phasergame', 'app/player', 'app/objects/platforms'], function (Phaser, PhaserGame, player, platforms) {
+define(['phaser', 'app/phasergame', 'app/player', 'app/objects/platforms', 'app/objects/runner'], function (Phaser, PhaserGame, player, platforms, runner) {
 
     /// @function reflexionPhoton
     /// Handler called when a photon hits a mirror - Change the direction of the photon according to its reflexion on the mirror
@@ -12,12 +12,18 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/objects/platforms'], func
         }
         var x = photon.body.velocity.x;
         var y = photon.body.velocity.y;
-        var theta = (90.0 - mirror.angle) * Math.PI / 180.0;
-        var alpha = Math.acos((x * Math.cos(theta) + y * Math.sin(theta)) / (Math.sqrt(x * x + y * y)));
-        var newX = Math.cos(2 * alpha) * x - Math.sin(2 * alpha) * y;
-        var newY = Math.sin(2 * alpha) * x + Math.cos(2 * alpha) * y;
+        var beta = ((mirror.angle + 180) % 180) * Math.PI / 180;
+        var alpha;
+        if(x>y&&-x<y)
+            alpha = Math.atan(y / x);
+        else
+            alpha = Math.PI/2  - Math.atan(x/y);
+        var gamma = beta - alpha;
+        var theta = Math.PI + beta + gamma - alpha;
+        var newX = x * Math.cos(theta) - y * Math.sin(theta);
+        var newY = y * Math.cos(theta) + x * Math.sin(theta);
         photon.body.velocity.x = newX;
-        photon.body.velocity.y = -newY;
+        photon.body.velocity.y = newY;
         photon.hasHit = true;
         photon.idMirrorReflexion = mirror.idPerso;
     }
@@ -42,7 +48,10 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/objects/platforms'], func
         preloadObjectsImages: function () {
             PhaserGame.game.load.image('mirrorFixed', 'assets/mirror.png');
             PhaserGame.game.load.image('mirrorMovable', 'assets/mirror.png');
-            PhaserGame.game.load.image('mirrorRunner', 'assets/platform_Jaune.png');
+            PhaserGame.game.load.image('mirrorRunnerLeft', 'assets/mirror/runnerLeft.png');
+            PhaserGame.game.load.image('mirrorRunnerMiddle', 'assets/mirror/runnerMiddle.png');
+            PhaserGame.game.load.image('mirrorRunnerRight', 'assets/mirror/runnerRight.png');
+
         },
 
         /// @function createObjectsGroup
@@ -122,11 +131,12 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/objects/platforms'], func
                     mirrorObject.id = mirrorData.id;
                 }
 
-                // Creation of the runner if needed
-                if (mirrorObject.leftBound != mirrorObject.rightBound) {
-                    var runner = PhaserGame.game.add.sprite(mirrorObject.leftBound, mirrorObject.body.y + mirrorObject.body.height / 2, 'mirrorRunner');
-                    var size = (mirrorObject.rightBound - mirrorObject.leftBound) / runner.width;
-                    runner.scale.setTo(size, 1);
+                
+                mirrorObject.runner = runner.createObject(mirrorObject);
+                
+
+                if (!immovable) {
+                    mirrorObject.body.checkCollision.up = false;
                 }
 
             }
@@ -140,11 +150,17 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/objects/platforms'], func
 
             /// This function checks in the case of a movable mirror if it is in its runner
             function processCallback(playerSprite, element) {
+                /*var angle = -element.angle * Math.PI / 180;
+                var cos = Math.cos(angle);
+                var sin = Math.sin(angle);
+                var xmax = cos * element.body.width + sin * element.body.height + element.body.x - element.body.width / 2;*/
+                var xmax = element.body.x + element.body.width;
+
                 if (element.rightBound == element.leftBound) {
                     return true;
                 }
 
-                if (element.body.x + element.body.width >= element.rightBound && playerSprite.body.velocity.x >= 0) {
+                if (/*element.body.x + element.body.width*/ xmax >= element.rightBound && playerSprite.body.velocity.x >= 0) {
                     return false;
                 }
 

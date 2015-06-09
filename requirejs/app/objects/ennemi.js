@@ -10,9 +10,19 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/photon'], function (Phase
     function killEnnemi(photon, enemy) {
         photon.kill();
         enemy.nbLives--;
+        enemy.LifeBarShown = true;
+        enemy.LifeBarLifeTime = 100;
         if (enemy.nbLives == 0) {
+            if (enemy.lifeBar != null) {
+                enemy.LifeBarShown = false;
+                enemy.lifeBar.kill();
+            }
             enemy.destroy();
-            PhaserGame.score += 10;
+            if (enemy.type == 'normal') {
+                PhaserGame.score += 10;
+            } else {
+                PhaserGame.score += 30;
+            }
         }
         
     }
@@ -29,7 +39,7 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/photon'], function (Phase
         /// @function preloadObjectImage
         /// Preloads the different images / spritesheets used by this module
         preloadObjectsImages: function () {
-            PhaserGame.game.load.spritesheet('normalEnemy', 'assets/baddie.png', 32, 32);
+            PhaserGame.game.load.spritesheet('normalEnemy', 'assets/ennemi_fat.png', 60, 100);
             PhaserGame.game.load.spritesheet('flyingEnemy', 'assets/Fantome.png', 75, 60);
 
         },
@@ -95,19 +105,26 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/photon'], function (Phase
                 ennemi.body.bounce.x = 1;
 
                 if (enemyType == 'normal') {
-                    ennemi.nbLives = 5;
+                    ennemi.nbLives = 3;
+                    ennemi.animations.add('animNormal', [0, 1, 2, 3], 6, true);
+                    ennemi.play('animNormal');
                 } else {
                     ennemi.nbLives = 1;
                     ennemi.animations.add('animFlying', [0, 1, 2, 1], 6, true);
                     ennemi.play('animFlying');
+                    ennemi.scale.setTo(0.6, 0.6);
                 }
+                ennemi.LifeBarShown = false;
+                ennemi.LifeBarLifeTime = 100;
+                ennemi.maxLife = ennemi.nbLives;
+                ennemi.lifeBar = null;
             }
         },
 
         updateObjects: function () {            
             PhaserGame.game.physics.arcade.overlap(player.sprite, this.group, killPlayer, null, this);
             PhaserGame.game.physics.arcade.collide(photon.photons, this.group, killEnnemi, null, this);
-
+            PhaserGame.game.physics.arcade.collide(this.group, this.group);
 
 
             //Déplacement des ennemis
@@ -126,6 +143,20 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/photon'], function (Phase
 
                 if (element.body.y <= element.body.sprite.topBounds || element.body.y >= element.body.sprite.bottomBounds)
                     element.body.velocity.y *= -1;
+
+                if (element.LifeBarShown && element.LifeBarLifeTime > 0) {
+                    if (element.lifeBar != null) {
+                        element.lifeBar.kill();
+                    }
+                    element.lifeBar = PhaserGame.game.add.sprite(element.body.x + element.body.width / 2 - 15, element.body.y - 10, 'platformGreen');
+                    element.lifeBar.scale.setTo(element.nbLives / element.maxLife, 1);
+                    element.LifeBarLifeTime--;
+                } else {
+                    if (element.lifeBar != null) {
+                        element.lifeBar.kill();
+                    }
+                    element.LifeBarShown = false;
+                }
 
             })
 

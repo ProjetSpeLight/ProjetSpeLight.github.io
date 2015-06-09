@@ -1,196 +1,217 @@
 {
-    "worldBounds": {
-        "leftBound": 0,
-        "rightBound": 2400,
-        "upperBound": 0,
-        "lowerBound": 600
+  "worldBounds": {
+    "leftBound": 0,
+    "rightBound": 2400,
+    "upperBound": 0,
+    "lowerBound": 600
+  },
+  "background": "sky",
+  "playerStart": {
+    "x": 50,
+    "y": 500
+  },
+  "platforms": [
+    {
+      "position": {
+        "x": 0,
+        "y": 560
+      },
+      "size": {
+        "x": 153,
+        "y": 2
+      }
     },
-    "background": "sky",
-    "playerStart": {
-        "x": 50,
-        "y": 500
+    {
+      "position": {
+        "x": 2300,
+        "y": 460
+      },
+      "size": {
+        "x": 1,
+        "y": 5
+      },
+      "crossable": false
     },
-    "platforms": [
+    {
+      "position": {
+        "x": 2160,
+        "y": 440
+      },
+      "size": {
+        "x": 8,
+        "y": 1
+      }
+    },
+   
+    {
+      "id": 0,
+      "positions": [
         {
-            "position": {
-                "x": 0,
-                "y": 560
-            },
+          "x": 2140,
+          "y": 460,
+          "speed": {
+            "x": 0,
+            "y": -100
+          }
+        },
+        {
+          "x": 2140,
+          "y": 260,
+          "speed": {
+            "x": 0,
+            "y": 100
+          }
+        }
+      ],
+      "size": {
+        "x": 1,
+        "y": 5
+      },
+      "immovable": true
+    }
+  ],
+  "piques": [
+        {
+            "x": 800,
+            "y": 525,
+            "skin": "pique",
             "size": {
-                "x": 153,
+                "x": 3,
                 "y": 2
             }
-        },
-        {
-            "position": {
-                "x": 2300,
-                "y": 460
-            },
-            "size": {
-                "x": 1,
-                "y": 5
-            },
-            "crossable": false
-        },
-        {
-            "position": {
-                "x": 2160,
-                "y": 440
-            },
-            "size": {
-                "x": 8,
-                "y": 1
-            }
-        },
-        {
-            "position": {
-                "x": 1690,
-                "y": 140
-            },
-            "size": {
-                "x": 3,
-                "y": 1
-            }
-        },
-        {
-            "id" : 0,
-            "positions": [
-                {
-                    "x": 2140,
-                    "y": 460,
-                    "speed": {
-                        "x": 0,
-                        "y": -100
-                    }
-                },
-                {
-                    "x": 2140,
-                    "y": 260,
-                    "speed": {
-                        "x": 0,
-                        "y": 100
-                    }
-                }
-            ],
-            "size": {
-                "x": 1,
-                "y": 5
-            },
-            "immovable": true
         }
     ],
-    "backAndForthPlatforms": [
+  "time": [
+    {
+      "value": 70
+    }
+  ],
+  "backAndForthPlatforms": [
+    {
+      "positions": [
         {
-            "positions": [
-                {
-                    "x": 600,
-                    "y": 460,
-                    "speed": {
-                        "x": 100,
-                        "y": 0
-                    }
-                },
-                {
-                    "x": 950,
-                    "y": 460,
-                    "speed": {
-                        "x": -100,
-                        "y": 0
-                    }
-                }
-            ],
-            "size": {
-                "x": 5,
-                "y": 1
-            },
-            "immovable": true
+          "x": 600,
+          "y": 460,
+          "speed": {
+            "x": 100,
+            "y": 0
+          }
         },
         {
-            "positions": [
-                {
-                    "x": 700,
-                    "y": 360,
-                    "speed": {
-                        "x": 100,
-                        "y": 0
-                    }
-                },
-                {
-                    "x": 1050,
-                    "y": 360,
-                    "speed": {
-                        "x": -100,
-                        "y": 0
-                    }
-                }
-            ],
-            "size": {
-                "x": 5,
-                "y": 1
-            },
-            "immovable": true
-        },
-        {
-            "positions": [
-                {
-                    "x": 500,
-                    "y": 360,
-                    "speed": {
-                        "x": 100,
-                        "y": 0
-                    }
-                },
-                {
-                    "x": 850,
-                    "y": 360,
-                    "speed": {
-                        "x": -100,
-                        "y": 0
-                    }
-                }
-            ],
-            "size": {
-                "x": 5,
-                "y": 1
-            },
-            "immovable": true
-        },
-        {
-            "positions": [
-                {
-                    "x": 600,
-                    "y": 260,
-                    "speed": {
-                        "x": 100,
-                        "y": 0
-                    }
-                },
-                {
-                    "x": 950,
-                    "y": 260,
-                    "speed": {
-                        "x": -100,
-                        "y": 0
-                    }
-                }
-            ],
-            "size": {
-                "x": 3,
-                "y": 3
-            },
-            "immovable": true,
-            "color": "Blue"
+          "x": 950,
+          "y": 460,
+          "speed": {
+            "x": -100,
+            "y": 0
+          }
         }
-        
-    ],
-    "mirrors": [
+      ],
+      "size": {
+        "x": 5,
+        "y": 1
+      },
+      "immovable": true
+    },
+    {
+      "positions": [
         {
-            "x": 1720,
-            "y": 520,
-            "angle": 45,
-            "skin": "mirror"
+          "x": 700,
+          "y": 360,
+          "speed": {
+            "x": 100,
+            "y": 0
+          }
+        },
+        {
+          "x": 1050,
+          "y": 360,
+          "speed": {
+            "x": -100,
+            "y": 0
+          }
         }
-    ],
+      ],
+      "size": {
+        "x": 5,
+        "y": 1
+      },
+      "immovable": true
+    },
+    {
+      "positions": [
+        {
+          "x": 500,
+          "y": 360,
+          "speed": {
+            "x": 100,
+            "y": 0
+          }
+        },
+        {
+          "x": 850,
+          "y": 360,
+          "speed": {
+            "x": -100,
+            "y": 0
+          }
+        }
+      ],
+      "size": {
+        "x": 5,
+        "y": 1
+      },
+      "immovable": true
+    },
+    {
+      "positions": [
+        {
+          "x": 600,
+          "y": 260,
+          "speed": {
+            "x": 100,
+            "y": 0
+          }
+        },
+        {
+          "x": 950,
+          "y": 260,
+          "speed": {
+            "x": -100,
+            "y": 0
+          }
+        }
+      ],
+      "size": {
+        "x": 3,
+        "y": 3
+      },
+      "immovable": true,
+      "color": "Blue"
+    }
+
+  ],
+  "mirrors": [
+    {
+      "x": 1720,
+      "y": 520,
+      "angle": 45,
+      "skin": "mirror"
+    }
+  ],
+  "texts": [
+    {
+      "x": 1560,
+      "y": 400,
+      "en": "Mirror can reflect the photons \n that you throw",
+      "fr": "Les miroirs permettent de réfléchir \n les photons tirés"
+    },
+    {
+      "x": 1530,
+      "y": 60,
+      "en": "Fire a photon at that switch \n to activate or deactivate it",
+      "fr": "Tirez un photon sur cet interrupteur \n pour l'actionner"
+    }
+  ],
     "switch": [
         {
             "x": 1690,
@@ -273,7 +294,7 @@
         },
         {
             "x": 1220,
-            "y": 528,
+            "y": 490,
             "bounds": {
                 "left": 1200,
                 "right": 1300,
@@ -284,7 +305,7 @@
                 "x": 150,
                 "y": 0
             },
-            "skin": "baddie"
+            "type": "flying"
         }
     ],
     "ends": [

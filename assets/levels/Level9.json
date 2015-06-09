@@ -1,0 +1,231 @@
+{
+    "worldBounds": {
+        "leftBound": 0,
+        "rightBound": 2400,
+        "upperBound": 0,
+        "lowerBound": 800
+    },
+    "background": "sky",
+    "playerStart": {
+        "x": 50,
+        "y": 650
+    },
+    "platforms": [
+        {
+            "position": {
+                "x": 0,
+                "y": 720
+            },
+            "size": {
+                "x": 50,
+                "y": 4
+            }
+        },
+        {
+            "position": {
+                "x": 100,
+                "y": 720
+            },
+            "size": {
+                "x": 2,
+                "y": 2
+            },
+            "color": "Green"
+        },
+
+
+        {
+            "position": {
+                "x": 1450,
+                "y": 720
+            },
+            "size": {
+                "x": 80,
+                "y": 4
+            }
+        },
+
+        {
+            "position": {
+                "x": 0,
+                "y": 170
+            },
+            "size": {
+                "x": 50,
+                "y": 1
+            }
+        },
+        {
+            "position": {
+                "x": 200,
+                "y": 170
+            },
+            "size": {
+                "x": 2,
+                "y": 2
+            },
+            "color": "Blue"
+        },
+        {
+            "position": {
+                "x": 2300,
+                "y": 620
+            },
+            "size": {
+                "x": 1,
+                "y": 5
+            },
+            "crossable": false
+        },
+        {
+            "position": {
+                "x": 2160,
+                "y": 620
+            },
+            "size": {
+                "x": 8,
+                "y": 1
+            }
+        }
+
+    ],
+    "backAndForthPlatforms": [
+        {
+            "id": 0,
+            "positions": [
+                {
+                    "x": 1200,
+                    "y": 250,
+                    "speed": {
+                        "x": 0,
+                        "y": 100
+                    }
+                },
+                {
+                    "x": 1200,
+                    "y": 650,
+                    "speed": {
+                        "x": 0,
+                        "y": -100
+                    }
+                }
+            ],
+            "size": {
+                "x": 10,
+                "y": 1
+            }
+        }
+    ],
+    "filters": [
+        {
+            "x": 300,
+            "y": 120,
+            "color": "Blue"
+        }
+    ],
+    "buttons": [
+        {
+            "x": 500,
+            "y": 700,
+            "action": {
+                "actionName": "actionChangeMirrorOrientation",
+                "groupId": 0,
+                "id": 0,
+                "args": {
+                    "incr": 1
+                }
+            }
+        },
+
+        {
+            "x": 440,
+            "y": 700,
+            "action": {
+                "actionName": "actionChangeMirrorOrientation",
+                "groupId": 0,
+                "id": 0,
+                "args": {
+                    "incr": -1
+                }
+            }
+        }
+    ],
+    "mirrors": [
+        {
+            "x": 700,
+            "y": 700,
+            "id": 0
+        },
+        {
+            "x": 380,
+            "y": 300,
+            "angle": 205
+        }
+    ],
+    "switch": [
+        {
+            "x": 750,
+            "y": 300,
+            "color": "Green",
+            "state": "Off",
+            "action": {
+                "groupId": 4,
+                "id": "0",
+                "actionName": "actionPutInMovePlatform"
+
+            }
+
+        }
+    ],
+    "ends": [
+        {
+            "x": 2200,
+            "y": 690
+        }
+
+    ],
+    "walls": [
+        {
+            "x": 2160,
+            "y": 640,
+            "size": {
+                "x": 1,
+                "y": 4
+            },
+            "minEnergy": 5
+        }
+    ],
+     "ennemis": [
+        {
+            "x": 1800,
+            "y": 620,
+            "bounds": {
+                "left": 1700,
+                "right": 1900,
+                "lower": 0,
+                "upper": 0
+            },
+            "speed": {
+                "x": 150,
+                "y": 0
+            }
+        },
+         {
+            "x": 1100,
+            "y": 400,
+            "bounds": {
+                "left": 0,
+                "right": 0,
+                "top": 100,
+                "bottom": 600
+            },
+            "speed": {
+                "x": 0,
+                "y": 150
+            },
+            "type":  "flying"
+        }
+       
+    ]
+
+}

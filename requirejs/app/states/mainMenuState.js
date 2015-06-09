@@ -1,36 +1,28 @@
-define([
-    'phaser', 'app/touch'
-], function (
-    Phaser, Touch
-) { 
-    //'use strict';
+define(['phaser', 'app/touch'], function (Phaser, Touch) {
 
-    function MainMenuState(game) {
-        var movingPlatform
-        var screenTitle1;
-        var screenTitle2;
-    };
+    var screenTitle1;
+    var screenTitle2;
+
+    function MainMenuState(game) {};
     
     MainMenuState.prototype = {
         create: function () {            
 
             this.game.state.states['Game'].currentLevel = 1;
-            // create main menu text and images -
-            // create a "Start Game" mechanism - variety of ways to do this...
 
             //Gestion de du fond
             this.createTitle();
 
             //button_play = this.add.button(400, 180, 'play', this.playGame, this);
-            button_play = this.add.button(400, 180, 'play', this.playGame, this, 1, 0, 1);
+            var button_play = this.add.button(400, 180, 'play', this.playGame, this, 1, 0, 1);
             button_play.name = 'play';
             button_play.anchor.setTo(0.5, 0.5);
 
-            button_tutorial = this.add.button(400, 300, 'tutorial', this.playTutorial, this, 1, 0, 1);
+            var button_tutorial = this.add.button(400, 300, 'tutorial', this.playTutorial, this, 1, 0, 1);
             button_tutorial.name = 'tutorial';
             button_tutorial.anchor.setTo(0.5, 0.5);
 
-            button_help = this.add.button(400, 420, 'help', this.help, this, 1, 0, 1);
+            var button_help = this.add.button(400, 420, 'help', this.help, this, 1, 0, 1);
             button_help.name = 'tutorial';
             button_help.anchor.setTo(0.5, 0.5);
 

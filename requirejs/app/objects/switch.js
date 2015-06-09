@@ -1,17 +1,12 @@
 define(['phaser', 'app/phasergame', 'app/player', 'app/objects/action'], function (Phaser, PhaserGame, player, action) {
 
-    /// @function handlerSwitch
+
+    /// @function triggerAction
     /// Handler called when a photon hits a switch : trigger the associated action
-    /// @param {Photon} the photon that hits the switch
     /// @param {Phaser.Sprite} the switch that has been hit by the photon
-    function handlerSwitch(photon, switchObject) {
-        // We check if the colors match
-        if (photon.color.name != switchObject.colorName
-            || switchObject.switchOnAction == null) {
-            photon.kill();
-            return;
-        }
-        if (switchObject.actionName == "actionChangeObjectColor") {
+    function triggerAction(switchObject) {
+
+        if (switchObject.switchActionName == "actionChangeObjectColor") {
             switchObject.switchOnAction(switchObject.onArgs);
         } else {
             if (switchObject.state == "On") {
@@ -21,13 +16,59 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/objects/action'], functio
                 switchObject.switchOffAction(switchObject.offArgs);
                 switchObject.state = "On";
             }
-            var str = "switch" + switchObject.colorName + switchObject.state;
+            var str = switchObject.objectType + switchObject.color + switchObject.state;
             switchObject.loadTexture(str);
         }
+    }
+
+    /// @function handlerSwitch
+    /// Handler called when a photon hits a switch : prepare the animation (camera moving) if needed to show the target when the action will be triggered
+    /// @param {Photon} the photon that hits the switch
+    /// @param {Phaser.Sprite} the switch that has been hit by the photon
+    function handlerSwitch(photon, switchObject) {
+
         // In any case, the photon is destructed
         photon.kill();
+        // We check if the colors match
+        if (photon.color.name != switchObject.color
+            || switchObject.switchOnAction == null) {
+            photon.kill();
+            return;
+        }
 
+        // The following code is only executed if the switch have been activated (i.e. its state has changed)
 
+        // First, we check if the animation for this switch has already by played
+        if (switchObject.hasPlayedAnimation) {
+            // If that is the case, we do not do it again
+            triggerAction(switchObject);
+            return;
+        }
+
+        // Then, we check if the animation is needed
+        // To do that, we check if the camera (equivalent to a rectangle) contains the sprite (also equivalent to a rectangle with arcade physics)
+        var cameraView = PhaserGame.game.camera.view;
+        var body = switchObject.onArgs.target.body;
+        var rectObj = new Phaser.Rectangle(body.x - 10, body.y - 10, body.width + 20, body.height + 20);
+        var contains = Phaser.Rectangle.containsRect(rectObj, cameraView);
+
+        // If the target is already visible on the screen, there is no need for an animation
+        // and no need to move the camera, so we juste trigger the action
+        if (contains) {
+            triggerAction(switchObject);
+        } else {
+            // If the target is not on the screen, we need to display an animation by moving the camera
+            switchObject.hasPlayedAnimation = true;
+
+            // Like we need to move manually the camera, we stop it focusing the player
+            PhaserGame.game.camera.unfollow();
+            // We save the switch to be able to call the triggerAction function when the camera will be at the right place
+            PhaserGame.handlerSwitchObj = switchObject;
+            // We save the rectangle where the target is to gain some work time
+            PhaserGame.rectObj = rectObj;
+            // We indicate that we enter in the state where we will move the camera and thus stop the game
+            PhaserGame.freezeGame = true;
+        }
     }
 
     return {
@@ -78,7 +119,10 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/objects/action'], functio
                 var switchObject = this.group.create(switchData.x, switchData.y, 'switch' + switchData.color + state);
                 switchObject.state = state;
                 // Attribute color 
-                switchObject.colorName = switchData.color;
+                switchObject.color = switchData.color;
+                switchObject.switchActionName = switchData.action.actionName;
+                switchObject.objectType = 'switch';
+                switchObject.id = switchData.id;
                 // Action associated to the switch
                 if (switchData.action != null) {
                     var objAction = action.createAction(switchData.action, Manager);
@@ -93,9 +137,12 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/objects/action'], functio
                 if (switchData.action.actionName == "actionCreateObject") {
                     switchObject.switchOnAction(switchObject.onArgs);
                     switchObject.state = "Off";
-                    var str = "switch" + switchObject.colorName + switchObject.state;
+                    var str = "switch" + switchObject.color + switchObject.state;
                     switchObject.loadTexture(str);
                 }
+
+                // Boolean to display the camera animation only once
+                switchObject.hasPlayedAnimation = false;
 
 
             }
@@ -106,7 +153,9 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/objects/action'], functio
         /// Updates the group of switchs (to be called by the update() function of the game state)
         updateObjects: function () {
             PhaserGame.game.physics.arcade.collide(player.refPhotons.photons, this.group, handlerSwitch);
-        }
+        },
+
+        triggerAction: triggerAction
     }
 
 });

@@ -23,8 +23,8 @@
         },
         {
             "position": {
-                "x": 40,
-                "y": 700
+                "x": 30,
+                "y": 760
             },
             "size": {
                 "x": 1,
@@ -36,7 +36,7 @@
         {
             "position": {
                 "x": 80,
-                "y": 700
+                "y": 760
             },
             "size": {
                 "x": 1,
@@ -47,8 +47,8 @@
         },
         {
             "position": {
-                "x": 120,
-                "y": 700
+                "x": 130,
+                "y": 760
             },
             "size": {
                 "x": 1,
@@ -125,7 +125,7 @@
     ],
     "time": [
         {
-            "value": 50
+            "value": 70
         }
     ],
     "switch": [
@@ -223,19 +223,19 @@
     "filters": [
         {
             "x": 20,
-            "y": 500,
+            "y": 550,
             "color": "Blue",
             "skin": "filterBlue"
         },
         {
             "x": 70,
-            "y": 500,
+            "y": 550,
             "color": "Red",
             "skin": "filterRed"
         },
         {
             "x": 120,
-            "y": 500,
+            "y": 550,
             "color": "Green",
             "skin": "filterGreen"
         }

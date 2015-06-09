@@ -1,24 +1,13 @@
-define([
-    'phaser'
-], function (
-    Phaser
-) {
-    //'use strict';
+define(['app/music'], function (musique) {
 
-    function RestartGameState(game) {
-    };
+    function RestartGameState(game) { };
 
     RestartGameState.prototype = {
         create: function () {
-
+            musique.stopMusic();
             this.state.start('Game');
-            
-            
-
         }
-
     };
-
 
     return RestartGameState;
 });

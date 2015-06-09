@@ -14,7 +14,9 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/color'], function (Phaser
             photon.kill();
             return;
         }
-        photon.frame = (photon.color.value - 1) * 6;
+        //photon.frame = (photon.color.value - 1) * 6; si anim
+        photon.frame = (photon.color.value - 1);
+
     }
 
 
@@ -62,9 +64,31 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/color'], function (Phaser
                 var filter = this.group.create(filterData.x, filterData.y, 'filter' + filterData.color);
                 // Attribute color
                 filter.color = filterData.color;
+                filter.objectType = 'filter';
                 // Id if defined
                 if (filterData.id != null) {
                     filter.id = filterData.id;
+                }
+
+                var turned = false;
+                if (filterData.turned != null) {
+                    turned = filterData.turned;
+                }
+
+                var size = 1;
+                if (filterData.size != null) {
+                    size = filterData.size;
+                }
+
+                var height = filter.body.height;
+                var width = filter.body.width;
+
+                filter.scale.setTo(1, size);
+
+                if (turned) {
+                    filter.anchor.setTo(0.5, 0.5);
+                    filter.angle = 90;          
+                    filter.body.setSize(size*height, width / 2);
                 }
             }
         },

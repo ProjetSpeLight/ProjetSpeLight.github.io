@@ -1,34 +1,45 @@
-define([
-    'phaser',
-    'app/phasergame',
-], function (
-    Phaser,
-     PhaserGame
-) { 
-    //'use strict';
+define([], function () {
 
-    function DeadState(game) {
-    };
-    
+    function DeadState(game) { };
+
     DeadState.prototype = {
         create: function () {
-             dead=this.add.sprite(0, 0, 'dead');
-                this.state.start('RestartGame');
-            
-            
-            
-        },
-        
-        playGame: function () {
-            
-            //dead.destroy();
-            //dead.destroy();
-            this.state.start('RestartGame');
-        }
-        
 
+            this.add.text(320, 80, 'Game Over', { fontSize: '48px', fill: '#fff' });
+
+            if (this.message != null) {
+                this.add.text(320, 120, this.message, { fontSize: '48px', fill: '#fff' });
+            }
+
+            this.message = null;
+
+            var button_menu = this.add.button(400, 210, 'RetMenu', this.menuclick, this);
+            button_menu.name = 'Returnmenu';
+            button_menu.anchor.setTo(0.5, 0.5);
+            button_menu.fixedToCamera = true;
+
+            var button_restart = this.add.button(400, 330, 'restart', this.restartclick, this);
+            button_restart.name = 'restart';
+            button_restart.anchor.setTo(0.5, 0.5);
+            button_restart.fixedToCamera = true;
+
+            this.add.text(50, 450, 'Appuyer sur Espace pour recommencer le niveau', { fontSize: '48px', fill: '#fff' });
+        },
+
+        menuclick: function () {
+            this.state.start('MainMenu');
+        },
+
+        restartclick: function () {
+            this.state.start('RestartGame');
+        },
+
+        update: function () {
+            if (this.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)) {
+                this.restartclick();
+            }
+        }
     };
-    
-    
+
     return DeadState;
 });

@@ -10,7 +10,7 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/objects/action'], functio
         /// @function preloadObjectImage
         /// Preloads the different images / spritesheets used by this module
         preloadObjectsImages: function () {
-            PhaserGame.game.load.image('button', 'assets/photon_vert.png');
+            PhaserGame.game.load.spritesheet('button', 'assets/bouton.png', 37, 11);
         },
 
         /// @function createObjectsGroup
@@ -39,12 +39,20 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/objects/action'], functio
                 // By default, a button is immovable
                 buttonObject.body.immovable = true;
 
+                buttonObject.frame = 0;
+                buttonObject.anchor.y = 0.5;
+                buttonObject.body.y += buttonObject.body.height / 2;
+                //buttonObject.scale = new Phaser.Point(3, 1);
+
+
                 // Action associated to the switch
                 if (buttonData.action != null) {
                     var objAction = action.createActionButton(buttonData.action, Manager);
                     buttonObject.buttonAction = objAction.actionName;
                     buttonObject.args = objAction.args;
                 }
+
+                buttonObject.isCollidingPlayer = false;
             }
 
         },
@@ -58,19 +66,79 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/objects/action'], functio
             if (button.buttonAction == null) {
                 return;
             }
+
+            button.isCollidingPlayer = true;
+
+            
+            
+            if (playerSprite.body.touching.right) {
+                button.frame = 1;
+                //playerSprite.body.x += 10;
+                playerSprite.body.y = button.body.y - playerSprite.body.height + 5;
+                button.body.setSize(37, 8);
+                return;
+
+            }
+
+            if (playerSprite.body.touching.left) {
+                button.frame = 1;
+                //playerSprite.body.x -= 10;
+                playerSprite.body.y = button.body.y - playerSprite.body.height + 5;
+                button.body.setSize(37, 8);
+                //button.body.anchor.setSize(0.5, 0.5);
+                return;
+
+
+            }
+
             if (playerSprite.body.touching.down && !playerSprite.body.touching.right && !playerSprite.body.touching.left) {
+                //alert(playerSprite.body.y);
+                button.frame = 1;
+                playerSprite.body.y = button.body.y - playerSprite.body.height + 5;
+                button.body.setSize(37, 8);
+
+                //playerSprite.body.x -= 10;
+                //playerSprite.body.y = button.body.y - playerSprite.body.height + 5;
+
                 counter++;
                 if (counter == CONST_DELAY) {
                     counter = 0;
                     button.buttonAction(button.args);
                 }
             }
+            
+        },
+
+        handlerOverlap: function (playerSprite, button) {
+            button.isCollidingPlayer = true;
+            button.frame = 1;
+            button.body.setSize(37, 8);
+            playerSprite.body.y = button.body.y - playerSprite.body.height + 5;
+            playerSprite.body.velocity.x /= 2;
+            playerSprite.body.touching.down = true;
+            counter++;
+            if (counter == CONST_DELAY) {
+                counter = 0;
+                button.buttonAction(button.args);
+            }
         },
 
         /// @function updateObject
         /// Updates the group of buttons (to be called by the update() function of the game state)
         updateObjects: function () {
-            PhaserGame.game.physics.arcade.collide(player.sprite, this.group, this.handlerButton);
+            for (var i = 0 ; i < this.group.length ; ++i) {
+                this.group.children[i].isCollidingPlayer = false;
+            }
+            var test = PhaserGame.game.physics.arcade.collide(player.sprite, this.group, this.handlerButton);
+            if (!test) {
+                PhaserGame.game.physics.arcade.overlap(player.sprite, this.group, this.handlerOverlap);
+            }
+            for (var i = 0 ; i < this.group.length ; ++i) {
+                if (!this.group.children[i].isCollidingPlayer) {
+                    this.group.children[i].frame = 0;
+                    this.group.children[i].body.setSize(37, 11);
+                } 
+            }
         }
     }
 

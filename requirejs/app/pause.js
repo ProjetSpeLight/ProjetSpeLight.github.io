@@ -59,6 +59,9 @@ define(['phaser', 'app/phasergame'], function (Phaser, PhaserGame) {
     /// @param {Number} the abscissa of the ordinate
     /// @param {Phaser.Button} the button to check if the pointer is on
     function isOnButton(x, y, button) {
+        if (button == null) {
+            return false;
+        }
         var inf_x = button.position.x - PhaserGame.game.camera.x - button.width / 2;
         var sup_x = button.position.x - PhaserGame.game.camera.x + button.width / 2;
         var inf_y = button.position.y - PhaserGame.game.camera.y - button.height / 2;

@@ -23,6 +23,7 @@
     'app/states/finishLevelState',
     'app/states/chooseLevelState',
     'app/states/restartGameState',
+    'app/states/preludeState',
     'app/touch',
     'app/states/deadState',
     ],
@@ -36,16 +37,11 @@
     FinishLevelState,
     ChooseLevelState,
     RestartGameState,
+    PreludeState,
     Touch,
     DeadState    
     ) {
         document.addEventListener("deviceready", Touch.onDeviceReady, false);
-        /*if (screenfull.enabled) {
-            document.addEventListener(screenfull.raw.fullscreenerror, function (event) {
-                alert('Failed to enable fullscreen');
-            });
-            screenfull.request();
-        }*/
         PhaserGame.start();
         PhaserGame.game.state.add('Boot', BootState);
         PhaserGame.game.state.add('Preload', PreloadState);
@@ -55,6 +51,7 @@
         PhaserGame.game.state.add('ChooseLevel', ChooseLevelState);
         PhaserGame.game.state.add('RestartGame', RestartGameState);
         PhaserGame.game.state.add('Dead', DeadState);
+        PhaserGame.game.state.add('Prelude', PreludeState);
         PhaserGame.game.state.start('Boot');
     });
 }());

@@ -21,7 +21,7 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/touch'], function (Phaser
         var skin = platformData.skin;
         if (skin == null)
             // default value.
-            skin = "ground";
+            skin = "platform";
 
         // Attribute immovable
         var immovable = platformData.immovable;
@@ -47,6 +47,7 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/touch'], function (Phaser
         platform.body.immovable = immovable;
         platform.body.allowGravity = false;
         platform.id = id;
+        platform.objectType = 'platform';
 
         var size = platformData.size;
         if (size != null) {
@@ -241,16 +242,17 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/touch'], function (Phaser
         /// @function preloadObjectImage
         /// Preloads the different images / spritesheets used by this module
         preloadObjectsImages: function () {
-            PhaserGame.game.load.image('ground', 'assets/platform.png');
-            PhaserGame.game.load.image('groundRed', 'assets/platform_Rouge.png');
-            PhaserGame.game.load.image('groundBlue', 'assets/platform_Bleu.png');
-            PhaserGame.game.load.image('groundGreen', 'assets/platform_Vert.png');
+            PhaserGame.game.load.image('platform', 'assets/platform.png');
+            PhaserGame.game.load.image('platformRed', 'assets/platform_Rouge.png');
+            PhaserGame.game.load.image('platformBlue', 'assets/platform_Bleu.png');
+            PhaserGame.game.load.image('platformGreen', 'assets/platform_Vert.png');
             // PhaserGame.game.load.image('groundYellow', 'assets/platform_Jaune.png');
         },
 
         // Create all the object of type platform
         createObjectsGroup: function (levelData, Manager) {
             this.group = PhaserGame.game.add.physicsGroup();
+            
             // Intialization of the group in the manager
             Manager.EnumModule.PLATFORM.refGroup = this.group;
             createStillPlatforms(levelData, this.group);

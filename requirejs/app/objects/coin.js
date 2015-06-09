@@ -37,7 +37,7 @@ define(['phaser', 'app/phasergame', 'app/player'], function (Phaser, PhaserGame,
             for (var i = 0 ; i < data.length ; i++) {
                 var coinData = data[i];
 
-                var coin = this.group.create(coinData.x, coinData.y, coinData.skin);
+                var coin = this.group.create(coinData.x, coinData.y, 'coin');
                 if (coinData.value == null)
                     coin.value = 1;
                 else

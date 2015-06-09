@@ -1,4 +1,4 @@
-define(['phaser', 'app/objects/time', 'app/touch', 'app/phasergame'], function (Phaser, time, Touch,PhaserGame) {
+define(['phaser', 'app/objects/time', 'app/touch', 'app/phasergame', 'app/cook', 'app/music'], function (Phaser, time, Touch, PhaserGame, cook,music) {
     // 'use strict';
 
     function FinishLevelState(game) { }
@@ -12,18 +12,35 @@ define(['phaser', 'app/objects/time', 'app/touch', 'app/phasergame'], function (
             }
 
             var wellDone = this.add.text(300, 20, ' Bien joué !', { fontSize: '32px', fill: '#fff' });
-            var scoreDone = this.add.text(250, 50, ' Votre score est de '+PhaserGame.score, { fontSize: '32px', fill: '#fff' });
-            var timeDone = this.add.text(230, 80, ' Time: ', { fontSize: '32px', fill: '#fff' });
+            var scoreDone = this.add.text(250, 50, ' Votre score est de ' + PhaserGame.score, { fontSize: '32px', fill: '#fff' });
+            var timeDone = this.add.text(230, 80, ' Temps: ', { fontSize: '32px', fill: '#fff' });
             if (time.time >= 0) {
-                timeDone.text = 'Temps réalisé: ' + (time.timebegin - time.time) + ' sec !';
+                timeDone.text = 'Temps réalisé : ' + (time.timebegin - time.time) + ' secs !';
             } else {
                 timeDone.text = 'Pas de temps pour ce niveau ';
             }
-            var scoreFinal = this.add.text(70, 120, 'Score Final: Score Done + Bonus Time: ', { fontSize: '32px', fill: '#f00' });
+            var scoreFinal = this.add.text(70, 120, 'Score Final (Score + Bonus Temps) : ', { fontSize: '32px', fill: '#f00' });
+            var scoreSave;
             if (time.time >= 0) {
-                scoreFinal.text = 'Final Score = Score Done + Bonus Time = ' + PhaserGame.score+' + '+ (time.timebegin - time.time) +' = '+(PhaserGame.score+(time.timebegin - time.time))  ;
+                scoreSave = PhaserGame.score + time.time;
+                scoreFinal.text = 'Score Final (Score + Bonus Temps) : ' + PhaserGame.score + ' + ' + time.time + ' = ' + scoreSave;
             } else {
-                scoreFinal.text = 'Final Score = Score Done + Bonus Time = ' + PhaserGame.score+' + 0 = '+(PhaserGame.score)  ;
+                scoreSave = PhaserGame.score;
+                scoreFinal.text = 'Score Final (Score + Bonus Temps) : ' + PhaserGame.score + ' + 0 = ' + scoreSave;
+            }
+            // We search the label 'Level i' in the cookies
+            var str = "Level" + this.game.state.states['Game'].currentLevel;
+            var nb = cook.readCookie(str);
+
+            //if this label doesn't exist,
+            //we change the text to print the score
+            if (nb == null) {
+                cook.createCookie(str, scoreSave, 10);
+            } else {
+                // if this label exists, we check if the score is bigger than the previous one
+                if (nb < scoreSave) {
+                    cook.createCookie(str, scoreSave, 10);
+                }
             }
 
             var button_menu = this.add.button(400, 210, 'RetMenu', this.menuclick, this);
@@ -41,6 +58,9 @@ define(['phaser', 'app/objects/time', 'app/touch', 'app/phasergame'], function (
             button_next.anchor.setTo(0.5, 0.5);
             button_next.fixedToCamera = true;
 
+            this.add.text(50, 550, 'Appuyer sur Espace pour passer au niveau suivant', { fontSize: '42px', fill: '#fff' });
+
+
         },
 
         menuclick: function () {
@@ -56,8 +76,15 @@ define(['phaser', 'app/objects/time', 'app/touch', 'app/phasergame'], function (
             if (this.game.nbLevel < this.game.state.states['Game'].currentLevel) {
                 this.state.start('MainMenu', true, false);
             } else {
+                music.stopMusic();
                 this.state.start('Game', true, false);
 
+            }
+        },
+
+        update: function () {
+            if (PhaserGame.game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)) {
+                this.next();
             }
         }
 

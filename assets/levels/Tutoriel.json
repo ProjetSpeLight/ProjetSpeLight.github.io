@@ -1,131 +1,131 @@
 {
-  "worldBounds": {
-    "leftBound": 0,
-    "rightBound": 3000,
-    "upperBound": 0,
-    "lowerBound": 600
-  },
-  "background": "sky",
-  "playerStart": {
-    "x": 50,
-    "y": 500
-  },
-  "platforms": [
-    {
-      "position": {
-        "x": 0,
-        "y": 560
-      },
-      "size": {
-        "x": 60,
-        "y": 2
-      }
+    "worldBounds": {
+        "leftBound": 0,
+        "rightBound": 3000,
+        "upperBound": 0,
+        "lowerBound": 600
     },
-    {
-      "position": {
-        "x": 300,
-        "y": 440
-      },
-      "size": {
-        "x": 6
-      }
+    "background": "sky",
+    "playerStart": {
+        "x": 50,
+        "y": 500
     },
-    {
-      "position": {
-        "x": 500,
-        "y": 360
-      },
-      "size": {
-        "x": 4
-      }
-    },
-    {
-      "position": {
-        "x": 525,
-        "y": 360
-      },
-      "color": "Red"
-    },
-    {
-      "position": {
-        "x": 1100,
-        "y": 560
-      },
-      "color": "Red"
-    },
-    {
-      "position": {
-        "x": 1400,
-        "y": 560
-      },
-      "size": {
-        "x": 25,
-        "y": 2
-      }
-    },
-    {
-      "position": {
-        "x": 2220,
-        "y": 110
-      },
-      "size": {
-        "x": 40,
-        "y": 2
-      }
-    }
-  ],
-  "backAndForthPlatforms": [
-    {
-      "positions": [
+    "platforms": [
         {
-          "x": 1900,
-          "y": 460,
-          "speed": {
-            "x": 200,
-            "y": 0
-          }
+            "position": {
+                "x": 0,
+                "y": 560
+            },
+            "size": {
+                "x": 60,
+                "y": 2
+            }
         },
         {
-          "x": 2100,
-          "y": 460,
-          "speed": {
-            "x": 0,
-            "y": -200
-          }
+            "position": {
+                "x": 300,
+                "y": 440
+            },
+            "size": {
+                "x": 6
+            }
         },
         {
-          "x": 2100,
-          "y": 100
+            "position": {
+                "x": 500,
+                "y": 360
+            },
+            "size": {
+                "x": 4
+            }
+        },
+        {
+            "position": {
+                "x": 525,
+                "y": 360
+            },
+            "color": "Red"
+        },
+        {
+            "position": {
+                "x": 1100,
+                "y": 560
+            },
+            "color": "Red"
+        },
+        {
+            "position": {
+                "x": 1400,
+                "y": 560
+            },
+            "size": {
+                "x": 25,
+                "y": 2
+            }
+        },
+        {
+            "position": {
+                "x": 2220,
+                "y": 110
+            },
+            "size": {
+                "x": 40,
+                "y": 2
+            }
         }
-      ],
-      "size": {
-        "x": 6
-      }
-    }
-  ],
-  "coins": [
-    {
-      "x": 380,
-      "y": 410,
-      "skin": "coin"
-    },
-    {
-      "x": 700,
-      "y": 530,
-      "skin": "coin"
-    }
-  ],
-  "piques": [
-    {
-      "x": 900,
-      "y": 525,
-      "skin": "pique",
-      "size": {
-        "x": 3,
-        "y": 2
-      }
-    }
-  ],
+    ],
+    "backAndForthPlatforms": [
+        {
+            "positions": [
+                {
+                    "x": 1900,
+                    "y": 460,
+                    "speed": {
+                        "x": 200,
+                        "y": 0
+                    }
+                },
+                {
+                    "x": 2100,
+                    "y": 460,
+                    "speed": {
+                        "x": 0,
+                        "y": -200
+                    }
+                },
+                {
+                    "x": 2100,
+                    "y": 100
+                }
+            ],
+            "size": {
+                "x": 6
+            }
+        }
+    ],
+    "coins": [
+        {
+            "x": 380,
+            "y": 410,
+            "skin": "coin"
+        },
+        {
+            "x": 700,
+            "y": 530,
+            "skin": "coin"
+        }
+    ],
+    "piques": [
+        {
+            "x": 900,
+            "y": 525,
+            "skin": "pique",
+            "size": {
+                "x": 3,
+                "y": 2
+            }
+        }
+    ],
     "ennemis": [
         {
             "x": 1600,
@@ -140,7 +140,8 @@
                 "x": 150,
                 "y": 0
             },
-            "skin": "baddie"
+            "type":"flying"
+
         }
     ],
     "ends": [
@@ -151,37 +152,44 @@
     ],
     "texts": [
         {
-            "x": 20,
+            "x": 10,
             "y": 400,
-            "message": "Use arrow keys to move \n and jump"
-        },
-      {
-        "x": 400,
-        "y": 270,
-        "message": "You can gain a primary color here \n press <DOWN> on the platform"
-      },
-      {
-        "x": 760,
-        "y": 400,
-        "message": "The piques and ennemis \n will make you lose your color \n before they can kill you"
-      },
-      {
-        "x": 1180,
-        "y": 300,
-        "message": "Falling out of the map \n will get you killed though"
-      },
-      {
-        "x": 1400,
-        "y": 400,
-        "message": "To kill the ennemi \n shoot some photons at him with <SPACE>"
-      },
-      {
-        "x": 2450,
-        "y": 250,
-        "message": "Here's the end of the level"
-      }
+            "en": "Use arrow keys to move \n and jump",
+            "fr": "Utilise les flèches \n pour te déplacer et sauter"
 
-      
+        },
+        {
+            "x": 380,
+            "y": 250,
+            "en": "You can gain a primary color here \n press <DOWN> on the platform",
+            "fr": "Sur une plateforme colorée, \n appuyes sur la flèche du bas \n pour gagner cette couleur"
+        },
+        {
+            "x": 780,
+            "y": 400,
+            "en": "The pikes and enemies \n will make you lose your color \n before they can kill you",
+            "fr": "Les piques et ennemis \n te font perdre tes couleurs \n avant de pouvoir te tuer."
+        },
+        {
+            "x": 1080,
+            "y": 300,
+            "en": "Falling out of the map \n will get you killed though",
+            "fr": "Tomber dans un trou \n te tueras instantanément en revanche"
+        },
+        {
+            "x": 1350,
+            "y": 400,
+            "en": "To kill the enemies \n shoot some photons at him with <SPACE>",
+            "fr": "Pour tuer tes ennemis \n tire leur des photons dessus avec la barre d'espace"
+        },
+        {
+            "x": 2650,
+            "y": 200,
+            "en": "Here's the end of the level",
+            "fr": "Voici la fin du niveau!"
+        }
+
+
     ]
 
 }
