@@ -45,7 +45,7 @@ define([
                 }
                this.game.scale.setUserScale(width/800.0, height/600.0);
                 //this.game.scale.scaleMode = Phaser.ScaleManager.USER_SCALE;
-               this.scale.scaleMode = Phaser.ScaleManager.EXACT_FIT;
+               this.game.scale.scaleMode = Phaser.ScaleManager.EXACT_FIT;
                //this.game.scale.fullScreenScaleMode = Phaser.ScaleManager.EXACT_FIT; // Important
                 this.game.scale.pageAlignHorizontally = true;
                 this.game.scale.pageAlignVertically = true;
