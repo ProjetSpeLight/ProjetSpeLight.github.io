@@ -41,10 +41,12 @@ define([
                    width = window.innerWidth - window.innerWidth * 5 / 100;
                    height = window.innerHeight - window.innerHeight * 5 / 100;
                }
-               if ('orientation' in screen) {
+               /*if ('orientation' in screen) {
                    var lockOrientation = screen.lockOrientation || screen.mozLockOrientation || screen.msLockOrientation
-                   lockOrientation('landscape');
-                }
+                   if (lockOrientation != null) {
+                       lockOrientation('landscape');
+                   }
+                }*/
                this.game.scale.setUserScale(width/800.0, height/600.0);
                 //this.game.scale.scaleMode = Phaser.ScaleManager.USER_SCALE;
                this.game.scale.scaleMode = Phaser.ScaleManager.EXACT_FIT;
