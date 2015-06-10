@@ -9,22 +9,6 @@
     }
 
     PreludeState.prototype = {
-
-        preload: function () {
-            //Images
-            this.load.image('BG_good', 'assets/intro/BG_good.jpg');
-            this.load.image('BG_bad', 'assets/intro/BG_bad.jpg');
-            this.load.image('lumiere', 'assets/intro/lumiere.png');
-            this.load.image('rain', 'assets/intro/rain.png');
-            this.load.spritesheet('boules', 'assets/Objects/plateformeCouleur.png', 100, 100);
-            //Son
-            this.load.audio('son_eclair', ['assets/audio/eclair.mp3', 'assets/audio/eclair.ogg']);
-            this.load.audio('son_pluie', ['assets/audio/pluie.mp3', 'assets/audio/pluie.ogg']);
-            this.load.audio('conte', ['assets/audio/Conte.mp3', 'assets/audio/Conte.ogg']);
-            this.load.audio('heros', ['assets/audio/Heros.mp3', 'assets/audio/Heros.ogg']);
-            this.load.audio('desastre', ['assets/audio/Desastre.mp3', 'assets/audio/Desastre.ogg']);
-        },
-
         create: function () {
             //Mise en route du moteur
             PhaserGame.game.physics.startSystem(Phaser.Physics.ARCADE);
