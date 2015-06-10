@@ -1,4 +1,4 @@
-// This module gathers the objects related to reflexion of the game to centralize some actions
+﻿// This module gathers the objects of the game to centralize some actions (preload images, creation, update...)
 define(['phaser',
         'app/phasergame',
         'app/objects/mirror',
@@ -28,7 +28,7 @@ function (Phaser,
           wall,
           runner) {
 
-    // Enumeration of the different object modules handled by the manager with their id and a reference to their group
+    // Enumeration of the different object modules handled by the manager with their id and a reference to their group (used to define actions for switchs and buttons)
     var EnumModule = {
         MIRROR: { idGroup: 0, refGroup: null },
         FILTER: { idGroup: 1, refGroup: null },
@@ -53,6 +53,8 @@ function (Phaser,
 
         EnumModule: EnumModule,
 
+        /// @function preloadObjects
+        /// Preloads the different images / spritesheets used by the modules handled by the manager
         preloadObjects: function () {
             mirror.preloadObjectsImages();
             filter.preloadObjectsImages();
@@ -64,14 +66,14 @@ function (Phaser,
             coin.preloadObjectsImages();
             end.preloadObjectsImages();
             wall.preloadObjectsImages();
-            runner.preloadObjectsImages();
         },
 
         /// @function createObjects
         /// Creates the different groups the manager handles
         /// @param {Object} Data from the JSON file
         createObjects: function (data) {
-            // Initialization
+
+            // Initialization of the scope variables
             freeze = false;
             target = null;
 
@@ -99,7 +101,6 @@ function (Phaser,
         /// @function updateObjects
         /// Updates the different groups the manager handles
         updateObjects: function () {
-            // First, we define the collisions without handler
             wall.updateObjects();
             end.updateObjects();
             coin.updateObjects();
@@ -140,7 +141,9 @@ function (Phaser,
             return null;
         },
 
-
+        /// @function freezeGame
+        /// Makes all the objects immovables by reducing their speed to zero (and saves their current speed to bring back it later)
+        /// @param {Phaser.Sprite} A reference to the only one object which is not affected by the freeze
         freezeGame: function (targetSwitch) {
             if (freeze) {
                 return;
@@ -151,14 +154,18 @@ function (Phaser,
                 var group = this.EnumModule[elt].refGroup;
                 for (var i = 0 ; i < group.length ; ++i) {
                     var child = group.children[i];
-                    child.freezeSaveVelocityX = child.body.velocity.x;
-                    child.freezeSaveVelocityY = child.body.velocity.y;
-                    child.body.velocity.x = 0;
-                    child.body.velocity.y = 0;
+                    if (child != target) {
+                        child.freezeSaveVelocityX = child.body.velocity.x;
+                        child.freezeSaveVelocityY = child.body.velocity.y;
+                        child.body.velocity.x = 0;
+                        child.body.velocity.y = 0;
+                    }
                 }
             }
         },
 
+        /// @function relaunchGame
+        /// Brings back the speed of all the objects (except the target) at their values before the freeze
         relaunchGame: function () {
             if (!freeze) {
                 return;

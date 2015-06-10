@@ -1,16 +1,8 @@
-define(['phaser'], function (Phaser) {
-    //'use strict';
-
+﻿define(['phaser'], function (Phaser) {
     return {
         game: null,
         start: function () {
             this.game = new Phaser.Game(800, 600, Phaser.AUTO, '');
-
-            //if(game.device.iOS){
-            //game.scale.startFullScreen();
-            //}
         }
     }
-
-
 });

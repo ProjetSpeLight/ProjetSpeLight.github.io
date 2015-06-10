@@ -1,7 +1,7 @@
 
 define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/phasergame', 'app/touch', 'app/objects/time', 'app/objects/objectsManager', 'app/music', 'app/objects/switch'], function (Phaser, createLevel, player, pause, PhaserGame, Touch, time, objectsManager, musicObject, moduleSwitch) {
 
-    function GameState(game) { }
+    function GameState(game) {}
 
     // Boolean used to stopped the game where the level can not be loaded
     var stopped = false;
@@ -237,36 +237,8 @@ define(['phaser', 'app/createLevel', 'app/player', 'app/pause', 'app/phasergame'
                     }
                     player.kill();
                 }
-
-
             }
-        },
-
-        render: function () {
-            //this.game.debug.cameraInfo(this.game.camera, 32, 32);
-            //PhaserGame.game.debug.body(player.sprite);
-            /*for (var i = 0 ; i < piqueObject.group.length ; i++) {
-                PhaserGame.game.debug.body(piqueObject.group.children[i]);
-            }*/
-
-            /* for (var i = 0 ; i < objectsManager.EnumModule.MIRROR.refGroup.children.length ; i++) {
-                 PhaserGame.game.debug.body(objectsManager.EnumModule.MIRROR.refGroup.children[i]);
-             }*/
-            /*for (var i = 0 ; i < objectsManager.EnumModule.PLATFORM.refGroup.children.length ; i++) {
-                var child = objectsManager.EnumModule.PLATFORM.refGroup.children[i];
-                if (child.spriteColor != null) {
-                    PhaserGame.game.debug.spriteInfo(child.spriteColor, 30, 100*i);
-                }
-            }*/
-            
-
-           /* for (var i = 0 ; i < objectsManager.EnumModule.BUTTON.refGroup.children.length ; i++) {
-                PhaserGame.game.debug.body(objectsManager.EnumModule.BUTTON.refGroup.children[i]);
-            }*/
-            //PhaserGame.game.debug.spriteInfo(player.sprite, 32, 32);
-            //PhaserGame.game.debug.body(player.sprite);
-        },
-
+        },      
 
     };
 

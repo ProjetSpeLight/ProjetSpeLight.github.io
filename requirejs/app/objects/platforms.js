@@ -4,17 +4,24 @@
 
 define(['phaser', 'app/phasergame', 'app/player', 'app/touch'], function (Phaser, PhaserGame, player, Touch) {
 
+    /************ CONSTANTS ****************/
+    // Scale to apply for the image of the color platforms
     var spriteColorScale = 0.5;
+    // Height of the image of the color platforms
     var initSpriteColorHeight = 100;
+
+    /************ END CONSTANTS ****************/
+
+
     /// @function initializeColoredPlatforms
     /// Initializes the sprite for the animation
     function initializeColoredPlatforms(platform) {
         platform.spriteColor = PhaserGame.game.add.sprite(platform.body.x, platform.body.y - 2 * initSpriteColorHeight * spriteColorScale - platform.body.width / 2, 'color');
-        platform.spriteColor.scale = new Phaser.Point(0.5, 0.5);
+        platform.spriteColor.scale = new Phaser.Point(spriteColorScale, spriteColorScale);
         PhaserGame.game.physics.arcade.enable(platform.spriteColor);
 
         initializeAnimationColor(platform.spriteColor);
-        
+
         platform.spriteColor.circleCenterX = platform.body.x + platform.body.width / 2;
         platform.spriteColor.circleCenterY = platform.body.y - 2 * initSpriteColorHeight * spriteColorScale - platform.body.height / 2;
         platform.spriteColor.circleRadius = platform.body.width / 2;
@@ -22,10 +29,10 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/touch'], function (Phaser
 
     /// @function initializeAnimationColor
     /// Initializes the animation around the colored platforms
-    function initializeAnimationColor(spriteColor) {       
+    function initializeAnimationColor(spriteColor) {
         spriteColor.animations.add('moveRed', [0, 1, 2, 3], 4, true);
-        spriteColor.animations.add('moveBlue', [4,5,6,7], 4, true);
-        spriteColor.animations.add('moveGreen', [8,9,10,11], 4, true);
+        spriteColor.animations.add('moveBlue', [4, 5, 6, 7], 4, true);
+        spriteColor.animations.add('moveGreen', [8, 9, 10, 11], 4, true);
     }
 
     /// @function setParameters
@@ -90,7 +97,7 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/touch'], function (Phaser
         }
 
         // if the platform is set as crossable the player can jump through it from beow and cross it from side to side
-        if (platform.body.immovable == false) 
+        if (platform.body.immovable == false)
             platformData.crossable = true;
 
         if (platformData.crossable == true) {
@@ -105,6 +112,7 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/touch'], function (Phaser
             platform.body.checkCollision.down = true;
         }
 
+        // If it is a color platform, we create the corresponding animation
         if (platform.color != "") {
             initializeColoredPlatforms(platform);
             platform.spriteColor.animations.play('move' + platform.color);
@@ -125,7 +133,7 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/touch'], function (Phaser
             for (var i = 0 ; i < dataPlatforms.length ; i++) {
                 var platformData = dataPlatforms[i];
                 var platform = setParameters(platformData, platforms);
-               
+
                 this.stillPlatforms.push(platform);
             }
 
@@ -171,19 +179,19 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/touch'], function (Phaser
     }
 
     /// @function makeColor
-    /// If the player is on a colored platform and is pressing the down key it will call the changing color method of the player
+    /// If the player is on a colored platform and is pressing the down key, it will call the changing color method of the player
     function makeColor(sprite, colorPlatform) {
-        // Oblige le joueur à etre au dessus 
-        //de la plateforme coloree pour changer de couleur
+        // Force the player to be on the top of the platform to change its color
         if (playerRidingPlatform(colorPlatform)) {
-            // Oblige le joueur à appuyer 
-            //sur la touche du bas pour changer de couleur
+            // Force the player to press the down arrow key to change color, or use the button for the mobile version
             if (PhaserGame.game.input.keyboard.isDown(Phaser.Keyboard.DOWN) || player.changeColor) {
                 player.changePlayerColor(colorPlatform.color);
             }
         }
     }
 
+    /// @function processColor
+    /// Displays a button for the mobile version to allow the player to change its color
     function processColor(sprite, colorplatform) {
         if (colorplatform.color == "") {
             if (!PhaserGame.game.device.desktop) {
@@ -259,6 +267,7 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/touch'], function (Phaser
     }
 
     // used only for colored platforms
+    /// Makes the animation of the color platforms (the flame)
     function updateSpriteColor(group) {
         group.children.forEach(function (element) {
             if (element.color != "") {
@@ -295,21 +304,16 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/touch'], function (Phaser
 
         group: null,
 
-        // sprite for the animation of the colored platforms
-        //spriteColor: null,
-
-
 
         /// @function preloadObjectImage
         /// Preloads the different images / spritesheets used by this module
         preloadObjectsImages: function () {
-            PhaserGame.game.load.image('platform', 'assets/platform.png');
-            PhaserGame.game.load.image('platformFissure', 'assets/platformFissure.png');
-            PhaserGame.game.load.image('platformRed', 'assets/platform_Rouge.png');
-            PhaserGame.game.load.image('platformBlue', 'assets/platform_Bleu.png');
-            PhaserGame.game.load.image('platformGreen', 'assets/platform_Vert.png');
-            // PhaserGame.game.load.image('groundYellow', 'assets/platform_Jaune.png');
-            PhaserGame.game.load.spritesheet('color', 'assets/plateformeCouleur.png', 100, 100);
+            PhaserGame.game.load.image('platform', 'assets/Objects/platform.png');
+            PhaserGame.game.load.image('platformFissure', 'assets/Objects/platformFissure.png');
+            PhaserGame.game.load.image('platformRed', 'assets/Objects/platform_Rouge.png');
+            PhaserGame.game.load.image('platformBlue', 'assets/Objects/platform_Bleu.png');
+            PhaserGame.game.load.image('platformGreen', 'assets/Objects/platform_Vert.png');
+            PhaserGame.game.load.spritesheet('color', 'assets/Objects/plateformeCouleur.png', 100, 100);
         },
 
         // Create all the object of type platform

@@ -1,5 +1,4 @@
-define(['phaser', 'app/pause', 'app/phasergame', 'app/objects/objectsManager', 'app/music', 'app/player'], function (Phaser, pause, PhaserGame, Manager, music, player) {
-    // 'use strict';
+﻿define(['phaser', 'app/pause', 'app/phasergame', 'app/objects/objectsManager', 'app/music', 'app/player'], function (Phaser, pause, PhaserGame, Manager, music, player) {
 
     function PreloadState(game) { }
 
@@ -42,7 +41,6 @@ define(['phaser', 'app/pause', 'app/phasergame', 'app/objects/objectsManager', '
             this.load.image('buttonNextLevel', 'assets/button_nextlevel.png');
             this.load.spritesheet('bouton', 'assets/boutons/Boutons.png', 190, 68);
             this.load.spritesheet('accelerometre', 'assets/boutons/Accelerometre.png', 190, 68);
-            this.load.spritesheet('photon', 'assets/photons.png', 20, 20);
         },
 
         create: function () {

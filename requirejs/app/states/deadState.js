@@ -1,11 +1,11 @@
-define([], function () {
+﻿define([], function () {
 
     function DeadState(game) { };
 
     DeadState.prototype = {
         create: function () {
 
-            //Fond
+            // Background
             title = this.game.add.sprite(0, 0, 'BG_bad');
             var coef = 600 / 720;
             title.scale.x = coef;

@@ -1,4 +1,4 @@
-define(['phaser', 'app/phasergame', 'app/player'], function (Phaser, PhaserGame, player) {
+﻿define([], function () {
 
     // Declaration of the enumeration representing the color of the player
     var ColorEnum = {
@@ -26,6 +26,8 @@ define(['phaser', 'app/phasergame', 'app/player'], function (Phaser, PhaserGame,
     }
 
 
+    /// @function additiveColor
+    /// Returns the color obtain when we add the two colors in argument
     function additiveColor(oldColor, newColor) {
         if (subAdditiveColorMagenta(oldColor, newColor) || subAdditiveColorMagenta(newColor, oldColor)) {
             return ColorEnum.MAGENTA;

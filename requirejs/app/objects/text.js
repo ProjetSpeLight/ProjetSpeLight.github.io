@@ -1,22 +1,18 @@
-define(['phaser', 'app/phasergame', 'app/player'], function (Phaser, PhaserGame, player) {
+﻿define(['phaser', 'app/phasergame', 'app/player'], function (Phaser, PhaserGame, player) {
 
 
     return {
-
-
         // Object containing the physic group of coins
         group: null,
-        
+
         /// @function preloadObjectImage
         /// Preloads the different images / spritesheets used by this module
-        preloadObjectsImages: function () {
-        },
+        preloadObjectsImages: function () { },
 
         /// @function createObjectsGroup
         /// Create the differents objects defines in the JSON file represented by this module
         /// @param {Array} Array of elements representing 
         createObjectsGroup: function (data, Manager) {
-
             this.group = PhaserGame.game.add.group();
             // Intialization of the group in the manager
             Manager.EnumModule.TEXT.refGroup = this.group;
@@ -28,13 +24,9 @@ define(['phaser', 'app/phasergame', 'app/player'], function (Phaser, PhaserGame,
                     var text = PhaserGame.game.add.text(textData.x, textData.y, textData.fr, style);
                 }
             }
-
-
         },
 
-        updateObjects: function () {
-
-        }
+        updateObjects: function () { }
     }
 
 });

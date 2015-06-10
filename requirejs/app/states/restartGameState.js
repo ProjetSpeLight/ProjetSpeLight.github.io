@@ -1,4 +1,4 @@
-define(['app/music'], function (musique) {
+﻿define(['app/music'], function (musique) {
 
     function RestartGameState(game) { };
 

@@ -1,4 +1,4 @@
-define(['phaser', 'app/phasergame', 'app/player', 'app/objects/action'], function (Phaser, PhaserGame, player, action) {
+﻿define(['phaser', 'app/phasergame', 'app/player', 'app/objects/action'], function (Phaser, PhaserGame, player, action) {
 
     /************ CONSTANTS ****************/
     // Delay in order not to trigger the action at each update
@@ -21,7 +21,7 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/objects/action'], functio
         /// @function preloadObjectImage
         /// Preloads the different images / spritesheets used by this module
         preloadObjectsImages: function () {
-            PhaserGame.game.load.spritesheet('button', 'assets/bouton.png', 37, 11);
+            PhaserGame.game.load.spritesheet('button', 'assets/Objects/bouton.png', WIDTH_BUTTON, HEIGHT_BUTTON_RELEASED);
         },
 
         /// @function createObjectsGroup

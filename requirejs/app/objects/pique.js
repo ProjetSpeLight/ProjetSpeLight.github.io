@@ -1,9 +1,9 @@
-define(['phaser', 'app/phasergame', 'app/player', 'app/objects/platforms', 'app/objects/ennemi'], function (Phaser, PhaserGame, player, platforms, ennemiObject) {
+﻿define(['phaser', 'app/phasergame', 'app/player', 'app/objects/platforms', 'app/objects/ennemi'], function (Phaser, PhaserGame, player, platforms, ennemiObject) {
 
 
-    // Function which allow the pique to kill the enemies
+    // Function which allows the pique to kill the enemies
     function killEnnemiPique(pique, ennemi) {
-        ennemi.kill();
+        ennemi.destroy();
     }
 
     function killPlayerPique(playerSprite, pique) {
@@ -18,7 +18,7 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/objects/platforms', 'app/
         /// @function preloadObjectImage
         /// Preloads the different images / spritesheets used by this module
         preloadObjectsImages: function () {
-            PhaserGame.game.load.image('pique', 'assets/pique.png');
+            PhaserGame.game.load.image('pique', 'assets/Objects/pique.png');
         },
 
 
@@ -38,31 +38,21 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/objects/platforms', 'app/
                 var pique = this.group.create(piqueData.x, piqueData.y, piqueData.skin);
                 for (var j = 1; j <= piqueData.size.x; j++) {
                     var pique = this.group.create(piqueData.x + j * pique.body.width, piqueData.y, piqueData.skin);
-                    pique.id = piqueData.id
+                    pique.id = piqueData.id;
+                    if (pique.id == null) {
+                        pique.id = -1;
+                    }
                 }
-                /* pique.hitArea = new Phaser.Polygon([new Phaser.Point(0, pique.body.height),
-                                                     new Phaser.Point(pique.body.width, pique.body.height),
-                                                     new Phaser.Point(pique.body.width / 2, 0)]);*/
-                //pique.hitArea = new Phaser.Rectangle(0, 0, 200, 200);
-
-                /*PhaserGame.game.physics.p2.enable(pique);
-               pique.body.addPolygon({ optimalDecomp: false, skipSimpleCheck: true, removeCollinearPoints: false },
-                   [new Phaser.Point(0, pique.body.height),
-                    new Phaser.Point(pique.body.width, pique.body.height),
-                    new Phaser.Point(pique.body.width / 2, 0)
-                   ]);*/
             }
 
         },
 
+        /// @function updateObject
+        /// Updates the group of filters (to be called by the update() function of the objects manager)
         updateObjects: function () {
             PhaserGame.game.physics.arcade.collide(this.group, platforms.group);
             PhaserGame.game.physics.arcade.collide(this.group, ennemiObject.group, killEnnemiPique, null, this);
             PhaserGame.game.physics.arcade.overlap(player.sprite, this.group, killPlayerPique, null, this);
-
-            /* PhaserGame.game.physics.p2.collide(this.group, platforms); 
-             PhaserGame.game.physics.p2.collide(this.group, ennemiObject.group, killEnnemiPique, null, this);
-             PhaserGame.game.physics.p2.overlap(player.sprite, this.group, killPlayerPique, null, this);*/
         }
 
     }

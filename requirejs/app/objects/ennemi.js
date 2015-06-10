@@ -1,9 +1,21 @@
-/**
-  * This module defines the sprite representing the ennemis
+﻿/**
+  * This module defines the sprite representing the enemies
   *
   */
 
 define(['phaser', 'app/phasergame', 'app/player', 'app/photon'], function (Phaser, PhaserGame, player, photon) {
+
+
+    /********* CONSTANTS ************/
+    var WIDTH_NORMAL_ENEMY = 60;
+    var HEIGHT_NORMAL_ENEMY = 100;
+
+    var WIDTH_FLYING_ENEMY = 75;
+    var HEIGHT_FLYING_ENEMY = 60;
+
+
+    /********* END CONSTANTS ************/
+
 
 
 
@@ -39,8 +51,8 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/photon'], function (Phase
         /// @function preloadObjectImage
         /// Preloads the different images / spritesheets used by this module
         preloadObjectsImages: function () {
-            PhaserGame.game.load.spritesheet('normalEnemy', 'assets/Ennemi_fat.png', 60, 100);
-            PhaserGame.game.load.spritesheet('flyingEnemy', 'assets/Fantome.png', 75, 60);
+            PhaserGame.game.load.spritesheet('normalEnemy', 'assets/Objects/NormalEnemy.png', WIDTH_NORMAL_ENEMY, HEIGHT_NORMAL_ENEMY);
+            PhaserGame.game.load.spritesheet('flyingEnemy', 'assets/Objects/Fantome.png', WIDTH_FLYING_ENEMY, HEIGHT_FLYING_ENEMY);
 
         },
 
@@ -104,19 +116,15 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/photon'], function (Phase
                 ennemi.body.bounce.y = 1;
                 ennemi.body.bounce.x = 1;
 
-                PhaserGame.game.physics.arcade.enable(ennemi); // Physics parameter
-
                 if (enemyType == 'normal') {
                     ennemi.nbLives = 3;
                     ennemi.animations.add('animNormal', [0, 1, 2, 3], 6, true);
                     ennemi.play('animNormal');
-                    ennemi.body.gravity.y = 1000;
                 } else {
                     ennemi.nbLives = 1;
                     ennemi.animations.add('animFlying', [0, 1, 2, 1], 6, true);
                     ennemi.play('animFlying');
                     ennemi.scale.setTo(0.6, 0.6);
-                    ennemi.body.gravity.y = 0;
                 }
                 ennemi.LifeBarShown = false;
                 ennemi.LifeBarLifeTime = 100;

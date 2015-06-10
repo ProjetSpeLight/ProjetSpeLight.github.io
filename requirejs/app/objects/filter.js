@@ -1,4 +1,4 @@
-define(['phaser', 'app/phasergame', 'app/player', 'app/color'], function (Phaser, PhaserGame, player, Color) {
+﻿define(['phaser', 'app/phasergame', 'app/player', 'app/color'], function (Phaser, PhaserGame, player, Color) {
 
     /// @function applyFilter
     /// Handler called when the player overlap a filter
@@ -9,14 +9,15 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/color'], function (Phaser
     /// @function applyFilter
     /// Handler called when a photon thrown by the player overlap a filter
     function applyFilterPhoton(photon, filter) {
+        // We apply the filter on the photon
         photon.color = Color.subFilterColor(photon.color, Color.getColor(filter.color));
+        // If it has no color anymore, it is killed
         if (photon.color.name == 'Black') {
             photon.kill();
             return;
         }
-        //photon.frame = (photon.color.value - 1) * 6; si anim
+        // Otherwise, we change the frame to display its new color
         photon.frame = (photon.color.value - 1);
-
     }
 
 
@@ -33,17 +34,17 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/color'], function (Phaser
 
 
 
-        /***** Methodes *****/
+        /***** Methods *****/
 
         /// @function preloadObjectImage
         /// Preloads the different images / spritesheets used by this module
         preloadObjectsImages: function () {
-            PhaserGame.game.load.image('filterBlue', 'assets/Filters/FilterBlue.png');
-            PhaserGame.game.load.image('filterRed', 'assets/Filters/FilterRed.png');
-            PhaserGame.game.load.image('filterGreen', 'assets/Filters/FilterGreen.png');
-            PhaserGame.game.load.image('filterMagenta', 'assets/Filters/FilterMagenta.png');
-            PhaserGame.game.load.image('filterYellow', 'assets/Filters/FilterYellow.png');
-            PhaserGame.game.load.image('filterCyan', 'assets/Filters/FilterCyan.png');
+            PhaserGame.game.load.image('filterBlue', 'assets/Objects/Filters/FilterBlue.png');
+            PhaserGame.game.load.image('filterRed', 'assets/Objects/Filters/FilterRed.png');
+            PhaserGame.game.load.image('filterGreen', 'assets/Objects/Filters/FilterGreen.png');
+            PhaserGame.game.load.image('filterMagenta', 'assets/Objects/Filters/FilterMagenta.png');
+            PhaserGame.game.load.image('filterYellow', 'assets/Objects/Filters/FilterYellow.png');
+            PhaserGame.game.load.image('filterCyan', 'assets/Objects/Filters/FilterCyan.png');
         },
 
         /// @function createObjectsGroup
@@ -70,16 +71,21 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/color'], function (Phaser
                     filter.id = filterData.id;
                 }
 
+                // Boolean indicate if the filter has to be displayed horizontally or vertically
+                // True => horizontal
+                // False => vertical
                 var turned = false;
                 if (filterData.turned != null) {
                     turned = filterData.turned;
                 }
 
+                // Integer which indicate the scale of the filter
                 var size = 1;
                 if (filterData.size != null) {
                     size = filterData.size;
                 }
 
+                // We apply the two last parameters and change in consequence the hit box
                 var height = filter.body.height;
                 var width = filter.body.width;
 
@@ -87,8 +93,8 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/color'], function (Phaser
 
                 if (turned) {
                     filter.anchor.setTo(0.5, 0.5);
-                    filter.angle = 90;          
-                    filter.body.setSize(size*height, width / 2);
+                    filter.angle = 90;
+                    filter.body.setSize(size * height, width / 2);
                 }
             }
         },
@@ -99,8 +105,6 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/color'], function (Phaser
             PhaserGame.game.physics.arcade.overlap(player.sprite, this.group, applyFilter);
             PhaserGame.game.physics.arcade.overlap(player.refPhotons.photons, this.group, applyFilterPhoton);
         }
-
-
     }
 
 });

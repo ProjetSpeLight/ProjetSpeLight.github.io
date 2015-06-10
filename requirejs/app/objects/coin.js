@@ -1,5 +1,12 @@
 ﻿define(['app/phasergame', 'app/player'], function (PhaserGame, player) {
 
+    /************ CONSTANTS ****************/
+
+    // Value of a coin
+    var COIN_VALUE = 1;
+
+    /************ END CONSTANTS ****************/
+
     function collectCoin(player, coin) {
         // Removes the star from the screen
         coin.destroy();
@@ -8,15 +15,13 @@
     }
 
     return {
-
-
         // Object containing the physic group of coins
         group: null,
 
         /// @function preloadObjectImage
         /// Preloads the different images / spritesheets used by this module
         preloadObjectsImages: function () {
-            PhaserGame.game.load.image('coin', 'assets/star.png');
+            PhaserGame.game.load.image('coin', 'assets/Objects/star.png');
         },
 
         /// @function createObjectsGroup
@@ -39,7 +44,7 @@
                 var coinData = data[i];
                 var coin = this.group.create(coinData.x, coinData.y, 'coin');
                 if (coinData.value == null)
-                    coin.value = 1;
+                    coin.value = COIN_VALUE;
                 else
                     coin.value = coinData.value;
             }

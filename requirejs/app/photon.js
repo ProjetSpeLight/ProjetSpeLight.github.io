@@ -1,8 +1,15 @@
-/**
+﻿/**
  * This file implements the functions related to the photon
  */
 
 define(['phaser', 'app/phasergame', 'app/color', 'app/music'], function (Phaser, PhaserGame, Color, music) {
+
+    /***********  CONSTANTS ***************/
+    var WIDTH_PHOTON = 20;
+    var HEIGHT_PHOTON = 20;
+
+    /***********  END CONSTANTS ***************/
+
 
     /******** Scope variables ***********/
 
@@ -30,6 +37,11 @@ define(['phaser', 'app/phasergame', 'app/color', 'app/music'], function (Phaser,
 
         // Button associated to the handler firePhoton()
         fireButton: null,
+
+
+        preloadPhoton: function () {
+            PhaserGame.game.load.spritesheet('photon', 'assets/Objects/photons.png', WIDTH_PHOTON, HEIGHT_PHOTON);
+        },
 
 
         /// @function initPhotons

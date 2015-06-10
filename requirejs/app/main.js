@@ -1,5 +1,4 @@
-(function () {
-    //'use strict';
+﻿(function () {
 
     requirejs.config({
         baseUrl: "requirejs/",
@@ -39,7 +38,7 @@
     RestartGameState,
     PreludeState,
     Touch,
-    DeadState    
+    DeadState
     ) {
         document.addEventListener("deviceready", Touch.onDeviceReady, false);
         PhaserGame.start();

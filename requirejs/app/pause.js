@@ -1,4 +1,4 @@
-define(['phaser', 'app/phasergame'], function (Phaser, PhaserGame) {
+﻿define(['app/phasergame'], function (PhaserGame) {
 
     // Declaration of the buttons which compose the pause menu
     var button_menu;
@@ -15,7 +15,7 @@ define(['phaser', 'app/phasergame'], function (Phaser, PhaserGame) {
         PhaserGame.game.load.image('resume', 'assets/button_resume.png', 180, 210);
     }
 
-   
+
     /// @function gamePaused
     /// Handler called when the player put the game into pause
     /// Puts the game into pause and creates the menu pause

@@ -1,17 +1,10 @@
-define([
-    'phaser',
-    'app/cook',
-    'app/music'
-], function (
-    Phaser,
-     cook,
-     music
-) {
+﻿define(['phaser', 'app/cookie', 'app/music'], function (Phaser, cookie, music) {
+
     function ChooseLevelState(game) { };
 
     ChooseLevelState.prototype = {
         create: function () {
-            //Fond
+            // Background
             title = this.game.add.sprite(0, 0, 'BG_bad');
             var coef = 600 / 720;
             title.scale.x = coef;
@@ -20,7 +13,7 @@ define([
             // We generate a text and a button (sprite) per level
             var x = 10;
             var y = 10;
-            
+
             for (var i = 1 ; i <= this.game.nbLevel ; i++) {
                 var emptyButton = this.game.add.button(x, y, 'buttonEmpty', this.down, self);
                 emptyButton.scale.setTo(0.8, 0.8);
@@ -31,16 +24,16 @@ define([
                 }
                 var posLabelButtonY = y + 9;
                 var posLabelScoreX = x + 160;
-                var posLabelScoreY = y+7;
+                var posLabelScoreY = y + 7;
 
                 var text = this.game.add.text(posLabelButtonX, posLabelButtonY, "Niveau " + i, { font: "26px Arial", fill: "#ffffff", align: "center" });
-                
+
                 // we check if a cookie contains the score for the level i
-                var nb = cook.readCookie("Level"+i);
+                var nb = cookie.readCookie("Level" + i);
                 if (nb != null) { // if there is already a score, we print it
                     var textResult = this.game.add.text(posLabelScoreX, posLabelScoreY, "Score : " + nb, { font: "18px Arial", fill: "#ffffff", align: "center" });
                 }
-                
+
                 emptyButton.numLevel = i;
                 emptyButton.refGame = this;
                 y += emptyButton.height + 20;
@@ -69,7 +62,7 @@ define([
         returnMenu: function () {
             this.game.state.start('MainMenu');
         }
-        
+
 
 
 

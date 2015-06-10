@@ -240,6 +240,13 @@
             "skin": "filterGreen"
         }
     ],
+    "texts": [
+    {
+      "x": 50,
+      "y": 400,
+      "fr": "Il est possible \nd'aditionner les couleurs "
+    }
+  ],
     "ends": [
         {
             "x": 700,

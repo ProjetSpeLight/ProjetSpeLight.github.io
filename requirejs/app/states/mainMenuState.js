@@ -1,4 +1,4 @@
-define(['phaser', 'app/touch', 'app/music', 'app/cutscenes/intro', 'app/objects/time', 'app/phasergame'], function (Phaser, Touch, music, Intro, time, PhaserGame) {
+﻿define(['phaser', 'app/touch', 'app/music', 'app/cutscenes/intro', 'app/objects/time', 'app/phasergame'], function (Phaser, Touch, music, Intro, time, PhaserGame) {
 
 
     var musique;
@@ -14,7 +14,6 @@ define(['phaser', 'app/touch', 'app/music', 'app/cutscenes/intro', 'app/objects/
             //Gestion de du fond
             this.createTitle();
 
-            //button_play = this.add.button(400, 180, 'play', this.playGame, this);
             var button_play = this.add.button(400, 180, 'play', this.playGame, this, 1, 0, 1);
             button_play.name = 'play';
             button_play.anchor.setTo(0.5, 0.5);

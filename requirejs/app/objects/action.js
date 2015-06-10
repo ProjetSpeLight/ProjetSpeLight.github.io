@@ -1,4 +1,4 @@
-/**
+﻿/**
   * This module implements the differents actions that can occur after an event on a switch or a button
   *
   * Structure of the JSON file related to the declaration of actions
@@ -217,11 +217,6 @@ define([], function () {
 
     return {
         createAction: createAction,
-        actionMoveObject: actionMoveObject,
-        actionDeleteObject: actionDeleteObject,
-        actionCreateObject: actionCreateObject,
-        actionChangeMirrorOrientation: actionChangeMirrorOrientation,
-        actionChangeObjectColor: actionChangeObjectColor,
         createActionButton: createActionButton
     }
 

@@ -1,7 +1,7 @@
-
+﻿
 define(['app/player', 'app/phasergame', 'app/objects/time', 'app/objects/objectsManager'], function (player, PhaserGame, time, Manager) {
 
-   
+
     function createWorld(levelData) {
         //  Creation of the background
         var background = PhaserGame.game.add.sprite(0, 0, levelData.background);
@@ -26,7 +26,7 @@ define(['app/player', 'app/phasergame', 'app/objects/time', 'app/objects/objects
                 return false;
             }
 
-            createWorld(levelData);          
+            createWorld(levelData);
 
             // Creation of the level's objects
             Manager.createObjects(levelData); // Creation of the objects handled by the manager

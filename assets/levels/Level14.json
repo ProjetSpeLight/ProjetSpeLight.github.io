@@ -3,12 +3,12 @@
     "leftBound": 0,
     "rightBound": 2000,
     "upperBound": 0,
-    "lowerBound": 8000
+    "lowerBound": 2300
   },
   "background": "sky",
   "playerStart": {
     "x": 50,
-    "y": 600
+    "y": 725
   },
   "platforms": [
     {
@@ -170,7 +170,7 @@
   "backAndForthPlatforms": [
     {
       "size": {
-        "x": 10
+        "x": 5
       },
       "positions": [
         {
@@ -191,6 +191,27 @@
     },
     {
       "size": {
+        "x": 5
+      },
+      "positions": [
+        {
+          "x": 1300,
+          "y": 400,
+          "speed": {
+            "y": 300
+          }
+        },
+        {
+          "x": 1300,
+          "y": 900,
+          "speed": {
+            "y": -300
+          }
+        }
+      ]
+    },
+    {
+      "size": {
         "x": 10,
         "y": 2
       },
@@ -204,15 +225,26 @@
         },
         {
           "x": 1200,
+          "y": 1900
+        }
+      ]
+    },
+    {
+      "size": {
+        "x": 10,
+        "y": 2
+      },
+      "positions": [
+        {
+          "x": 1400,
           "y": 1900,
           "speed": {
-            "x": 150,
-            "y": 0
+            "y": -150
           }
         },
         {
-          "x": 1500,
-          "y": 1900
+          "x": 1400,
+          "y": 1300      
         }
       ]
     },
@@ -401,7 +433,7 @@
 
       "bounds": {
         "left": 1200,
-        "right": 1400
+        "right": 1600
       },
       "speed": {
         "x": 150
@@ -414,10 +446,23 @@
 
       "bounds": {
         "left": 1200,
-        "right": 1400
+        "right": 1600
       },
       "speed": {
-        "x": -150
+        "x": 150
+      },
+      "type": "flying"
+    },
+    {
+      "x": 1500,
+      "y": 1900,
+
+      "bounds": {
+        "left": 1200,
+        "right": 1600
+      },
+      "speed": {
+        "x": 150
       },
       "type": "flying"
     },

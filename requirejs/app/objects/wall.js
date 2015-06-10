@@ -1,4 +1,4 @@
-define(['app/phasergame', 'app/player', 'app/objects/ennemi'], function (PhaserGame, player, ennemies) {
+﻿define(['app/phasergame', 'app/player', 'app/objects/ennemi'], function (PhaserGame, player, enemies) {
 
     /// @function handlerPhoton
     /// Handler called when a photon hits a wall - Destroy the wall if the photon is enough powerful
@@ -9,7 +9,7 @@ define(['app/phasergame', 'app/player', 'app/objects/ennemi'], function (PhaserG
             wall.destroy();
         }
         player.refPhotons.killPhoton(photon);
-    }   
+    }
 
     return {
         // The group of sprites
@@ -18,7 +18,7 @@ define(['app/phasergame', 'app/player', 'app/objects/ennemi'], function (PhaserG
         /// @function preloadObjectImage
         /// Preloads the different images / spritesheets used by this module
         preloadObjectsImages: function () {
-            PhaserGame.game.load.image('wall', 'assets/wall.png');
+            PhaserGame.game.load.image('wall', 'assets/Objects/wall.png');
         },
 
         /// @function createObjectsGroup
@@ -43,9 +43,9 @@ define(['app/phasergame', 'app/player', 'app/objects/ennemi'], function (PhaserG
                 var x = wallData.x;
                 var y = wallData.y;
                 var minEnergy = wallData.minEnergy;
-               
-                /*** Creation of the wall ***/                
-                
+
+                /*** Creation of the wall ***/
+
                 // We create a new wall at the position (x,y) with the parsed data
                 var wallObject = this.group.create(x, y, 'wall');
                 wallObject.minEnergy = minEnergy;
@@ -75,10 +75,10 @@ define(['app/phasergame', 'app/player', 'app/objects/ennemi'], function (PhaserG
 
         /// @function updateObject
         /// Updates the group of walls (to be called by the update() function of the game state)
-        updateObjects: function () {       
+        updateObjects: function () {
             PhaserGame.game.physics.arcade.overlap(player.refPhotons.photons, this.group, handlerPhoton);
             PhaserGame.game.physics.arcade.collide(player.sprite, this.group);
-            PhaserGame.game.physics.arcade.collide(ennemies.group, this.group);
+            PhaserGame.game.physics.arcade.collide(enemies.group, this.group);
         }
     }
 });

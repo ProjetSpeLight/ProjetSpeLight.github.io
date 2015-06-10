@@ -1,5 +1,4 @@
-define(['phaser', 'app/phasergame', 'app/player', 'app/objects/action'], function (Phaser, PhaserGame, player, action) {
-
+﻿define(['phaser', 'app/phasergame', 'app/player', 'app/objects/action'], function (Phaser, PhaserGame, player, action) {
 
     /// @function triggerAction
     /// Handler called when a photon hits a switch : trigger the associated action
@@ -76,20 +75,20 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/objects/action'], functio
         group: null,
 
         preloadObjectsImages: function () {
-            PhaserGame.game.load.image('switchRedOn', 'assets/Switch/Switch_Red.png');
-            PhaserGame.game.load.image('switchBlueOn', 'assets/Switch/Switch_Blue.png');
-            PhaserGame.game.load.image('switchGreenOn', 'assets/Switch/Switch_Green.png');
-            PhaserGame.game.load.image('switchMagentaOn', 'assets/Switch/Switch_Magenta.png');
-            PhaserGame.game.load.image('switchYellowOn', 'assets/Switch/Switch_Yellow.png');
-            PhaserGame.game.load.image('switchCyanOn', 'assets/Switch/Switch_Cyan.png');
-            PhaserGame.game.load.image('switchWhiteOn', 'assets/Switch/Switch_White.png');
-            PhaserGame.game.load.image('switchRedOff', 'assets/Switch/Switch_RedOff.png');
-            PhaserGame.game.load.image('switchBlueOff', 'assets/Switch/Switch_BlueOff.png');
-            PhaserGame.game.load.image('switchGreenOff', 'assets/Switch/Switch_GreenOff.png');
-            PhaserGame.game.load.image('switchMagentaOff', 'assets/Switch/Switch_MagentaOff.png');
-            PhaserGame.game.load.image('switchYellowOff', 'assets/Switch/Switch_YellowOff.png');
-            PhaserGame.game.load.image('switchCyanOff', 'assets/Switch/Switch_CyanOff.png');
-            PhaserGame.game.load.image('switchWhiteOff', 'assets/Switch/Switch_WhiteOff.png');
+            PhaserGame.game.load.image('switchRedOn', 'assets/Objects/Switch/Switch_Red.png');
+            PhaserGame.game.load.image('switchBlueOn', 'assets/Objects/Switch/Switch_Blue.png');
+            PhaserGame.game.load.image('switchGreenOn', 'assets/Objects/Switch/Switch_Green.png');
+            PhaserGame.game.load.image('switchMagentaOn', 'assets/Objects/Switch/Switch_Magenta.png');
+            PhaserGame.game.load.image('switchYellowOn', 'assets/Objects/Switch/Switch_Yellow.png');
+            PhaserGame.game.load.image('switchCyanOn', 'assets/Objects/Switch/Switch_Cyan.png');
+            PhaserGame.game.load.image('switchWhiteOn', 'assets/Objects/Switch/Switch_White.png');
+            PhaserGame.game.load.image('switchRedOff', 'assets/Objects/Switch/Switch_RedOff.png');
+            PhaserGame.game.load.image('switchBlueOff', 'assets/Objects/Switch/Switch_BlueOff.png');
+            PhaserGame.game.load.image('switchGreenOff', 'assets/Objects/Switch/Switch_GreenOff.png');
+            PhaserGame.game.load.image('switchMagentaOff', 'assets/Objects/Switch/Switch_MagentaOff.png');
+            PhaserGame.game.load.image('switchYellowOff', 'assets/Objects/Switch/Switch_YellowOff.png');
+            PhaserGame.game.load.image('switchCyanOff', 'assets/Objects/Switch/Switch_CyanOff.png');
+            PhaserGame.game.load.image('switchWhiteOff', 'assets/Objects/Switch/Switch_WhiteOff.png');
         },
 
         /// @function createObjectsGroup
@@ -143,8 +142,6 @@ define(['phaser', 'app/phasergame', 'app/player', 'app/objects/action'], functio
 
                 // Boolean to display the camera animation only once
                 switchObject.hasPlayedAnimation = false;
-
-
             }
 
         },

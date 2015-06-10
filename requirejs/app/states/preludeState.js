@@ -16,7 +16,7 @@
             this.load.image('BG_bad', 'assets/intro/BG_bad.jpg');
             this.load.image('lumiere', 'assets/intro/lumiere.png');
             this.load.image('rain', 'assets/intro/rain.png');
-            this.load.spritesheet('boules', 'assets/plateformeCouleur.png', 100, 100);
+            this.load.spritesheet('boules', 'assets/Objects/plateformeCouleur.png', 100, 100);
             //Son
             this.load.audio('son_eclair', ['assets/audio/eclair.mp3', 'assets/audio/eclair.ogg']);
             this.load.audio('son_pluie', ['assets/audio/pluie.mp3', 'assets/audio/pluie.ogg']);
