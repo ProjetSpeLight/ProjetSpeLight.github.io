@@ -54,7 +54,8 @@
             this.load.image('BG_bad', 'assets/intro/BG_bad.jpg');
             this.load.image('lumiere', 'assets/intro/lumiere.png');
             this.load.image('rain', 'assets/intro/rain.png');
-            this.load.spritesheet('boules', 'assets/Objects/plateformeCouleur.png', 100, 100);   
+            this.load.spritesheet('boules', 'assets/Objects/plateformeCouleur.png', 100, 100);
+            this.load.image('ecrantitre', 'assets/intro/EcranTitre.png');
         },
 
         create: function () {

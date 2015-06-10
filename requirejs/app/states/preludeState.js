@@ -43,8 +43,17 @@
             PhaserGame.game.input.keyboard.onPressCallback = this.passer;
             PhaserGame.game.input.touch.touchStartCallback = this.passer;
 
-            //Lancement de l'intro
+            //Mise à jour de la musique
+            Intro.musique1 = PhaserGame.game.add.audio('conte');
+            Intro.musique2 = PhaserGame.game.add.audio('desastre');
+            Intro.musique3 = PhaserGame.game.add.audio('heros');
+
+            sounds = [Intro.musique1,Intro.musique2,Intro.musique3];
+
+            //Lancement de l'intro après chargement des musiques
+            //PhaserGame.game.sound.setDecodedCallback(sounds, Intro.intro1, this);
             Intro.intro1();
+           
          
         },
 

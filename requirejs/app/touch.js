@@ -133,9 +133,9 @@ define(['phaser', 'app/phasergame', 'app/player'], function (Phaser, PhaserGame,
         if (inGame) {            
             var signe;
             if (window.orientation == 90 ){//acceleration.x < 0) {
-                signe = -1;
-            } else {
                 signe = 1;
+            } else {
+                signe = -1;
             }
             var temp
             if (Math.abs(acceleration.y) > zoneMorte) {

@@ -10,6 +10,7 @@
     var boules = [];
     var musique1;
     var musique2;
+    var musique3;
 
     return {
         emitter: emitter,
@@ -26,8 +27,7 @@
             PhaserGame.game.stage.backgroundColor = '#000000';
 
             //Musique !
-            musique1 = PhaserGame.game.add.audio('conte');
-            musique1.play();
+            this.musique1.play();
 
             //Définition des textes
             style = { font: "20px Arial", fill: "#ffffff", align: "center" };
@@ -78,7 +78,7 @@
             tween[2].start();
 
             //Fondu musique
-            musique1.fadeTo(10000, 0);
+            this.musique1.fadeTo(10000, 0);
         },
 
         setEmmiters: function () {
@@ -121,8 +121,7 @@
 
         intro3: function () {
             //Nouvelle musique
-            musique2 = PhaserGame.game.add.audio('desastre');
-            musique2.play();
+            this.musique2.play();
 
             //Texte
             style = { font: "20px Arial", fill: "#ffffff", align: "center" };
@@ -196,14 +195,13 @@
             tween[0].start();
 
             //Fondu musique
-            musique2.fadeTo(12000, 0);
+            this.musique2.fadeTo(12000, 0);
 
         },
 
         intro6: function () {
 
-            musique1 = PhaserGame.game.add.audio('heros');
-            musique1.play();
+            this.musique3.play();
 
             affichePlayer = true;
 
@@ -308,16 +306,19 @@
             tween[0] = PhaserGame.game.add.tween(PhaserGame.game.world).to({ alpha: 0 }, 5000, Phaser.Easing.Linear.None);
             tween[0].onComplete.add(this.finIntro, this);
             tween[0].start();
-            musique1.fadeTo(5000, 0);
+            this.musique3.fadeTo(5000, 0);
         },
 
         finIntro: function () {
             PhaserGame.game.world.alpha = 1;
-            if (musique1 != null) {
-                musique1.destroy();
+            if (this.musique1 != null) {
+                this.musique1.destroy();
             }
-            if (musique2 != null) {
-                musique2.destroy();
+            if (this.musique2 != null) {
+                this.musique2.destroy();
+            }
+            if (this.musique3 != null) {
+                this.musique3.destroy();
             }
             PhaserGame.game.input.keyboard.onPressCallback = null;
             PhaserGame.game.input.touch.touchStartCallback = null;

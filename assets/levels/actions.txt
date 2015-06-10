@@ -1,0 +1,32 @@
+Liste des identifiants des groupes d'objets (attribut groupId) :
+        - MIRROR: 0
+        - FILTER: 1
+        - BUTTON: 2
+        - SWITCH: 3
+        - PLATFORM: 4
+        - ENEMY: 5
+        - PIQUE: 6
+        - COIN: 7
+        - END: 8
+        - TEXT: 9
+        - WALL: 10
+
+Liste des couleurs (attention à la casse) et leur énergie associée (pour les murs) :
+        - Black : 0
+        - Red : 1
+        - Blue : 5
+        - Green : 3
+        - Yellow : 2
+        - Magenta : 4
+        - Cyan : 6
+        - White : 7
+
+Liste des différentes actions et leurs arguments attendus le cas échéant (cf fichier action.js pour plus de détail):
+        - actionMoveObject (déplace un objet) : "x" et "y" pour les déplacements horizontal et vertical de l'objet (il s'agit d'un incrément et non d'une position absolue)
+        - actionDeleteObject (détruit un objet) : pas d'argument
+        - actionCreateObject (crée un objet) : pas d'argument
+        - actionChangeMirrorOrientation (change l'angle d'un miroir par rapport au sol) : "incr" pour l'incrément de l'angle du miroir
+        - actionChangeObjectColor (change la couleur d'un objet suivant une liste, en boucle) : liste de couleurs
+        - actionPutInMoveObject (met en mouvement un objet ou arrête son mouvement) : pas d'argument
+
+Pour l'action actionPutInMoveObject, l'objet affecté doit être une plateforme mobile. L'initialisation de l'action rend immobile la plateforme et son déclenchement la met en mouvement.

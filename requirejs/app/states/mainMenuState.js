@@ -52,19 +52,15 @@
         },
 
         createTitle: function () {
+            if (musique != null) {
+                musique.stop();
+            }
             musique = PhaserGame.game.add.audio('Titre');
             musique.play();
-            title = this.game.add.sprite(0, 0, 'BG_bad');
-            var coef = 600 / 720;
-            title.scale.x = coef;
-            title.scale.y = coef;
+            title = this.game.add.sprite(0, 0, 'ecrantitre');
             var boule = [];
             for (i = 0; i < 3; ++i) {
                 boule[i] = Intro.createBoule(Math.floor(Math.random() * 250), Math.floor(100 + Math.random() * 400), i % 3);
-                boule[i].animations.play('anim');
-            }
-            for (i = 0; i < 3; ++i) {
-                boule[i] = Intro.createBoule(Math.floor(200 + Math.random() * 550), Math.floor(Math.random() * 100), i % 3);
                 boule[i].animations.play('anim');
             }
             for (i = 0; i < 3; ++i) {
