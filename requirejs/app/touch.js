@@ -19,12 +19,13 @@ define(['phaser', 'app/phasergame', 'app/player'], function (Phaser, PhaserGame,
     var buttonBouton;
     var buttonAccelerometre;
     var opacity = 0.3;
+    var SCALE_TAILLE_BOUTON = 0.90;
 
     function initJoypad() {
         buttonjump = PhaserGame.game.add.button(625, 500, 'buttonSaut', null, this);
         buttonjump.fixedToCamera = true;
         buttonjump.alpha = opacity;
-        buttonjump.scale = new Phaser.Point(0.75, 0.75);
+        buttonjump.scale = new Phaser.Point(SCALE_TAILLE_BOUTON, SCALE_TAILLE_BOUTON);
         buttonjump.events.onInputOver.add(function () { Player.activeJump = true; });
         buttonjump.events.onInputOut.add(function () { Player.activeJump = false; });
         buttonjump.events.onInputDown.add(function () { Player.activeJump = true;});
@@ -33,14 +34,14 @@ define(['phaser', 'app/phasergame', 'app/player'], function (Phaser, PhaserGame,
         buttonfire = PhaserGame.game.add.button(700, 450, 'buttonTir', null, this);
         buttonfire.fixedToCamera = true;
         buttonfire.alpha = opacity;
-        buttonfire.scale = new Phaser.Point(0.75, 0.75);
+        buttonfire.scale = new Phaser.Point(SCALE_TAILLE_BOUTON, SCALE_TAILLE_BOUTON);
         buttonfire.events.onInputOver.add(function () { Player.fireActive = true; });
         buttonfire.events.onInputOut.add(function () { Player.fireActive = false; });
         buttonfire.events.onInputDown.add(function () { Player.fireActive = true; });
         buttonfire.events.onInputUp.add(function () { Player.fireActive = false; });
       
 
-        buttonleft = PhaserGame.game.add.button(25, 560, 'buttonGauche', null, this);
+        buttonleft = PhaserGame.game.add.button(25, 548, 'buttonGauche', null, this);
         buttonleft.fixedToCamera = true;
         buttonleft.alpha = opacity;
         //PhaserGame.game.input.pointer1.button = buttonleft;
@@ -50,14 +51,17 @@ define(['phaser', 'app/phasergame', 'app/player'], function (Phaser, PhaserGame,
         buttonleft.events.onInputOut.add(function () { Player.moveLeft = false; });
         buttonleft.events.onInputDown.add(function () { Player.moveLeft = true; });
         buttonleft.events.onInputUp.add(function () { Player.moveLeft = false; });
+        buttonleft.scale = new Phaser.Point(SCALE_TAILLE_BOUTON + 0.4, SCALE_TAILLE_BOUTON + 0.4);
 
-        buttonright = PhaserGame.game.add.button(125, 560, 'buttonDroite', null, this);
+        buttonright = PhaserGame.game.add.button(25 + buttonleft.width, 548, 'buttonDroite', null, this);
         buttonright.fixedToCamera = true;
         buttonright.alpha = opacity;
         buttonright.events.onInputOver.add(function () { Player.moveRight = true; });
         buttonright.events.onInputOut.add(function () { Player.moveRight = false; });
         buttonright.events.onInputDown.add(function () { Player.moveRight = true; });
         buttonright.events.onInputUp.add(function () { Player.moveRight = false; });
+        buttonright.scale = new Phaser.Point(SCALE_TAILLE_BOUTON + 0.4, SCALE_TAILLE_BOUTON + 0.4);
+        //buttonright.height = 600 - buttonright.height;
 
         
     }
