@@ -36,7 +36,8 @@
             }
 
             this.load.spritesheet('play', 'assets/boutons/New_Game.png', 190, 68);
-            this.load.spritesheet('help', 'assets/boutons/Aide.png', 190, 68);
+            this.load.spritesheet('retour', 'assets/boutons/Retour.png', 190, 68);
+            this.load.spritesheet('help', 'assets/boutons/Credits.png', 190, 68);
             this.load.spritesheet('tutorial', 'assets/boutons/Tuto.png', 190, 68);
             this.load.image('buttonNextLevel', 'assets/button_nextlevel.png');
             this.load.spritesheet('bouton', 'assets/boutons/Boutons.png', 190, 68);
@@ -53,6 +54,7 @@
             this.load.image('BG_good', 'assets/intro/BG_good.jpg');
             this.load.image('BG_bad', 'assets/intro/BG_bad.jpg');
             this.load.image('lumiere', 'assets/intro/lumiere.png');
+            this.load.image('Credits', 'assets/credits.png');
             this.load.image('rain', 'assets/intro/rain.png');
             this.load.spritesheet('boules', 'assets/Objects/plateformeCouleur.png', 100, 100);
             this.load.image('ecrantitre', 'assets/intro/EcranTitre.png');

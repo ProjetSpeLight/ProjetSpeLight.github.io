@@ -3,11 +3,11 @@
 
     var musique;
 
-    function MainMenuState(game) {};
-    
+    function MainMenuState(game) { };
+
     MainMenuState.prototype = {
 
-        create: function () {            
+        create: function () {
 
             this.game.state.states['Game'].currentLevel = 1;
 
@@ -26,7 +26,7 @@
             button_help.name = 'tutorial';
             button_help.anchor.setTo(0.5, 0.5);
 
-            if(!this.game.device.desktop){
+            if (!this.game.device.desktop) {
                 Touch.stop();
                 Touch.boutonsSwitch();
             }
@@ -47,8 +47,7 @@
         },
 
         help: function () {
-            musique.stop();
-            this.state.start('FinishLevel');
+            this.state.start('Credit');
         },
 
         createTitle: function () {
@@ -91,7 +90,7 @@
         }
 
     };
-    
-    
+
+
     return MainMenuState;
 });

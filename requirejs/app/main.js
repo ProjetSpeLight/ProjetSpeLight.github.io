@@ -25,6 +25,7 @@
     'app/states/preludeState',
     'app/touch',
     'app/states/deadState',
+    'app/states/creditState',
     ],
     function (
         Phaser,
@@ -38,7 +39,8 @@
     RestartGameState,
     PreludeState,
     Touch,
-    DeadState
+    DeadState,
+    CreditState
     ) {
         document.addEventListener("deviceready", Touch.onDeviceReady, false);
         PhaserGame.start();
@@ -49,6 +51,7 @@
         PhaserGame.game.state.add('FinishLevel', FinishLevelState);
         PhaserGame.game.state.add('ChooseLevel', ChooseLevelState);
         PhaserGame.game.state.add('RestartGame', RestartGameState);
+        PhaserGame.game.state.add('Credit', CreditState);
         PhaserGame.game.state.add('Dead', DeadState);
         PhaserGame.game.state.add('Prelude', PreludeState);
         PhaserGame.game.state.start('Boot');
