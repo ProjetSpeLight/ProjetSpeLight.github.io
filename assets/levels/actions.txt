@@ -1,4 +1,4 @@
-Liste des identifiants des groupes d'objets (attribut groupId) :
+ï»¿Liste des identifiants des groupes d'objets (attribut groupId) :
         - MIRROR: 0
         - FILTER: 1
         - BUTTON: 2
@@ -11,7 +11,7 @@ Liste des identifiants des groupes d'objets (attribut groupId) :
         - TEXT: 9
         - WALL: 10
 
-Liste des couleurs (attention à la casse) et leur énergie associée (pour les murs) :
+Liste des couleurs (attention Ã  la casse) et leur Ã©nergie associÃ©e (pour les murs) :
         - Black : 0
         - Red : 1
         - Blue : 5
@@ -21,12 +21,12 @@ Liste des couleurs (attention à la casse) et leur énergie associée (pour les mur
         - Cyan : 6
         - White : 7
 
-Liste des différentes actions et leurs arguments attendus le cas échéant (cf fichier action.js pour plus de détail):
-        - actionMoveObject (déplace un objet) : "x" et "y" pour les déplacements horizontal et vertical de l'objet (il s'agit d'un incrément et non d'une position absolue)
-        - actionDeleteObject (détruit un objet) : pas d'argument
-        - actionCreateObject (crée un objet) : pas d'argument
-        - actionChangeMirrorOrientation (change l'angle d'un miroir par rapport au sol) : "incr" pour l'incrément de l'angle du miroir
+Liste des diffÃ©rentes actions et leurs arguments attendus le cas Ã©chÃ©ant (cf fichier action.js pour plus de dÃ©tail):
+        - actionMoveObject (dÃ©place un objet) : "x" et "y" pour les dÃ©placements horizontal et vertical de l'objet (il s'agit d'un incrÃ©ment et non d'une position absolue)
+        - actionDeleteObject (dÃ©truit un objet) : pas d'argument
+        - actionCreateObject (crÃ©e un objet) : pas d'argument
+        - actionChangeMirrorOrientation (change l'angle d'un miroir par rapport au sol) : "incr" pour l'incrÃ©ment de l'angle du miroir
         - actionChangeObjectColor (change la couleur d'un objet suivant une liste, en boucle) : liste de couleurs
-        - actionPutInMoveObject (met en mouvement un objet ou arrête son mouvement) : pas d'argument
+        - actionPutInMoveObject (met en mouvement un objet ou arrÃªte son mouvement) : pas d'argument
 
-Pour l'action actionPutInMoveObject, l'objet affecté doit être une plateforme mobile. L'initialisation de l'action rend immobile la plateforme et son déclenchement la met en mouvement.
+Pour l'action actionPutInMoveObject, l'objet affectÃ© doit Ãªtre une plateforme mobile. L'initialisation de l'action rend immobile la plateforme et son dÃ©clenchement la met en mouvement.
