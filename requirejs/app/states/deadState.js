@@ -29,7 +29,9 @@
             button_restart.anchor.setTo(0.5, 0.5);
             button_restart.fixedToCamera = true;
 
-            this.add.text(50, 450, 'Appuyer sur Espace pour recommencer le niveau', { fontSize: '48px', fill: '#fff' });
+            if (this.game.device.desktop) {
+                this.add.text(50, 450, 'Appuyer sur Espace pour recommencer le niveau', { fontSize: '48px', fill: '#fff' });
+            }
         },
 
         menuclick: function () {

@@ -63,7 +63,9 @@ define(['phaser', 'app/objects/time', 'app/touch', 'app/phasergame', 'app/cookie
             button_next.anchor.setTo(0.5, 0.5);
             button_next.fixedToCamera = true;
 
-            this.add.text(50, 550, 'Appuyer sur Espace pour passer au niveau suivant', { fontSize: '42px', fill: '#fff' });
+            if (this.game.device.desktop) {
+                this.add.text(50, 550, 'Appuyer sur Espace pour passer au niveau suivant', { fontSize: '42px', fill: '#fff' });
+            }
 
 
         },
