@@ -140,7 +140,7 @@
                 "x": 150,
                 "y": 0
             },
-            "type":"flying"
+            "type": "flying"
 
         }
     ],
@@ -155,14 +155,16 @@
             "x": 10,
             "y": 400,
             "en": "Use arrow keys to move \n and jump",
-            "fr": "Utilise les flèches \n pour te déplacer et sauter"
+            "fr": "Utilise les flèches \n pour te déplacer et sauter",
+            "mobile": "Utilise les boutons \n pour te déplacer et sauter"
 
         },
         {
             "x": 380,
             "y": 250,
             "en": "You can gain a primary color here \n press <DOWN> on the platform",
-            "fr": "Sur une plateforme colorée, \n appuie sur la flèche du bas \n pour gagner cette couleur"
+            "fr": "Sur une plateforme colorée, \n appuie sur la flèche du bas \n pour gagner cette couleur",
+            "mobile": "Sur une plateforme colorée, \n appuie sur le bouton qui apparait \n pour gagner cette couleur"
         },
         {
             "x": 780,
@@ -180,7 +182,8 @@
             "x": 1350,
             "y": 400,
             "en": "To kill the enemies \n shoot some photons at him with <SPACE>",
-            "fr": "Pour tuer tes ennemis \n tire leur des photons dessus avec la barre d'espace"
+            "fr": "Pour tuer tes ennemis \n tire leur des photons dessus avec la barre d'espace",
+            "mobile": "Pour tuer tes ennemis \n tire leur des photons dessus avec le bouton à droite"
         },
         {
             "x": 2650,

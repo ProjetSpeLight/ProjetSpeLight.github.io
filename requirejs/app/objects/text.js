@@ -21,7 +21,11 @@
                 var style = { font: "24px Arial", fill: "#ffffff", align: "center" };
                 for (var i = 0 ; i < data.length ; i++) {
                     var textData = data[i];
-                    var text = PhaserGame.game.add.text(textData.x, textData.y, textData.fr, style);
+                    if (!PhaserGame.game.device.desktop && textData.mobile != null) {
+                        PhaserGame.game.add.text(textData.x, textData.y, textData.mobile, style);
+                    } else {
+                        PhaserGame.game.add.text(textData.x, textData.y, textData.fr, style);
+                    }
                 }
             }
         },
