@@ -19,6 +19,9 @@
         create: function () {
             orientated = false;
             this.game.nbLevel = NB_LEVELS;
+			
+			// We force the mobile interface for demo purposes (Windows 8 table)
+			this.game.device.desktop=false;
 
             this.input.maxPointers = 3;
             this.stage.disableVisibilityChange = true;
