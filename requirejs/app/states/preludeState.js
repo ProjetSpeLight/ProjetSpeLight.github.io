@@ -42,6 +42,7 @@
             //Passage de cutscene
             PhaserGame.game.input.keyboard.onPressCallback = this.passer;
             PhaserGame.game.input.touch.touchStartCallback = this.passer;
+			PhaserGame.game.input.mouse.mouseUpCallback = this.passer;
 
             //Mise à jour de la musique
             Intro.musique1 = PhaserGame.game.add.audio('conte');
