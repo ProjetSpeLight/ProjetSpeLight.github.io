@@ -322,6 +322,7 @@
             }
             PhaserGame.game.input.keyboard.onPressCallback = null;
             PhaserGame.game.input.touch.touchStartCallback = null;
+            PhaserGame.game.input.mouse.mouseUpCallback = null;
             PhaserGame.game.state.start('MainMenu');
         },
 
