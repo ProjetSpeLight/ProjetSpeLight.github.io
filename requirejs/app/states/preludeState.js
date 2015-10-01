@@ -66,6 +66,7 @@
         passer: function () {
             if (this.passed) {
                 Intro.finIntro();
+                PhaserGame.game.input.mouse.mouseUpCallback = null;
             } else {
                 this.passed = true;
                 style = { font: "40px Arial", fill: "#ffffff", align: "center" };
